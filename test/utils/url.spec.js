@@ -1,0 +1,29 @@
+'use strict'
+const expect = require('chai').expect
+const UrlParser = require('../../src/utils/url')
+
+describe('Parse Url ID', () => {
+    it('# Video ID', () => {
+        const id = 'ph5ac81eabe203d'
+        const url = 'https://www.pornhub.com/view_video.php?viewkey=ph5ac81eabe203d'
+
+        expect(UrlParser.getVideoID(id)).to.equal(id)
+        expect(UrlParser.getVideoID(url)).to.equal(id)
+    })
+
+    it('# Album ID', () => {
+        const id = '367633'
+        const url = 'https://www.pornhub.com/album/367633'
+
+        expect(UrlParser.getAlbumID(id)).to.equal(id)
+        expect(UrlParser.getAlbumID(url)).to.equal(id)
+    })
+
+    it('# Photo ID', () => {
+        const id = '3683968'
+        const url = 'https://www.pornhub.com/photo/3683968'
+
+        expect(UrlParser.getPhotoID(id)).to.equal(id)
+        expect(UrlParser.getPhotoID(url)).to.equal(id)
+    })
+})

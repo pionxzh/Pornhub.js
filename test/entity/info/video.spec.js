@@ -4,16 +4,11 @@ const PornHub = require('../../../src/pornhub')
 const pornhub = new PornHub()
 
 describe('Video Info', () => {
-    const id = 'ph5ac81eabe203d'
     const url = 'https://www.pornhub.com/view_video.php?viewkey=ph5ac81eabe203d'
 
     let result = null
     before(async () => {
         result = await pornhub.video(url)
-    })
-
-    it('# id should be parsed from url', () => {
-        expect(result.id).to.equal(id)
     })
 
     it('# run()', () => {

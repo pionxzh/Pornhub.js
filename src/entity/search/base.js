@@ -1,25 +1,20 @@
 const cheerio = require('cheerio')
 
 class BaseSearch {
-    constructor (engine, keyword, options) {
+    constructor (engine) {
         this.engine = engine
     }
 
-    get query () {
-        let query = {}
-        query.search = this._query.keyword.split(' ').join('+')
-        if (this._query.order) query.o = this._query.order
-        if (this._query.page) query.page = this._query.page
-
-        return query
-    }
-
     setQuery (keyword, options = {}) {
-        this._query = { keyword, ...options }
-        if (this._query.order) this.setOrder(this._query.order)
+        let query = {}
+        query.search = keyword.split(' ').join('+')
+        if (options.order) query.o = this.handleOrder(options.order)
+        if (options.page) query.page = options.page
+
+        this.query = query
     }
 
-    setOrder (name) {
+    handleOrder (name) {
         const orderMapping = {
             // 'most relevant': '',
             'most recent': 'mr',
@@ -32,7 +27,7 @@ class BaseSearch {
 
         const key = name.toLowerCase()
         const needMapping = Object.keys(orderMapping).includes(key)
-        this._query.order = needMapping ? orderMapping[key] : key
+        return needMapping ? orderMapping[key] : key
     }
 
     loadHtml (html) {

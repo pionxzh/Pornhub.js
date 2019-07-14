@@ -1,16 +1,12 @@
 const BaseInfo = require('./base')
+const UrlParser = require('../../utils/url')
 // const { removeProtectionBracket } = require('../utils/utils')
 
 class AlbumInfo extends BaseInfo {
     constructor (engine, url) {
         super(engine)
 
-        this.handleID(url)
-    }
-
-    handleID (url) {
-        const UrlRule = /www\.pornhub\.com\/album\/([0-9]{1,30})/
-        this.id = UrlRule.test(url) ? UrlRule.exec(url)[1] : url
+        this.id = UrlParser.getAlbumID(url)
     }
 
     get url () {

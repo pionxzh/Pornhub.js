@@ -1,3 +1,5 @@
+const UrlParser = require('../utils/url')
+
 class VideoApi {
     constructor (engine, url, thumbsize) {
         this.engine = engine
@@ -5,9 +7,8 @@ class VideoApi {
     }
 
     setQuery (url, thumbsize = 'large') {
-        const UrlRule = /www\.pornhub\.com\/view_video\.php\?viewkey=([a-zA-z0-9]{1,30})/
-        const id = UrlRule.test(url) ? UrlRule.exec(url)[1] : url
-        this.query = { id, thumbsize }
+        this.id = UrlParser.getVideoID(url)
+        this.query = { id: this.id, thumbsize: thumbsize }
     }
 
     transformData (data) {

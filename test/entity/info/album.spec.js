@@ -4,16 +4,11 @@ const PornHub = require('../../../src/pornhub')
 const pornhub = new PornHub()
 
 describe('Album Info', () => {
-    const id = '367633'
     const url = 'https://www.pornhub.com/album/367633'
 
     let result = null
     before(async () => {
         result = await pornhub.album(url)
-    })
-
-    it('# id should be parsed from url', () => {
-        expect(result.id).to.equal(id)
     })
 
     it('# run()', () => {

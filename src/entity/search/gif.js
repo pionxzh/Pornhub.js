@@ -3,23 +3,18 @@ const { removeProtectionBracket } = require('../../utils/utils')
 
 class GifSearch extends BaseSearch {
     constructor (engine, keyword, options) {
-        super(engine, keyword, options)
+        super(engine)
 
         this.setQuery(keyword, options)
+        this.setSexualOrientation(options.sexualOrientation)
     }
 
     get url () {
         return this.engine.API.type(this.sexualOrientation).gifs.search.query(this.query)
     }
 
-    get query () {
-        let query = super.query
-        return query
-    }
-
     setQuery (keyword, options) {
         super.setQuery(keyword, options)
-        this.setSexualOrientation(this._query.sexualOrientation)
     }
 
     setSexualOrientation (val = 'straight') {

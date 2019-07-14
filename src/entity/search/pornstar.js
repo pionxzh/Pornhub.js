@@ -3,18 +3,13 @@ const { removeProtectionBracket } = require('../../utils/utils')
 
 class PornstarSearch extends BaseSearch {
     constructor (engine, keyword, options) {
-        super(engine, keyword, options)
+        super(engine)
 
         this.setQuery(keyword, options)
     }
 
     get url () {
         return this.engine.API.pornstars.search.query(this.query)
-    }
-
-    get query () {
-        let query = super.query
-        return query
     }
 
     setQuery (keyword, options) {

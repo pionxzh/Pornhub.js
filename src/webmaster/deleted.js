@@ -1,11 +1,11 @@
 class DeletedApi {
     constructor (engine, page) {
         this.engine = engine
-        this.setPage(page)
+        this.setQuery(page)
     }
 
-    setPage (page = 1) {
-        this.page = page
+    setQuery (page = 1) {
+        this.query = { page: page }
     }
 
     parse (apiData) {
@@ -13,8 +13,7 @@ class DeletedApi {
     }
 
     run () {
-        const page = this.page
-        return this.engine.API.webmasters.deleted_videos.query({ page }).get()
+        return this.engine.API.webmasters.deleted_videos.query(this.query).get()
             .then(data => this.parse(data))
             .catch(err => Promise.reject(err))
     }

@@ -1,15 +1,11 @@
 const BaseInfo = require('./base')
+const UrlParser = require('../../utils/url')
 
 class PhotoInfo extends BaseInfo {
     constructor (engine, url) {
         super(engine)
 
-        this.handleID(url)
-    }
-
-    handleID (url) {
-        const UrlRule = /www\.pornhub\.com\/photo\/([0-9]{1,30})/
-        this.id = UrlRule.test(url) ? UrlRule.exec(url)[1] : url
+        this.id = UrlParser.getPhotoID(url)
     }
 
     get url () {

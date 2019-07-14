@@ -3,29 +3,22 @@ const BaseSearch = require('./base')
 
 class AlbumSearch extends BaseSearch {
     constructor (engine, keyword, options) {
-        super(engine, keyword, options)
+        super(engine)
 
         this.setQuery(keyword, options)
+        this.setSegments(options.segments)
     }
 
     get url () {
         return this.engine.API.albums(this.segments).query(this.query)
     }
 
-    get query () {
-        let query = super.query
-        return query
-    }
-
     setQuery (keyword, options) {
         super.setQuery(keyword, options)
-        this.setSegments(this._query.segments)
     }
 
-    setSegments (val) {
-        if (val === undefined) {
-            this.segments = 'female-straight-uncategorized'
-        } else if (typeof val === 'string') {
+    setSegments (val = 'female-straight-uncategorized') {
+        if (typeof val === 'string') {
             this.segments = val
         } else if (Array.isArray(val)) {
             const compareFn = (a, b) => a.localeCompare(b)

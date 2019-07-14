@@ -3,7 +3,7 @@ const { removeProtectionBracket } = require('../../utils/utils')
 
 class VideoSearch extends BaseSearch {
     constructor (engine, keyword, options) {
-        super(engine, keyword, options)
+        super(engine)
 
         this.setQuery(keyword, options)
     }
@@ -12,32 +12,18 @@ class VideoSearch extends BaseSearch {
         return this.engine.API.video.search.query(this.query)
     }
 
-    get query () {
-        let query = super.query
-        if (this._query.hd) query.hd = 1
-        if (this._query.production) query.p = this._query.production
-        if (this._query.filterCategory) query.filter_category = this._query.filterCategory
-        if (this._query.duration && this._query.duration.min) query.min_duration = this._query.min_duration
-        if (this._query.duration && this._query.duration.max) query.max_duration = this._query.max_duration
-
-        return query
-    }
-
     setQuery (keyword, options) {
         super.setQuery(keyword, options)
-        this.setDuration(this._query.durationMin, this._query.durationMax)
+        if (options.hd) this.query.hd = 1
+        if (options.production) this.query.p = options.production
+        if (options.filterCategory) this.query.filter_category = options.filterCategory
+        if (this.checkDuration(options.durationMin)) this.query.min_duration = options.durationMin
+        if (this.checkDuration(options.durationMax)) this.query.max_duration = options.durationMax
     }
 
-    setDuration (min = 0, max = 0) {
+    checkDuration (val = 0) {
         const durationOpt = [10, 20, 30]
-
-        if (durationOpt.includes(min)) {
-            this._query.min_duration = min
-        }
-
-        if (!durationOpt.includes(max)) {
-            this._query.max_duration = max
-        }
+        return durationOpt.includes(val)
     }
 
     parseResult ($) {
@@ -69,12 +55,6 @@ class VideoSearch extends BaseSearch {
         this.counting = this.parseCounting($)
 
         return this
-    }
-
-    run () {
-        return this.url().get()
-            .then(html => this.parse(html))
-            .catch(err => Promise.reject(err))
     }
 }
 

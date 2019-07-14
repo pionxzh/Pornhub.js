@@ -6,22 +6,18 @@ class SearchApi {
         this.setQuery(keyword, options)
     }
 
-    get query () {
-        let query = {}
-        query.search = this._query.keyword.split(' ').join('+')
-        if (this._query.page) query.page = this._query.page
-        if (this._query.period) query.period = this._query.period
-        if (this._query.ordering) query.ordering = this._query.ordering
-        if (this._query.thumbsize) query.thumbsize = this._query.thumbsize
-        if (this._query.tags) query['tags[]'] = this._query.tags.join(',')
-        if (this._query.category) query.category = this._query.tags.join(',')
-        if (this._query.stars) query['stars[]'] = this._query.stars.join(',')
-
-        return query
-    }
-
     setQuery (keyword, options = {}) {
-        this._query = { keyword, ...options }
+        let query = {}
+        query.search = keyword.split(' ').join('+')
+        if (options.page) query['page'] = options.page
+        if (options.period) query['period'] = options.period
+        if (options.ordering) query['ordering'] = options.ordering
+        if (options.thumbsize) query['thumbsize'] = options.thumbsize
+        if (options.tags) query['tags[]'] = options.tags.join(',')
+        if (options.stars) query['stars[]'] = options.stars.join(',')
+        if (options.category) query['category'] = options.tags.join(',')
+
+        this.query = query
     }
 
     parse (apiData) {

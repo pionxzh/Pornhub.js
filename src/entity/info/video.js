@@ -1,20 +1,21 @@
 const { regexByRules, unescape } = require('../../utils/utils')
 const BaseInfo = require('./base')
+const UrlParser = require('../../utils/url')
 
 class VideoInfo extends BaseInfo {
     constructor (engine, url) {
         super(engine)
 
-        this.handleID(url)
+        this.setQuery(url)
     }
 
-    handleID (url) {
-        const UrlRule = /www\.pornhub\.com\/view_video\.php\?viewkey=([a-zA-z0-9]{1,30})/
-        this.id = UrlRule.test(url) ? UrlRule.exec(url)[1] : url
+    setQuery (url) {
+        this.id = UrlParser.getVideoID(url)
+        this.query = { viewkey: this.id }
     }
 
     get url () {
-        return this.engine.API['view_video.php'].query({ viewkey: this.id })
+        return this.engine.API['view_video.php'].query(this.query)
     }
 
     parseByDom ($) {

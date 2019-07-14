@@ -1,12 +1,14 @@
+const UrlParser = require('../utils/url')
+
 class EmbedApi {
     constructor (engine, url) {
         this.engine = engine
-        this.handleID(url)
+        this.setQuery(url)
     }
 
-    handleID (url) {
-        const UrlRule = /www\.pornhub\.com\/view_video\.php\?viewkey=([a-zA-z0-9]{1,30})/
-        this.id = UrlRule.test(url) ? UrlRule.exec(url)[1] : url
+    setQuery (url) {
+        this.id = UrlParser.getVideoID(url)
+        this.query = { id: this.id }
     }
 
     parse (apiData) {
@@ -21,8 +23,7 @@ class EmbedApi {
     }
 
     run () {
-        const id = this.id
-        return this.engine.API.webmasters.video_embed_code.query({ id }).get()
+        return this.engine.API.webmasters.video_embed_code.query(this.query).get()
             .then(data => this.parse(data))
             .catch(err => Promise.reject(err))
     }

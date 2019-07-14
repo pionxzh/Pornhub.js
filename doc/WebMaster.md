@@ -37,6 +37,7 @@ const options = {
 }
 pornhub.webMaster.search('peppa pig', options).then(data => {
     console.log(data)
+    // array of video infos( same as the getVideo() )
 })
 ```
 

@@ -2,28 +2,30 @@
   "name": "pornhub",
   "version": "0.2.2",
   "description": "A powerful Node.js lib to interact with PornHub API.",
-  "main": "index.js",
+  "main": "./src/pornhub.js",
   "scripts": {
     "lint": "eslint src/**/*.js",
     "lint:fix": "eslint --fix src/**/*.js",
     "pretest": "npm run lint",
-    "test": "mocha \"test/**/*.spec.js\" --reporter spec --timeout 30000"
+    "test": "mocha \"test/**/*.spec.js\" --reporter spec --timeout 30000",
+    "prepublish": "npm run test"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/pionxzh/pornhub.js.git"
   },
   "keywords": [
+    "node.js",
     "pornhub",
     "api",
     "hubtraffic"
   ],
-  "author": "Pionxzh",
+  "author": "Pionxzh <pionxzh@csie.io>",
+  "homepage": "https://github.com/pionxzh/pornhub.js#readme",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/pionxzh/pornhub.js/issues"
   },
-  "homepage": "https://github.com/pionxzh/pornhub.js#readme",
   "dependencies": {
     "cheerio": "^1.0.0-rc.3",
     "eventemitter3": "^4.0.0",

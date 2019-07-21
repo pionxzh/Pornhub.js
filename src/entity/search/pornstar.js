@@ -12,7 +12,7 @@ class PornstarSearch extends BaseSearch {
         return this.engine.API.pornstars.search.query(this.query)
     }
 
-    setQuery (keyword, options) {
+    setQuery (keyword, options = {}) {
         super.setQuery(keyword, options)
     }
 

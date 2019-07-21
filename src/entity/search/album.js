@@ -13,7 +13,7 @@ class AlbumSearch extends BaseSearch {
         return this.engine.API.albums(this.segments).query(this.query)
     }
 
-    setQuery (keyword, options) {
+    setQuery (keyword, options = {}) {
         super.setQuery(keyword, options)
     }
 

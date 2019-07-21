@@ -12,7 +12,7 @@ class VideoSearch extends BaseSearch {
         return this.engine.API.video.search.query(this.query)
     }
 
-    setQuery (keyword, options) {
+    setQuery (keyword, options = {}) {
         super.setQuery(keyword, options)
         if (options.hd) this.query.hd = 1
         if (options.production) this.query.p = options.production

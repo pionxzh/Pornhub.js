@@ -13,7 +13,7 @@ class GifSearch extends BaseSearch {
         return this.engine.API.type(this.sexualOrientation).gifs.search.query(this.query)
     }
 
-    setQuery (keyword, options) {
+    setQuery (keyword, options = {}) {
         super.setQuery(keyword, options)
     }
 

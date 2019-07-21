@@ -14,6 +14,12 @@ class PornHub {
         this.webMaster = new WebMaster(this.engine)
     }
 
+    /**
+     * Listen on specific event.
+     * @param {('REQUEST'|'DEBUG'|'loggedIn'|'logout')} event
+     * @param {Function} fn
+     * @returns {Promise.<Object>}
+    */
     on (event, fn) {
         this.engine.on(event, fn)
     }
@@ -26,29 +32,59 @@ class PornHub {
         this.engine.request.setHeader(data)
     }
 
+    /**
+     * Login with your account and password.
+     * @param {string} account
+     * @param {string} password
+     * @returns {Promise.<Object>}
+    */
     login (account, password) {
         return this.engine.action.login(account, password)
     }
 
+    /**
+     * Logout from Pornhub.com.
+     * @returns {Promise.<Object>}
+    */
     logout () {
         return this.engine.action.logout()
     }
 
+    /**
+     * Get video information by url/ID.
+     * @param {string} url The video url or ID.
+     * @returns {Promise.<Object>}
+    */
     get (url) {
         const VideoInfo = require('./entity/info/video')
         return new VideoInfo(this.engine, url).run()
     }
 
+    /**
+     * Get video information by url/ID.
+     * @param {string} url The video url or ID.
+     * @returns {Promise.<Object>}
+    */
     video (url) {
         const VideoInfo = require('./entity/info/video')
         return new VideoInfo(this.engine, url).run()
     }
 
+    /**
+     * Get album information by url/ID.
+     * @param {string} url The album url or ID.
+     * @returns {Promise.<Object>}
+    */
     album (url) {
         const AlbumInfo = require('./entity/info/album')
         return new AlbumInfo(this.engine, url).run()
     }
 
+    /**
+     * Get photo information by url/ID.
+     * @param {string} url The photo url or ID.
+     * @returns {Promise.<Object>}
+    */
     photo (url) {
         const PhotoInfo = require('./entity/info/photo')
         return new PhotoInfo(this.engine, url).run()

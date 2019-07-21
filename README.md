@@ -1,4 +1,6 @@
 # PornHub.js
+[![npm](https://img.shields.io/npm/v/pornhub.js.svg)](https://www.npmjs.com/package/pornhub.js)
+[![Build Status](https://travis-ci.org/pionxzh/Pornhub.js.svg?branch=master)](https://travis-ci.org/pionxzh/Pornhub.js)
 [![javascript style guide][standard-image]][standard-url]
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
 

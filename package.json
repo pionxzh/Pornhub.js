@@ -1,5 +1,5 @@
 {
-  "name": "pornhub",
+  "name": "pornhub.js",
   "version": "0.2.2",
   "description": "A powerful Node.js lib to interact with PornHub API.",
   "main": "./src/pornhub.js",

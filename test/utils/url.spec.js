@@ -4,8 +4,8 @@ const UrlParser = require('../../src/utils/url')
 
 describe('Parse Url ID', () => {
     it('# Video ID', () => {
-        const id = 'ph5ac81eabe203d'
-        const url = 'https://www.pornhub.com/view_video.php?viewkey=ph5ac81eabe203d'
+        const id = 'ph5a9634c9a827e'
+        const url = 'https://www.pornhub.com/view_video.php?viewkey=ph5a9634c9a827e'
 
         expect(UrlParser.getVideoID(id)).to.equal(id)
         expect(UrlParser.getVideoID(url)).to.equal(id)

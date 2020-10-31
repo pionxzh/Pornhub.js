@@ -33,7 +33,7 @@ class WebMaster {
      * @param {('small'|'small_hd'|'medium'|'medium_hd'|'large'|'large_hd')} [options.thumbsize] Thumbnail photo size.
      * @returns {Promise.<Object>}
      * @example
-     * pornhub.getVideo('ph5ac81eabe203d')
+     * pornhub.getVideo('ph5a9634c9a827e')
      *   .then(res => console.log(`Title: ${res.title}`))
     */
     getVideo (url, thumbsize) {
@@ -47,7 +47,7 @@ class WebMaster {
      * @param {string} url Video ID or page url.
      * @returns {Promise.<boolean>}
      * @example
-     * pornhub.isVideoActive('ph5ac81eabe203d')
+     * pornhub.isVideoActive('ph5a9634c9a827e')
      *   .then(isActive => console.log(`Video is ${isActive ? 'active':'inactive'}`))
     */
     isVideoActive (url) {

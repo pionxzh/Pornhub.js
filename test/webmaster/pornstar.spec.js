@@ -7,7 +7,7 @@ describe('WebMaster getPornstars', () => {
     it('# run()', async () => {
         const result = await webMaster.getPornstars()
 
-        expect(result[0]).to.equal('2 Pretty 4 Porn')
+        expect(result[0]).to.equal(' Vixxen Goddess')
         expect(result.length).to.be.at.least(10000)
     })
 })

@@ -17,12 +17,13 @@ describe('Video Info', () => {
         expect(result.data.vote.total).to.be.at.least(800)
         expect(result.data.premium).to.be.equal(false)
         expect(result.data.duration).to.equal('0:20')
-        expect(result.data.videos).to.have.lengthOf(3)
+        // video can only be access after logged in
+        expect(result.data.videos).to.have.lengthOf(0)
         expect(result.data.provider).to.be.not.equal(null)
-        expect(result.tags.length).to.be.at.least(2)
+        expect(result.data.tags.length).to.be.at.least(2)
         /* eslint-disable no-unused-expressions */
-        expect(result.pornstars).to.be.empty
-        expect(result.categories.length).to.be.at.least(4)
+        expect(result.data.pornstars).to.be.empty
+        expect(result.data.categories.length).to.be.at.least(4)
         expect(result.data.categories.length).to.be.at.least(2)
     })
 })

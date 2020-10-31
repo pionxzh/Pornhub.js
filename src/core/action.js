@@ -1,4 +1,5 @@
 const { Events } = require('../utils/constant')
+const cheerio = require('cheerio')
 
 class Action {
     constructor (engine) {
@@ -35,9 +36,10 @@ class Action {
 
     getToken () {
         return this.getMainPage()
-            .then(res => {
-                const token = /name="token" value="([a-zA-Z0-9-_.]*?)"/.exec(res)[1]
-                const redirect = /name="redirect" value="([a-zA-Z0-9-_.]*?)"/.exec(res)[1]
+            .then(html => {
+                const $ = cheerio.load(html)
+                const token = $('[name="token"]').attr('value')
+                const redirect = $('[name="redirect"]').attr('value')
                 return { token, redirect }
             })
             .catch(err => Promise.reject(err))

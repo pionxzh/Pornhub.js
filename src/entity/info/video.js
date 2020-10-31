@@ -22,7 +22,7 @@ class VideoInfo extends BaseInfo {
         const voteUp = parseInt($('span.votesUp').text()) || 0
         const voteDown = parseInt($('span.votesDown').text()) || 0
 
-        this.data.title = $('div#main-container').data('video-title').replace(' - Pornhub.com', '')
+        this.data.title = $('head > title').text().replace(' - Pornhub.com', '')
         this.data.views = parseInt($('span.count').text().replace(/,/g, '')) || null
         this.data.vote = {
             up: voteUp,
@@ -34,6 +34,9 @@ class VideoInfo extends BaseInfo {
         this.data.premium = $('#userPremium').length !== 0
         this.data.thumb = $('.thumbnail img').attr('src')
 
+        // parse video
+        this.data.videos = this.parseVideo($)
+
         const $link = $('a.bolded[rel=nofollow]')
         this.data.provider = $link.length ? { username: $link.text(), url: $link.attr('href') } : null
     }
@@ -43,9 +46,6 @@ class VideoInfo extends BaseInfo {
         const durationResult = /"video_duration":"(.*?)"/.exec(html)
         const durationTotalSec = parseInt(durationResult[1])
         this.data.duration = `${~~(durationTotalSec / 60)}:${durationTotalSec % 60}`
-
-        // parse video
-        this.data.videos = this.parseVideo(html)
 
         // parse meta data
         const tagRule = /&channel\[context_tag\]=(.*?)&/g
@@ -64,30 +64,25 @@ class VideoInfo extends BaseInfo {
         this.data.categories = isEmpty(resultCate) ? [] : splitData(resultCate)
     }
 
-    parseVideo (html) {
-        try {
-            const mediaDefResult = /"mediaDefinitions":(\[.*?\])/.exec(html)
-            const mediaDefinitions = JSON.parse(mediaDefResult[1])
+    parseVideo ($) {
+        const parseFileName = str => /\/([a-zA-Z0-9%=&_-]+\.(mp4|flv))/.exec(str)
 
-            const parseFileName = str => /\/([a-zA-Z0-9%=&_-]+\.(mp4|flv))/.exec(str)
-            const videos = mediaDefinitions
-                .filter(item => item.videoUrl !== '')
-                .map(item => {
-                    const filename = parseFileName(item.videoUrl)
-                    return {
-                        quality: item.quality,
-                        filename: filename[1],
-                        extension: filename[2],
-                        url: item.videoUrl
-                    }
-                })
-                .sort((a, b) => b.quality - a.quality)
+        const $videos = $('.downloadBtn')
+        const videos = $videos.map(idx => {
+            const item = $videos.eq(idx)
+            if (!item.length) return
 
-            return videos
-        } catch (err) {
-            console.error(err)
-            return []
-        }
+            const url = item.attr('href')
+            const [, filename, extension] = parseFileName(url)
+            const quality = filename.split('_')[0]
+            return {
+                url,
+                quality,
+                filename,
+                extension
+            }
+        }).get().sort((a, b) => b.quality - a.quality)
+        return videos
     }
 
     parse (html) {

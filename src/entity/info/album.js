@@ -22,7 +22,8 @@ class AlbumInfo extends BaseInfo {
             const url = `${this.engine.BASE_URL}${item.find('a').attr('href')}`
             const views = item.find('.album-views').text().replace('Views: ', '').trim()
             const rating = item.find('.album-rating').text()
-            const preview = item.attr('style').replace(`background-image: url('`, '').replace(`');`, '')
+            const preview = item.data('bkg')
+
             // Don't remove the protection code, it will cause `Not authorized` error
             // preview = removeProtectionBracket(preview)
             return { url, views, rating, preview }

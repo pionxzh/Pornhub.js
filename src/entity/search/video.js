@@ -1,5 +1,4 @@
 const BaseSearch = require('./base')
-const { removeProtectionBracket } = require('../../utils/utils')
 
 class VideoSearch extends BaseSearch {
     constructor (engine, keyword, options) {
@@ -41,7 +40,7 @@ class VideoSearch extends BaseSearch {
                 duration: item.find('.duration').text(),
                 hd: !!item.find('.hd-thumbnail').length,
                 premium: !!item.find('.premiumIcon').length,
-                preview: removeProtectionBracket(thumb.find('img').data('src'))
+                preview: thumb.find('img').data('src')
             }
         }).get()
 

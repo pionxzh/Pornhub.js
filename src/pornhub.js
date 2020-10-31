@@ -107,7 +107,7 @@ class PornHub {
      * @param {Array<('male'|'female'|'straight'|'gay'|'transgender'|'uncategorized'|'misc')>} [options.segments]
      * @returns {Promise.<Object[]>}
     */
-    search (type, keyword, options) {
+    search (type, keyword, options = {}) {
         switch (type.toLowerCase()) {
             case 'video':
                 return new VideoSearch(this.engine, keyword, options).run()

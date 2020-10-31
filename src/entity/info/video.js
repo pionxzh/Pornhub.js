@@ -22,7 +22,7 @@ class VideoInfo extends BaseInfo {
         const voteUp = parseInt($('span.votesUp').text()) || 0
         const voteDown = parseInt($('span.votesDown').text()) || 0
 
-        this.data.title = $('div#main-container').data('video-title').replace(' - Pornhub.com', '')
+        this.data.title = $('head > title').text().replace(' - Pornhub.com', '')
         this.data.views = parseInt($('span.count').text().replace(/,/g, '')) || null
         this.data.vote = {
             up: voteUp,
@@ -66,7 +66,7 @@ class VideoInfo extends BaseInfo {
 
     parseVideo (html) {
         try {
-            const mediaDefResult = /"mediaDefinitions":(\[.*?\])/.exec(html)
+            const mediaDefResult = /"mediaDefinitions":(\[.*?\]})/.exec(html)
             const mediaDefinitions = JSON.parse(mediaDefResult[1])
 
             const parseFileName = str => /\/([a-zA-Z0-9%=&_-]+\.(mp4|flv))/.exec(str)

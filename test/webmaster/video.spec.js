@@ -12,7 +12,6 @@ describe('WebMaster Video', () => {
         expect(result.title).to.equal('peppa pig and steve have a sex with each other together')
         expect(result.views).to.be.at.least(70000)
         expect(result.vote.total).to.be.at.least(800)
-        expect(result.premium).to.be.equal(false)
         expect(result.duration).to.equal('0:20')
         expect(result.tags.length).to.be.at.least(2)
         /* eslint-disable no-unused-expressions */

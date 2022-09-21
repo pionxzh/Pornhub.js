@@ -1,6 +1,6 @@
 {
   "name": "pornhub.js",
-  "version": "0.2.4",
+  "version": "0.3.0",
   "description": "A powerful Node.js lib to interact with PornHub API.",
   "main": "./src/pornhub.js",
   "engines": {

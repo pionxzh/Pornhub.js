@@ -61,7 +61,7 @@ class Engine extends EventEmitter {
         this.request.setHeaders('Host', this.BASE_URL.replace('https://', ''))
         this.request.setHeaders('Origin', this.BASE_URL)
         this.request.setHeaders('Referer', `${this.BASE_URL}/`)
-        this.request.setHeaders('User-Agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36}')
+        this.request.setHeaders('User-Agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36')
     }
 
     start () {

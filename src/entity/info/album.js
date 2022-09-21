@@ -15,10 +15,8 @@ class AlbumInfo extends BaseInfo {
 
     parsePhotos ($) {
         const $list = $('ul.photosAlbumsListing li.photoAlbumListContainer div.photoAlbumListBlock')
-        const photos = $list.map(idx => {
-            const item = $list.eq(idx)
-            if (!item.length) return null
-
+        const photos = $list.map((_, el) => {
+            const item = $(el)
             const url = `${this.engine.BASE_URL}${item.find('a').attr('href')}`
             const views = item.find('.album-views').text().replace('Views: ', '').trim()
             const rating = item.find('.album-rating').text()
@@ -43,8 +41,8 @@ class AlbumInfo extends BaseInfo {
     }
 
     parseTag ($) {
-        const $list = $('div.tagContainer span.tagLabel')
-        return $list.map(idx => $list.eq(idx).text()).get()
+        const $list = $('div.tagContainer > a')
+        return $list.map((_, el) => $(el).text().trim()).get()
     }
 
     parse (html) {

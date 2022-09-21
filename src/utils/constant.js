@@ -4,7 +4,7 @@ module.exports.Events = {
     DEBUG: 'DEBUG',
     REQUEST: 'REQUEST',
     LOGIN: 'loggedIn',
-    LOGOUT: 'logout'
+    LOGOUT: 'logout',
 }
 
 class HttpStatusError extends Error {

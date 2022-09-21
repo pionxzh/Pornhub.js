@@ -30,7 +30,7 @@ class VideoSearch extends BaseSearch {
 
         const result = list.map(idx => {
             const item = list.eq(idx)
-            if (!item.length) return
+            if (!item.length) return null
 
             const thumb = item.find('.linkVideoThumb').eq(0)
 
@@ -40,7 +40,7 @@ class VideoSearch extends BaseSearch {
                 duration: item.find('.duration').text(),
                 hd: !!item.find('.hd-thumbnail').length,
                 premium: !!item.find('.premiumIcon').length,
-                preview: thumb.find('img').data('src')
+                preview: thumb.find('img').data('src'),
             }
         }).get()
 

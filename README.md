@@ -16,7 +16,7 @@ Easily get information and search for the `Video`/`Album`/`Gif`/`PornStar`.
 
 ### Requirements
 
-* Node.js >= 8.x
+* Node.js >= 14.x
 
 ### Installation
 
@@ -86,5 +86,5 @@ pornhub.video(url).then(res => {
 })
 ```
 
-## Licence
+## License
 [MIT](LICENSE)

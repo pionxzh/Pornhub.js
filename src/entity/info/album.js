@@ -17,7 +17,7 @@ class AlbumInfo extends BaseInfo {
         const $list = $('ul.photosAlbumsListing li.photoAlbumListContainer div.photoAlbumListBlock')
         const photos = $list.map(idx => {
             const item = $list.eq(idx)
-            if (!item.length) return
+            if (!item.length) return null
 
             const url = `${this.engine.BASE_URL}${item.find('a').attr('href')}`
             const views = item.find('.album-views').text().replace('Views: ', '').trim()

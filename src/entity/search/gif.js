@@ -28,7 +28,7 @@ class GifSearch extends BaseSearch {
         const list = $('ul.gifLink li.gifVideoBlock ')
         const result = list.map(idx => {
             const item = list.eq(idx)
-            if (!item.length) return
+            if (!item.length) return null
 
             const video = item.find('video')
             return {
@@ -36,7 +36,7 @@ class GifSearch extends BaseSearch {
                 url: `${this.engine.BASE_URL}${item.find('a').attr('href')}` || '',
                 mp4: video.data('mp4') || '',
                 webm: video.data('webm') || '',
-                preview: removeProtectionBracket(video.attr('poster')) || ''
+                preview: removeProtectionBracket(video.attr('poster')) || '',
             }
         }).get()
 

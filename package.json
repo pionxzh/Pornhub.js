@@ -3,9 +3,13 @@
   "version": "0.2.4",
   "description": "A powerful Node.js lib to interact with PornHub API.",
   "main": "./src/pornhub.js",
+  "engines": {
+    "node": ">=14.0.0",
+    "pnpm": ">=7.0.0"
+  },
   "scripts": {
-    "lint": "eslint src/**/*.js",
-    "lint:fix": "eslint --fix src/**/*.js",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "pretest": "npm run lint",
     "test": "mocha \"test/**/*.spec.js\" --reporter spec --timeout 30000",
     "prepublish": "npm run test"
@@ -27,19 +31,21 @@
     "url": "https://github.com/pionxzh/pornhub.js/issues"
   },
   "dependencies": {
-    "cheerio": "^1.0.0-rc.3",
-    "eventemitter3": "^4.0.0",
-    "node-fetch": "^2.6.0",
+    "cheerio": "1.0.0-rc.12",
+    "eventemitter3": "^4.0.7",
+    "node-fetch": "^2.6.7",
     "semantic-api": "^1.2.1"
   },
   "devDependencies": {
-    "chai": "^4.2.0",
-    "eslint": "^5.16.0",
-    "eslint-config-standard": "^12.0.0",
-    "eslint-plugin-import": "^2.18.0",
-    "eslint-plugin-node": "^9.1.0",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.0",
-    "mocha": "^6.1.4"
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.38.0",
+    "chai": "^4.3.6",
+    "eslint": "^8.0.1",
+    "eslint-config-standard-with-typescript": "^23.0.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-n": "^15.0.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "mocha": "^10.0.0",
+    "typescript": "^4.8.3"
   }
 }

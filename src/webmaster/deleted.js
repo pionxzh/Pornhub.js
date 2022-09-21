@@ -5,7 +5,7 @@ class DeletedApi {
     }
 
     setQuery (page = 1) {
-        this.query = { page: page }
+        this.query = { page }
     }
 
     parse (apiData) {

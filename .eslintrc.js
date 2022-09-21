@@ -1,22 +1,27 @@
 module.exports = {
-  'env': {
-    'node': true,
-    'commonjs': true,
-    'mocha': true,
-    'es6': true
-  },
-  'extends': 'standard',
-  'globals': {
-    'Atomics': 'readonly',
-    'SharedArrayBuffer': 'readonly'
-  },
-  'parserOptions': {
-    'ecmaVersion': 2018
-  },
-  'rules': {
-    // allow paren-less arrow functions
-    'arrow-parens': 0,
-    'no-new': 0,
-    'indent': ['error', 4, {'SwitchCase': 1}],
-  }
+    env: {
+        browser: true,
+        es2021: true,
+        mocha: true,
+    },
+    extends: 'standard-with-typescript',
+    overrides: [
+    ],
+    parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+    },
+    rules: {
+        'indent': ['error', 4, {
+            SwitchCase: 1,
+        }],
+        'comma-dangle': ['error', {
+            arrays: 'always-multiline',
+            objects: 'always-multiline',
+            imports: 'never',
+            exports: 'never',
+            functions: 'never',
+        }],
+        'quote-props': ['error', 'consistent-as-needed'],
+    },
 }

@@ -29,7 +29,7 @@ class PhotoInfo extends BaseInfo {
             views,
             rating,
             albumID,
-            url
+            url,
         }
     }
 

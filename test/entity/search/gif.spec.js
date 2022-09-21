@@ -10,7 +10,7 @@ describe('Gif Search', () => {
         result = await pornhub.search('Gif', 'tits', {
             page: 2,
             order: 'Most Viewed',
-            sexualOrientation: 'gay'
+            sexualOrientation: 'gay',
         })
     })
 

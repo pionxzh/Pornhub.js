@@ -13,7 +13,7 @@ describe('Video Search', () => {
             order: 'Longest',
             production: 'homemade',
             durationMin: 20,
-            durationMax: 30
+            durationMax: 30,
         })
     })
 

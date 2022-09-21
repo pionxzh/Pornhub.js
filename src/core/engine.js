@@ -15,7 +15,7 @@ class Engine extends EventEmitter {
         this.BASE_URL = BASE_URL
 
         this.user = {
-            loggedIn: false
+            loggedIn: false,
         }
     }
 
@@ -35,7 +35,7 @@ class Engine extends EventEmitter {
             postForm: (args, calls, url) => {
                 const data = args.shift()
                 return this.request.postForm(url, data)
-            }
+            },
         }
         return new SemanticApi(`${this.BASE_URL}/`, customFn)
     }
@@ -48,12 +48,12 @@ class Engine extends EventEmitter {
 
         this.on(Events.LOGIN, () => {
             this.user.loggedIn = true
-            this.emit(Events.DEBUG, `[DEBUG]: LoggedIn successfully`)
+            this.emit(Events.DEBUG, '[DEBUG]: LoggedIn successfully')
         })
 
         this.on(Events.LOGOUT, () => {
             this.user.loggedIn = false
-            this.emit(Events.DEBUG, `[DEBUG]: Logout successfully`)
+            this.emit(Events.DEBUG, '[DEBUG]: Logout successfully')
         })
     }
 

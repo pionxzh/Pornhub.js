@@ -32,13 +32,13 @@ class AlbumSearch extends BaseSearch {
         const $list = $('ul#photosAlbumsSection li.photoAlbumListContainer div.photoAlbumListBlock')
         const result = $list.map(idx => {
             const item = $list.eq(idx)
-            if (!item.length) return
+            if (!item.length) return null
 
             const title = item.attr('title')
             const url = `${this.engine.BASE_URL}${item.find('a').attr('href')}`
             const rating = item.find('.album-photo-percentage').text()
             const bgImgUrl = item.attr('style') || item.data('bkg')
-            const preview = bgImgUrl.replace(`background-image: url('`, '').replace(`');`, '')
+            const preview = bgImgUrl.replace('background-image: url(\'', '').replace('\');', '')
             // Don't remove the protection code, it will cause `Not authorized` error
             // preview = removeProtectionBracket(preview)
             return { title, url, rating, preview }

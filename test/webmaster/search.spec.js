@@ -8,7 +8,7 @@ describe('WebMaster search', () => {
         const options = {
             ordering: 'mostviewed',
             period: 'alltime',
-            page: 1
+            page: 1,
         }
         const result = await webMaster.search('peppa pig', options)
 

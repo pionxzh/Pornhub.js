@@ -29,7 +29,7 @@ class VideoInfo extends BaseInfo {
             down: voteDown,
             total: voteUp + voteDown,
             // rating: $('span.percent').text() || null
-            rating: Math.round(voteUp / (voteUp + voteDown) * 100) / 100
+            rating: Math.round(voteUp / (voteUp + voteDown) * 100) / 100,
         }
         this.data.premium = $('#userPremium').length !== 0
         this.data.thumb = $('.thumbnail img').attr('src')
@@ -70,7 +70,7 @@ class VideoInfo extends BaseInfo {
         const $videos = $('.downloadBtn')
         const videos = $videos.map(idx => {
             const item = $videos.eq(idx)
-            if (!item.length) return
+            if (!item.length) return null
 
             const url = item.attr('href')
             const [, filename, extension] = parseFileName(url)
@@ -79,7 +79,7 @@ class VideoInfo extends BaseInfo {
                 url,
                 quality,
                 filename,
-                extension
+                extension,
             }
         }).get().sort((a, b) => b.quality - a.quality)
         return videos

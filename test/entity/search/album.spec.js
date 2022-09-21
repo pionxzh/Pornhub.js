@@ -9,7 +9,7 @@ describe('Album Search', () => {
     before(async () => {
         result = await pornhub.search('Album', 'tits', {
             page: 2,
-            segments: ['female', 'straight']
+            segments: ['female', 'straight'],
         })
     })
 

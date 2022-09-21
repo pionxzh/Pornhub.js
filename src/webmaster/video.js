@@ -8,7 +8,7 @@ class VideoApi {
 
     setQuery (url, thumbsize = 'large') {
         this.id = UrlParser.getVideoID(url)
-        this.query = { id: this.id, thumbsize: thumbsize }
+        this.query = { id: this.id, thumbsize }
     }
 
     transformData (data) {
@@ -19,9 +19,9 @@ class VideoApi {
         const down = total - up
         const vote = { up, down, total, rating }
 
-        const tags = data.tags.map(item => item['tag_name'].replace(' ', '-'))
-        const pornstars = data.pornstars.map(item => item['pornstar_name'])
-        const categories = data.categories.map(item => item['category'])
+        const tags = data.tags.map(item => item.tag_name.replace(' ', '-'))
+        const pornstars = data.pornstars.map(item => item.pornstar_name)
+        const categories = data.categories.map(item => item.category)
         const thumbList = data.thumbs.map(item => {
             delete item.size
             return item
@@ -37,7 +37,7 @@ class VideoApi {
             vote,
             tags,
             pornstars,
-            categories
+            categories,
         }
     }
 

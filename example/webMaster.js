@@ -4,7 +4,7 @@ const pornhub = new PornHub()
 const options = {
     page: 1,
     ordering: 'newest',
-    period: 'alltime'
+    period: 'alltime',
 }
 pornhub.webMaster.search('tits', options)
     .then(videos => {

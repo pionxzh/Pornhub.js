@@ -6,7 +6,7 @@ class BaseSearch {
     }
 
     setQuery (keyword, options = {}) {
-        let query = {}
+        const query = {}
         query.search = keyword.split(' ').join('+')
         if (options.order) query.o = this.handleOrder(options.order)
         if (options.page) query.page = options.page
@@ -22,7 +22,7 @@ class BaseSearch {
             'most popular': 'mp',
             'top rated': 'tr',
             'longest': 'lg',
-            'no. of video': 'nv'
+            'no. of video': 'nv',
         }
 
         const key = name.toLowerCase()
@@ -46,8 +46,8 @@ class BaseSearch {
         const maxPage = nextPage.length ? parseInt($('li.page_next').prev('li').text()) : currentPage
         return {
             current: currentPage,
-            maxPage: maxPage,
-            isEnd: !nextPage.length
+            maxPage,
+            isEnd: !nextPage.length,
         }
     }
 
@@ -58,13 +58,13 @@ class BaseSearch {
             return {
                 from: parseInt(from),
                 to: parseInt(to),
-                total: parseInt(total)
+                total: parseInt(total),
             }
         } catch (err) {
             return {
                 from: 0,
                 to: 0,
-                total: 0
+                total: 0,
             }
         }
     }

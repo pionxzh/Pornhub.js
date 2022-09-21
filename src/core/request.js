@@ -57,7 +57,7 @@ class Request {
     }
 
     buildParams (data) {
-        let params = new URLSearchParams()
+        const params = new URLSearchParams()
         Object.keys(data).forEach(key => {
             params.append(key, data[key])
         })
@@ -65,8 +65,8 @@ class Request {
     }
 
     buildRequest (method, url, data) {
-        let opts = {}
-        let headers = Object.assign({}, this._headers)
+        const opts = {}
+        const headers = Object.assign({}, this._headers)
 
         if (method === 'get') {
             opts.method = 'get'

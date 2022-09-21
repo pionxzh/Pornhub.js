@@ -9,7 +9,7 @@ describe('Pornstar Search', () => {
     before(async () => {
         result = await pornhub.search('Pornstar', 'kelly', {
             page: 2,
-            order: 'No. of Video'
+            order: 'No. of Video',
         })
     })
 

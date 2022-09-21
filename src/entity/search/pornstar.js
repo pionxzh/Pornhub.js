@@ -20,7 +20,7 @@ class PornstarSearch extends BaseSearch {
         const $list = $('ul#pornstarsSearchResult li div.wrap')
         const result = $list.map(idx => {
             const item = $list.eq(idx)
-            if (!item.length) return
+            if (!item.length) return null
 
             return {
                 name: item.find('.title').text(),
@@ -28,7 +28,7 @@ class PornstarSearch extends BaseSearch {
                 views: item.find('.pstarViews').text().replace('views', '').trim() || 0,
                 videoNum: parseInt(item.find('.videosNumber').text()) || 0,
                 rank: parseInt(item.find('.rank_number').text()) || 0,
-                photo: removeProtectionBracket(item.find('img').data('thumb_url')) || ''
+                photo: removeProtectionBracket(item.find('img').data('thumb_url')) || '',
             }
         }).get()
 

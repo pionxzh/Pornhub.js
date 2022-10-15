@@ -1,27 +1,53 @@
 module.exports = {
-    env: {
-        browser: true,
-        es2021: true,
-        mocha: true,
-    },
-    extends: 'standard-with-typescript',
-    overrides: [
+    extends: [
+        '@antfu/eslint-config-ts',
     ],
-    parserOptions: {
-        ecmaVersion: 'latest',
-        sourceType: 'module',
-    },
     rules: {
-        'indent': ['error', 4, {
+        'curly': ['error', 'multi-line'],
+        'antfu/if-newline': 'off',
+        '@typescript-eslint/indent': ['error', 4, {
             SwitchCase: 1,
+            VariableDeclarator: 1,
+            outerIIFEBody: 1,
+            MemberExpression: 1,
+            FunctionDeclaration: { parameters: 1, body: 1 },
+            FunctionExpression: { parameters: 1, body: 1 },
+            CallExpression: { arguments: 1 },
+            ArrayExpression: 1,
+            ObjectExpression: 1,
+            ImportDeclaration: 1,
+            flatTernaryExpressions: false,
+            ignoreComments: false,
+            ignoredNodes: [
+                'TemplateLiteral *',
+                'JSXElement',
+                'JSXElement > *',
+                'JSXAttribute',
+                'JSXIdentifier',
+                'JSXNamespacedName',
+                'JSXMemberExpression',
+                'JSXSpreadAttribute',
+                'JSXExpressionContainer',
+                'JSXOpeningElement',
+                'JSXClosingElement',
+                'JSXFragment',
+                'JSXOpeningFragment',
+                'JSXClosingFragment',
+                'JSXText',
+                'JSXEmptyExpression',
+                'JSXSpreadChild',
+                'TSTypeParameterInstantiation',
+                'FunctionExpression > .params[decorators.length > 0]',
+                'FunctionExpression > .params > :matches(Decorator, :not(:first-child))',
+                'ClassBody.body > PropertyDefinition[decorators.length > 0] > .key',
+            ],
+            offsetTernaryExpressions: true,
         }],
-        'comma-dangle': ['error', {
-            arrays: 'always-multiline',
-            objects: 'always-multiline',
-            imports: 'never',
-            exports: 'never',
-            functions: 'never',
-        }],
-        'quote-props': ['error', 'consistent-as-needed'],
     },
+    overrides: [{
+        files: ['example/**'],
+        rules: {
+            'no-console': 'off',
+        },
+    }],
 }

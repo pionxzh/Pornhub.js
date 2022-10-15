@@ -1,13 +1,12 @@
-const PornHub = require('../src/pornhub')
+import { PornHub } from '../src'
 const pornhub = new PornHub()
 
-const keyword = 'tits'
-pornhub.search('Video', keyword).then(res => {
-    const list = res.data
-    console.log(`Title: ${list[0].title}`)
+const keyword = 'tits';
 
-    pornhub.video(list[0].url).then(res => {
-        console.log(`Title: ${res.data.thumb}`)
-        console.log(`Photo: ${res.data.thumb}`)
-    })
-})
+(async () => {
+    const result = await pornhub.searchVideo(keyword)
+    const firstVideo = result.data[0]
+
+    const videoInfo = await pornhub.video(firstVideo.url)
+    console.log(`Title: ${videoInfo.title}`)
+})()

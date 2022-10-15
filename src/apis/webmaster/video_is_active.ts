@@ -1,0 +1,30 @@
+import type { Engine } from '../../core/engine'
+import { UrlParser } from '../../utils/url'
+import { WebmasterRoute } from '../route'
+
+type Response =
+{
+    active: {
+        video_id: string
+        is_active: '1' | '0'
+    }
+} | {
+    code: string // '2002' stands for "No video with this ID."
+    message: string
+    example: string
+}
+
+export async function video_is_active(engine: Engine, urlOrId: string): Promise<boolean> {
+    try {
+        const id = UrlParser.getVideoID(urlOrId)
+        const result = await engine.request.get<Response>(WebmasterRoute.isVideoActive(id))
+
+        if ('code' in result) throw new Error(result.message)
+
+        return result.active.is_active === '1'
+    }
+    catch (err) {
+        console.error(err)
+        return false
+    }
+}

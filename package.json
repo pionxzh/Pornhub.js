@@ -1,51 +1,56 @@
 {
   "name": "pornhub.js",
   "version": "0.3.0",
+  "packageManager": "pnpm@7.13.4",
   "description": "A powerful Node.js lib to interact with PornHub API.",
+  "author": "Pionxzh <pionxzh@csie.io>",
+  "license": "MIT",
+  "homepage": "https://github.com/pionxzh/pornhub.js#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pionxzh/pornhub.js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pionxzh/pornhub.js/issues"
+  },
+  "keywords": [
+    "node.js",
+    "pornhub",
+    "pornhub-api",
+    "hubtraffic"
+  ],
   "main": "./src/pornhub.js",
   "engines": {
     "node": ">=14.0.0",
     "pnpm": ">=7.0.0"
   },
   "scripts": {
+    "dev": "vite",
+    "build": "vite build",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "pretest": "npm run lint",
-    "test": "mocha \"test/**/*.spec.js\" --reporter spec --timeout 30000",
+    "test": "vitest run",
+    "test:type": "tsc --noEmit",
+    "test:watch": "vitest",
     "prepublish": "npm run test"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/pionxzh/pornhub.js.git"
-  },
-  "keywords": [
-    "node.js",
-    "pornhub",
-    "api",
-    "hubtraffic"
-  ],
-  "author": "Pionxzh <pionxzh@csie.io>",
-  "homepage": "https://github.com/pionxzh/pornhub.js#readme",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/pionxzh/pornhub.js/issues"
   },
   "dependencies": {
     "cheerio": "1.0.0-rc.12",
+    "debug": "^4.3.4",
     "eventemitter3": "^4.0.7",
-    "node-fetch": "^2.6.7",
-    "semantic-api": "^1.2.1"
+    "node-fetch": "^3.2.10",
+    "urlcat": "^2.0.4"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.0.0",
-    "@typescript-eslint/parser": "^5.38.0",
-    "chai": "^4.3.6",
-    "eslint": "^8.0.1",
-    "eslint-config-standard-with-typescript": "^23.0.0",
-    "eslint-plugin-import": "^2.25.2",
-    "eslint-plugin-n": "^15.0.0",
-    "eslint-plugin-promise": "^6.0.0",
-    "mocha": "^10.0.0",
-    "typescript": "^4.8.3"
+    "@antfu/eslint-config-ts": "^0.27.0",
+    "@types/cheerio": "^0.22.31",
+    "@types/debug": "^4.1.7",
+    "@types/node": "^18.8.4",
+    "eslint": "^8.25.0",
+    "esno": "^0.16.3",
+    "typescript": "^4.8.4",
+    "vite": "^3.1.7",
+    "vitest": "^0.24.3"
   }
 }

@@ -1,5 +1,5 @@
 import type { AlbumSearchOrdering, GifSearchOrdering, PornstarSearchOrdering, VideoSearchOrdering } from './SearchOrdering'
-import type { SearchPeriod, Segment, ThumbSize, WebmasterSearchOrdering } from '.'
+import type { SearchPeriod, Segment, SexualOrientation, ThumbSize, WebmasterSearchOrdering } from '.'
 
 export interface WebmasterSearchOptions {
     page?: number
@@ -21,7 +21,7 @@ export interface AlbumSearchOptions {
 export interface GifSearchOptions {
     page?: number
     order?: GifSearchOrdering
-    sexualOrientation?: 'straight' | 'gay' | 'transgender'
+    sexualOrientation?: SexualOrientation
 }
 
 export interface PornstarSearchOptions {
@@ -38,4 +38,9 @@ export interface VideoSearchOptions {
     durationMax?: 10 | 20 | 30
     /** Category id */
     filterCategory?: number
+}
+
+export interface AutoCompleteOptions {
+    token?: string
+    sexualOrientation?: SexualOrientation
 }

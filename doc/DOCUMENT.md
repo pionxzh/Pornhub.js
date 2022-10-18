@@ -11,8 +11,12 @@
   - [Album Search](#album-search)
   - [GIF Search](#gif-search)
   - [PornStar Search](#pornstar-search)
+  - [Model Search](#model-search)
+- [AutoComplete](#autocomplete)
+- [Get Token](#get-token)
 - [Login / Logout](#login--logout)
 - [Custom Agent (Proxy)](#custom-agent-proxy)
+- [Route](#route)
 
 # Page parsing
 
@@ -185,10 +189,10 @@ All options are optional.
 
 | Options     | Type      | Description                                                                             |
 | ----------- | --------- | --------------------------------------------------------------------------------------- |
-| page        | `int`     | Page number                                                        |
+| page        | `int`     | Page number                                                                             |
 | order       | `string`  | `"Most Relevant"` \| `"Most Recent"` \| `"Most Viewed"` \| `"Top Rated"` \| `"Longest"` |
 | hd          | `boolean` | Show HD video only or not                                                               |
-| production  | `string`  | `"all"` \| `"professional"` \| `"homemade"`                                                        |
+| production  | `string`  | `"all"` \| `"professional"` \| `"homemade"`                                             |
 | durationMin | `int`     | `10` \| `20` \| `30`                                                                    |
 | durationMax | `int`     | `10` \| `20` \| `30`                                                                    |
 </details>
@@ -277,7 +281,7 @@ res.data.forEach((item) => {
 | ----------------- | -------- | ------------------------------------------------------------------------ |
 | page              | `int`    | Show which page of search result                                         |
 | order             | `string` | `"Most Relevant"` \| `"Most Recent"` \| `"Most Viewed"` \| `"Top Rated"` |
-| sexualOrientation | `string` | `"straight` \| `"gay"` \| `"transgender"`                                               |
+| sexualOrientation | `string` | `"straight` \| `"gay"` \| `"transgender"`                                |
 </details>
 
 <details>
@@ -345,6 +349,88 @@ res.data.forEach((item) => {
 ```
 </details>
 
+## Model Search
+
+This method is a simple wrapper of [pornhub.autoComplete](#autocomplete) method, which cherry-pick the `models` field.
+
+`pornhub.searchModel(keyword, options?)`
+
+<details>
+  <summary><b>Options</b></summary>
+
+| Options           | Type     | Description                                |
+| ----------------- | -------- | ------------------------------------------ |
+| token             | `string` | (Optional) Token from `pornhub.getToken()` |
+| sexualOrientation | `string` | `"straight` \| `"gay"` \| `"transgender"`  |
+</details>
+
+
+<details>
+  <summary><b>Example</b></summary>
+
+```js
+const models = await pornhub.searchModel('luna')
+console.log(models)
+/* [{
+  name:"Luna Okko",
+  slug:"luna-okko",
+  url: 'https://www.pornhub.com/model/luna-okko',
+  rank:0
+},{
+  name:"lunaalessandra",
+  slug:"lunaalessandra",
+  url: 'https://www.pornhub.com/model/lunaalessandra',
+  rank:1
+},{
+  name:"Luna Roulette",
+  slug:"luna-roulette",
+  url: 'https://www.pornhub.com/model/luna-roulette',
+  rank:2
+},
+  ...
+] */
+```
+</details>
+
+# AutoComplete
+Pornhub has an autocomplete API that can be used to get suggestions for search queries.\
+This API is used by the search bar on the website.
+
+`pornhub.autoComplete(keyword, options?)`
+
+<details>
+  <summary><b>Options</b></summary>
+
+| Options           | Type     | Description                                |
+| ----------------- | -------- | ------------------------------------------ |
+| token             | `string` | (Optional) Token from `pornhub.getToken()` |
+| sexualOrientation | `string` | `"straight` \| `"gay"` \| `"transgender"`  |
+</details>
+
+<details>
+  <summary><b>Example</b></summary>
+
+```js
+const res = await pornhub.autoComplete('luna')
+console.log(res)
+```
+
+\> Check the type definition [here](https://github.com/pionxzh/Pornhub.js/blob/master/src/types/AutoComplete.ts).
+</details>
+
+# Get Token
+This method is used to get the token for pornhub's internal api.
+
+(optional) You can cache this token to avoid frequent requests.\
+I'm not sure about the expiration time though.
+
+For now, this token is only used for [autoComplete](#autocomplete) and [searchModel](#searchmodel).
+This library will automatically get token if you don't provide it.\
+
+```js
+const token = await pornhub.getToken()
+```
+
 # Login / Logout
 You can login to gain access to **premium video**. (if you own a premium account)
 ```js
@@ -373,3 +459,6 @@ const httpsAgent = new HttpsProxyAgent(proxy)
 
 pornhub.setAgent(httpsAgent)
 ```
+
+# Route
+Check [Route](./Route.md) for more information.

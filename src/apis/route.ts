@@ -2,7 +2,7 @@ import urlcat from 'urlcat'
 import { BASE_URL } from '../utils/constant'
 import { dashify } from '../utils/dashify'
 import { searchify } from '../utils/searchify'
-import type { AlbumSearchOptions, GifSearchOptions, PornstarSearchOptions, VideoSearchOptions, WebmasterSearchOptions } from '../types'
+import type { AlbumSearchOptions, AutoCompleteOptions, GifSearchOptions, PornstarSearchOptions, VideoSearchOptions, WebmasterSearchOptions } from '../types'
 import { AlbumOrderingMapping, GifOrderingMapping, PornstarOrderingMapping, VideoOrderingMapping } from '../types'
 
 export const Route = {
@@ -15,6 +15,18 @@ export const Route = {
     logout(token: string) {
         return urlcat(BASE_URL, '/user/logout', { token })
     },
+    autocomplete(keyword: string, {
+        token,
+        sexualOrientation = 'straight',
+    }: AutoCompleteOptions) {
+        return urlcat(BASE_URL, '/video/search_autocomplete', {
+            q: keyword,
+            orientation: sexualOrientation,
+            pornstars: true,
+            token,
+            alt: 0,
+        })
+    },
 
     albumPage(id: string) {
         return urlcat(BASE_URL, '/album/:id', { id })
@@ -24,6 +36,15 @@ export const Route = {
     },
     videoPage(id: string) {
         return urlcat(BASE_URL, '/view_video.php', { viewkey: id })
+    },
+    pornstarPage(name: string) {
+        return urlcat(BASE_URL, '/pornstar/:name', { name })
+    },
+    modelPage(name: string) {
+        return urlcat(BASE_URL, '/model/:name', { name })
+    },
+    channelPage(name: string) {
+        return urlcat(BASE_URL, '/channels/:name', { name })
     },
 
     albumSearch(keyword: string, {

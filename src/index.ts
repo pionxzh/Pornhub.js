@@ -1,6 +1,6 @@
 import type { RequestInit } from 'node-fetch'
-import type { AlbumSearchOptions, GifSearchOptions, PornstarSearchOptions, VideoSearchOptions } from './types'
-import { getMainPage, login, logout } from './apis'
+import type { AlbumSearchOptions, AutoCompleteOptions, GifSearchOptions, PornstarSearchOptions, VideoSearchOptions } from './types'
+import { Route, getMainPage, login, logout } from './apis'
 import { Engine } from './core/engine'
 import { WebMaster } from './core/webmaster'
 import { albumPage } from './scrapers/pages/album'
@@ -10,9 +10,13 @@ import { albumSearch } from './scrapers/search/album'
 import { pornstarSearch } from './scrapers/search/pornstar'
 import { gifSearch } from './scrapers/search/gif'
 import { videoSearch } from './scrapers/search/video'
+import { modelSearch } from './scrapers/search/model'
+import { getAutoComplete } from './apis/autoComplete'
+import { getToken } from './apis/getToken'
 
 export class PornHub {
     engine = new Engine()
+    route = Route
     webMaster = new WebMaster(this.engine)
 
     setAgent(agent: RequestInit['agent']) {
@@ -50,6 +54,18 @@ export class PornHub {
     }
 
     /**
+     * Get token from Pornhub.com.
+     * Most of pornhub's api need this token.
+     * You can cache this token to avoid frequent requests (I'm not sure about the expiration time!).
+     *
+     * For now, this token is only used for `autoComplete` and `searchModel`.
+     * This library will automatically get token if you don't provide it.
+     */
+    getToken() {
+        return getToken(this.engine)
+    }
+
+    /**
      * Get video information by url/ID
      * @param urlOrId Video ID or page url
     */
@@ -74,6 +90,13 @@ export class PornHub {
     }
 
     /**
+     * Get autocomplete result by keyword.
+     */
+    autoComplete(keyword: string, options: AutoCompleteOptions = {}) {
+        return getAutoComplete(this.engine, keyword, options)
+    }
+
+    /**
      * Search album by keyword.
      */
     searchAlbum(keyword: string, options: AlbumSearchOptions = {}) {
@@ -92,6 +115,13 @@ export class PornHub {
      */
     searchPornstar(keyword: string, options: PornstarSearchOptions = {}) {
         return pornstarSearch(this.engine, keyword, options)
+    }
+
+    /**
+     * Search model by keyword.
+     */
+    searchModel(keyword: string, options: AutoCompleteOptions = {}) {
+        return modelSearch(this.engine, keyword, options)
     }
 
     /**

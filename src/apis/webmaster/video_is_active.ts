@@ -2,7 +2,7 @@ import type { Engine } from '../../core/engine'
 import { UrlParser } from '../../utils/url'
 import { WebmasterRoute } from '../route'
 
-type Response =
+export type WebmasterVideoIsActive =
 {
     active: {
         video_id: string
@@ -17,7 +17,7 @@ type Response =
 export async function video_is_active(engine: Engine, urlOrId: string): Promise<boolean> {
     try {
         const id = UrlParser.getVideoID(urlOrId)
-        const result = await engine.request.get<Response>(WebmasterRoute.isVideoActive(id))
+        const result = await engine.request.get<WebmasterVideoIsActive>(WebmasterRoute.isVideoActive(id))
 
         if ('code' in result) throw new Error(result.message)
 

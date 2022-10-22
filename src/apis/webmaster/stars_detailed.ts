@@ -1,7 +1,7 @@
 import type { Engine } from '../../core/engine'
 import { WebmasterRoute } from '../route'
 
-interface Response {
+export interface WebmasterStarsDetailed {
     stars: { star: DetailedStar }[]
 }
 
@@ -15,7 +15,7 @@ export interface DetailedStar {
 
 export async function stars_detailed(engine: Engine): Promise<DetailedStar[]> {
     try {
-        const result = await engine.request.get<Response>(WebmasterRoute.stars_detailed())
+        const result = await engine.request.get<WebmasterStarsDetailed>(WebmasterRoute.stars_detailed())
         return result.stars.map(x => x.star)
     }
     catch (err) {

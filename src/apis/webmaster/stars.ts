@@ -1,11 +1,11 @@
 import type { Engine } from '../../core/engine'
 import { WebmasterRoute } from '../route'
 
-interface Response {
-    stars: Star[]
+export interface WebmasterStars {
+    stars: WebmasterStar[]
 }
 
-interface Star {
+export interface WebmasterStar {
     star: {
         star_name: string
     }
@@ -13,7 +13,7 @@ interface Star {
 
 export async function stars(engine: Engine): Promise<string[]> {
     try {
-        const result = await engine.request.get<Response>(WebmasterRoute.stars())
+        const result = await engine.request.get<WebmasterStars>(WebmasterRoute.stars())
         return result.stars.map(x => x.star.star_name)
     }
     catch (err) {

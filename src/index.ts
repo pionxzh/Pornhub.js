@@ -16,6 +16,29 @@ import { getToken } from './apis/getToken'
 import { modelPage } from './scrapers/pages/model'
 import { pornstarPage } from './scrapers/pages/pornstar'
 
+export * from './types'
+export type { AlbumPage } from './scrapers/pages/album'
+export type { PhotoPage } from './scrapers/pages/photo'
+export type { VideoPage } from './scrapers/pages/video'
+export type { PornstarPage } from './scrapers/pages/pornstar'
+export type { ModelPage } from './scrapers/pages/model'
+
+export type { AlbumSearchResult } from './scrapers/search/album'
+export type { PornstarSearchResult } from './scrapers/search/pornstar'
+export type { GifSearchResult } from './scrapers/search/gif'
+export type { VideoSearchResult } from './scrapers/search/video'
+export type { ModelSearchResult } from './scrapers/search/model'
+
+export type { WebmasterCategory } from './apis/webmaster/categories'
+export type { WebmasterDeleted } from './apis/webmaster/deleted'
+export type { WebmasterEmbed } from './apis/webmaster/embed'
+export type { WebmasterSearch } from './apis/webmaster/search'
+export type { WebmasterStarsDetailed } from './apis/webmaster/stars_detailed'
+export type { WebmasterStars, WebmasterStar } from './apis/webmaster/stars'
+export type { WebmasterTags } from './apis/webmaster/tags'
+export type { WebmasterVideoById } from './apis/webmaster/video_by_id'
+export type { WebmasterVideoIsActive } from './apis/webmaster/video_is_active'
+
 export class PornHub {
     engine = new Engine()
     route = Route
@@ -149,4 +172,3 @@ export class PornHub {
         return videoSearch(this.engine, keyword, options)
     }
 }
-

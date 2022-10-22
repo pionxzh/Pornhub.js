@@ -1,7 +1,7 @@
 import type { Engine } from '../../core/engine'
 import { WebmasterRoute } from '../route'
 
-interface Response {
+export interface WebmasterTags {
     tagsCount: number
     tags: string[]
 }
@@ -14,7 +14,7 @@ interface Response {
  */
 export async function tags(engine: Engine, letter: string): Promise<string[]> {
     try {
-        const result = await engine.request.get<Response>(WebmasterRoute.tags(letter))
+        const result = await engine.request.get<WebmasterTags>(WebmasterRoute.tags(letter))
         return result.tags
     }
     catch (err) {

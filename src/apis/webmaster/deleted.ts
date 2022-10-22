@@ -1,7 +1,7 @@
 import type { Engine } from '../../core/engine'
 import { WebmasterRoute } from '../route'
 
-interface Response {
+export interface WebmasterDeleted {
     videos: DeletedVideo[]
 }
 
@@ -12,7 +12,7 @@ export interface DeletedVideo {
 
 export async function deleted(engine: Engine, page: number): Promise<DeletedVideo[]> {
     try {
-        const result = await engine.request.get<Response>(WebmasterRoute.deletedVideos(page))
+        const result = await engine.request.get<WebmasterDeleted>(WebmasterRoute.deletedVideos(page))
         return result.videos
     }
     catch (err) {

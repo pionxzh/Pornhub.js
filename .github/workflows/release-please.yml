@@ -1,0 +1,48 @@
+name: release-please
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: google-github-actions/release-please-action@v3
+        with:
+          release-type: node
+          default-branch: master
+          pull-request-header: ':robot: I have created a release'
+          pull-request-title-pattern: 'chore: release ${version}'
+
+      # The logic below handles the npm publication:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+        if: ${{ steps.release.outputs.release_created }}
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        if: ${{ steps.release.outputs.release_created }}
+
+      - name: Use Node.js v16
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          registry-url: https://registry.npmjs.org/
+          cache: pnpm
+        if: ${{ steps.release.outputs.release_created }}
+
+      - run: pnpm install
+        if: ${{ steps.release.outputs.release_created }}
+
+      - name: Build
+        run: pnpm run build
+        if: ${{ steps.release.outputs.release_created }}
+
+      - name: Publish
+        run: pnpm publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+        if: ${{ steps.release.outputs.release_created }}

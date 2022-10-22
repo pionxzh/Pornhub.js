@@ -1,0 +1,30 @@
+// Vitest Snapshot v1
+
+exports[`Model Info > # run() 1`] = `
+{
+  "about": "I travel the world with my boyfriend, bringing you with us in our adventures!",
+  "avatar": "https://ei.phncdn.com/pics/users/u/001/117/083/341/avatar1617043303/(m=ewILGCjadOf)(mh=mXhAG2kUEGMLb_iT)200x200.jpg",
+  "bio": "",
+  "ethnicity": "Asian",
+  "fakeBoobs": false,
+  "featuredIn": [],
+  "gender": "Female",
+  "hairColor": "Black",
+  "height": "5' 2\\" (157cm)",
+  "interestedIn": "Guys and Girls",
+  "name": "Luna Okko",
+  "piercings": false,
+  "relationship": "Taken",
+  "socials": {
+    "amazonWishList": undefined,
+    "instagram": "https://www.instagram.com/lunaokko",
+    "modelhub": undefined,
+    "snapchat": undefined,
+    "twitter": "https://www.twitter.com/lunaokko_",
+    "website": "https://lunaokko.com",
+  },
+  "tattoos": true,
+  "verified": true,
+  "weight": "88lbs. (40kg)",
+}
+`;

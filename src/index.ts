@@ -13,6 +13,8 @@ import { videoSearch } from './scrapers/search/video'
 import { modelSearch } from './scrapers/search/model'
 import { getAutoComplete } from './apis/autoComplete'
 import { getToken } from './apis/getToken'
+import { modelPage } from './scrapers/pages/model'
+import { pornstarPage } from './scrapers/pages/pornstar'
 
 export class PornHub {
     engine = new Engine()
@@ -87,6 +89,22 @@ export class PornHub {
     */
     photo(urlOrId: string) {
         return photoPage(this.engine, urlOrId)
+    }
+
+    /**
+     * Get pornstar information by url/ID
+     * @param urlOrName Pornstar name or page url
+    */
+    pornstar(urlOrName: string) {
+        return pornstarPage(this.engine, urlOrName)
+    }
+
+    /**
+     * Get model information by url/ID
+     * @param urlOrName Model name or page url
+     */
+    model(urlOrName: string) {
+        return modelPage(this.engine, urlOrName)
     }
 
     /**

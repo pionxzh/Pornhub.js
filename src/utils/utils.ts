@@ -8,26 +8,6 @@ export function unescape(str: string) {
         .replace(/&amp;/g, '&')
 }
 
-export function regexByRules(pattern: string | RegExp, str = '', nthMatch = 1) {
-    const reg = new RegExp(pattern)
-
-    let match = null
-    while (nthMatch--) match = reg.exec(str)
-
-    return match
-}
-
-export function decodeStrToList(str: string) {
-    try {
-        return decodeURIComponent(str).split(',').filter(
-            item => item !== '',
-        )
-    }
-    catch (e) {
-        return []
-    }
-}
-
 // https://ci.phncdn.com/pics/pornstars/000/002/190/(m=lciuhScOb_c)(mh=y8jot66fDRXSMiYW)thumb_00000.jpg
 // => https://ci.phncdn.com/pics/pornstars/000/002/190/thumb_00000.jpg
 export const removeProtectionBracket = (str: string) => str.replace(/\(.+?\)/g, '')

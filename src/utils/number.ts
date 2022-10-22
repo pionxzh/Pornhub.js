@@ -1,4 +1,6 @@
 export function parseReadableNumber(viewsText: string): number {
+    if (!viewsText) return 0
+
     const views = viewsText.replace(/,/g, '')
     if (views.includes('K')) {
         return parseFloat(views) * 1000

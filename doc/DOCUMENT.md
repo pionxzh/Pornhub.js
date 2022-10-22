@@ -5,6 +5,8 @@
   - [Get Video Info](#get-video-info)
   - [Get Album Info](#get-album-info)
   - [Get Photo Info](#get-photo-info)
+  - [Get Pornstar Info](#get-pornstar-info)
+  - [Get Model Info](#get-model-info)
 - [Search](#search)
     - [Response Structure](#response-structure)
   - [Video Search](#video-search)
@@ -150,6 +152,85 @@ console.log(photo)
     }
 } */
 ```
+</details>
+
+## Get Pornstar Info
+Accept both name and Url
+
+```js
+// pornhub.pornstar('Eva Elfie')
+const result = await pornhub.pornstar('Eva Elfie')
+console.log(result)
+```
+
+<details>
+  <summary><b>Result</b></summary>
+
+```js
+/* {
+  "name": "Eva Elfie",
+  "verified": true,
+  "background": "Russian",
+  "birthPlace": "Russia",
+  "careerStartAndEnd": "2018 to Present",
+  "careerStatus": "Active",
+  "cityAndCountry": "Moscow, RU",
+  "ethnicity": "White",
+  "eyeColor": "Green",
+  ...
+} */
+```
+*Note: unhandled property will be displayed like this:*
+
+```js
+// {
+//   "Name In The Page": "The Value"
+//   ...
+// }
+```
+
+\> Check the type definition [here](https://github.com/pionxzh/Pornhub.js/blob/master/src/scrapers/page/pornstar.ts).
+</details>
+
+## Get Model Info
+Accept both name and Url
+
+```js
+// pornhub.model('Eva Elfie')
+const result = await pornhub.model('Luna Okko')
+console.log(result)
+```
+
+<details>
+  <summary><b>Result</b></summary>
+
+```js
+/* {
+  "name": "Luna Okko",
+  "verified": true,
+  "tattoos": true,
+  "gender": "Female",
+  "ethnicity": "Asian",
+  "hairColor": "Black",
+  "interestedIn": "Guys and Girls",
+  "relationship": "Taken",
+  "socials": {
+    "instagram": "https://www.instagram.com/lunaokko",
+    "twitter": "https://www.twitter.com/lunaokko_",
+  },
+  ...
+} */
+```
+*Note: unhandled property will be displayed like this:*
+
+```js
+// {
+//   "Name In The Page": "The Value"
+//   ...
+// }
+```
+
+\> Check the type definition [here](https://github.com/pionxzh/Pornhub.js/blob/master/src/scrapers/page/model.ts).
 </details>
 
 # Search

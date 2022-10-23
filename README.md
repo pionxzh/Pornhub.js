@@ -17,12 +17,12 @@ Powerful PornHub API for Node.js
 * [Page Parser](/doc/Page.md) for `Video`, `Album`, `Photo`, `PornStar` and `Model`
 * [Search](/doc/Search.md) for `Video`, `Album`, `Gif`, `PornStar` and `Model`
 * [WebMaster API](/doc/WebMaster.md)
-* **Migrate from v0.x to v1.x? Check [Migrate](/doc/MIGRATE.md)**
+* **Migrate from v0.x to v1.x? Check [Migration Guide](/doc/MIGRATE.md)**
 ## Getting Started
 
 ### Requirements
 
-* Node.js >= 14
+* `Node.js` >= 14
 
 ### Installation
 
@@ -49,17 +49,17 @@ console.log(result.data[0]) // first video
 <details>
   <summary><b>Result</b></summary>
 
-```js
-/* {
-    title: 'Japanese Tokyo Hot',
-    url: 'https://www.pornhub.com/view_video.php?viewkey=***',
-    views: '14M',
-    duration: '14:24',
-    hd: true,
-    premium: false,
-    freePremium: false,
-    preview: 'https://ci.phncdn.com/videos/***.jpg'
-} */
+```json5
+{
+  "title": "Japanese Tokyo Hot",
+  "url": "https://www.pornhub.com/view_video.php?viewkey=***",
+  "views": "14M",
+  "duration": "14:24",
+  "hd": true,
+  "premium": false,
+  "freePremium": false,
+  "preview": "https://ci.phncdn.com/videos/***.jpg"
+}
 ```
 </details>
 
@@ -75,32 +75,30 @@ console.log(video)
 
 <details>
   <summary><b>Result</b></summary>
-```js
-    /* {
-        title: 'Japanese Tokyo Hot',
-        views: 49517,
-        duration: 1922,
-        durationFormatted: '32:02'
-        vote: { up: 64, down: 14, total: 78, rating: 0.82 },
-        premium: false,
-        thumb: 'data:image/gif...',
-        provider: { username: 'wowgirls', url: '/users/wowgirls' },
-        tags: ['hardcore', 'hentai', 'memes', ...],
-        categories: ['HD-Porn', 'SFW', ...],
-        pornstars: ['pig'],
-        videos: [{
-            quality: '720',
-            filename: '720P_1500K_161102592.mp4',
-            extension: 'mp4',
-            url: ...
-        }, {
-            quality: '480',
-            ...
-        }, {
-            ...
-        }]
-    } */
-})
+
+```json5
+{
+  "title": "Japanese Tokyo Hot",
+  "views": 49517,
+  "duration": 1922,
+  "durationFormatted": "32:02",
+  "vote": { "up": 64, "down": 14, "total": 78, "rating": 0.82 },
+  "premium": false,
+  "thumb": "data:image/gif...",
+  "provider": { "username": "wowgirls", "url": "/users/wowgirls" },
+  "tags": ["hardcore", "hentai", "memes"],
+  "categories": ["HD-Porn", "SFW"],
+  "pornstars": ["pig"],
+  "videos": [
+    {
+      "quality": "720",
+      "filename": "720P_1500K_161102592.mp4",
+      "extension": "mp4",
+      "url": "..."
+    }
+    // ...
+  ]
+}
 ```
 </details>
 

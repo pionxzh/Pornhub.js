@@ -1,23 +1,26 @@
 # WebMaster (Hubtraffic API)
 
-- [WebMaster (Hubtraffic API)](#WebMaster-Hubtraffic-API)
-  - [Search Video](#Search-Video)
-    - [Available options](#Available-options)
-  - [Get Video Info](#Get-Video-Info)
-  - [Is Video Active](#Is-Video-Active)
-  - [Get Embed Code](#Get-Embed-Code)
-  - [Get Deleted Videos](#Get-Deleted-Videos)
-  - [Get Tag List](#Get-Tag-List)
-  - [Get Category List](#Get-Category-List)
-  - [Get Pornstar List](#Get-Pornstar-List)
-  - [Get Pornstar Detail List](#Get-Pornstar-Detail-List)
+[Webmaster](https://www.pornhub.com/webmasters) is the API for [Hubtraffic](https://www.hubtraffic.com), the traffic tracking system for Pornhub. It allows you to get information about the traffic on your videos and your channel.
+
+If this API can meet your needs, please use this instead of the normal API, because the normal API will be affected by the changes on Pornhub website.
+
+- [WebMaster (Hubtraffic API)](#webmaster-hubtraffic-api)
+  - [Search Video](#search-video)
+  - [Get Video Info](#get-video-info)
+  - [Is Video Active](#is-video-active)
+  - [Get Embed Code](#get-embed-code)
+  - [Get Deleted Videos](#get-deleted-videos)
+  - [Get Tag List](#get-tag-list)
+  - [Get Category List](#get-category-list)
+  - [Get Pornstar List](#get-pornstar-list)
+  - [Get Pornstar Detail List](#get-pornstar-detail-list)
 
 ## Search Video
-```js
-pornhub.webMaster.search(keyword, options?)
-```
+`pornhub.webMaster.search(keyword, options?)`
 
-### Available options
+<details>
+  <summary><b>Options</b></summary>
+
 | Name      | Type            | Description                                                                            |
 | --------- | --------------- | -------------------------------------------------------------------------------------- |
 | page      | `number`        | page                                                                                   |
@@ -27,19 +30,22 @@ pornhub.webMaster.search(keyword, options?)
 | ordering  | `enum`          | featured    \| newest    \| mostviewed \| rating                                       |
 | period    | `enum`          | weekly      \| monthly   \| alltime                                                    |
 | thumbsize | `enum`          | small       \| medium    \| large                \| small_hd  \| medium_hd \| large_hd |
+</details>
+
+<details>
+  <summary><b>Example</b></summary>
 
 ```js
-const options = {
+const result = await pornhub.webMaster.search('peppa pig', {
     page: 2,
     category: ['teen'],
     ordering: 'newest',
     thumbsize: 'medium'
-}
-pornhub.webMaster.search('peppa pig', options).then(data => {
-    console.log(data)
-    // array of video infos( same as the getVideo() )
 })
+console.log(result)
+// array of video infos( same as the getVideo() )
 ```
+</details>
 
 ## Get Video Info
 
@@ -51,37 +57,42 @@ pornhub.webMaster.getVideo(url)
 | ------ | -------- | -------------------- |
 | url    | `string` | Page url or video ID |
 
+<details>
+  <summary><b>Result</b></summary>
+
 ```js
 // https://www.pornhub.com/view_video.php?viewkey=ph5ac81eabe203d
-pornhub.webMaster.getVideo('ph5ac81eabe203d').then(data => {
-    console.log(data)
-    /* {
-        url: 'https://www.pornhub.com/view_video.php?viewkey=ph5ac81eabe203d',
-        title: 'Susie sheep fucks peppa pig',
-        views: 50065,
-        duration: '0:44',
-        thumb: 'https://ci.phncdn.com/videos/201804/07/161102592/original/(m=eaf8Ggaaaa)(mh=mDMLboeH6vZKEuOI)12.jpg',
-        thumbList: [{
-            width: '320',
-            height: '240',
-            src: '***.jpg'
-        }, {
-            ...
-        }, ...
-        ],
-        publishDate: '2018-10-02 00:10:05',
-        vote: {
-            up: 360,
-            down: 130,
-            total: 490,
-            rating: 73.47
-        },
-        tags: ['anal', 'peppa-pig', 'hardcore', 'hentai', ...]
-        pornstars: [],
-        categories: ['sfw', 'step-fantasy']
-    } */
-})
+const result = await pornhub.webMaster.getVideo('ph5ac81eabe203d')
+console.log(result)
 ```
+
+```json5
+{
+  "url": "https://www.pornhub.com/view_video.php?viewkey=ph5ac81eabe203d",
+  "title": "Susie sheep fucks peppa pig",
+  "views": 50065,
+  "duration": "0:44",
+  "thumb": "https://ci.phncdn.com/videos/201804/07/161102592/original/(m=eaf8Ggaaaa)(mh=mDMLboeH6vZKEuOI)12.jpg",
+  "thumbList": [{
+    "width": "320",
+    "height": "240",
+    "src": "***.jpg"
+  }
+  // ...
+  ],
+  "publishDate": "2018-10-02 00:10:05",
+  "vote": {
+    "up": 360,
+    "down": 130,
+    "total": 490,
+    "rating": 73.47
+  },
+  "tags": ["anal", "peppa-pig", "hardcore", "hentai"],
+  "pornstars": [],
+  "categories": ["sfw", "step-fantasy"]
+}
+```
+</details>
 
 ## Is Video Active
 
@@ -93,12 +104,14 @@ pornhub.webMaster.isVideoActive(url)
 | ------ | -------- | -------------------- |
 | url    | `string` | Page url or video ID |
 
+<details>
+  <summary><b>Result</b></summary>
+
 ```js
-pornhub.webMaster.isVideoActive('ph5ac81eabe203d').then(isActive => {
-    console.log(isActive)
-    // true
-})
+const isActive = await pornhub.webMaster.isVideoActive('ph5ac81eabe203d')
+console.log(isActive) // true
 ```
+</details>
 
 ## Get Embed Code
 
@@ -111,12 +124,11 @@ pornhub.webMaster.getVideoEmbedCode(url)
 | url    | `string` | Page url or video ID |
 
 ```js
-const url = 'https://www.pornhub.com/view_video.php?viewkey=ph5ac81eabe203d'
-pornhub.webMaster.getVideoEmbedCode(url).then(code => {
-    console.log(code)
-    /* <iframe src="https://www.pornhub.com/embed/ph5ac81eabe203d" frameborder="0" width="560" height="340" scrolling="no" allowfullscreen></iframe> */
-})
+const code = await pornhub.webMaster.getVideoEmbedCode('ph5ac81eabe203d')
+console.log(code)
+/* <iframe src="https://www.pornhub.com/embed/ph5ac81eabe203d" frameborder="0" width="560" height="340" scrolling="no" allowfullscreen></iframe> */
 ```
+</details>
 
 ## Get Deleted Videos
 
@@ -128,22 +140,28 @@ pornhub.webMaster.getDeletedVideos(page)
 | ------ | ----- | ----------- |
 | page   | `int` | Page number |
 
+<details>
+  <summary><b>Result</b></summary>
+
 ```js
-pornhub.webMaster.getDeletedVideos(2).then(videos => {
-    console.log(videos)
-    /* [
-        { vkey: 'ph5d205e434de05', deleted_on: '2019-07-06 09:51:33' },
-        { vkey: 'ph5d0501cb3281f', deleted_on: '2019-07-06 09:51:20' },
-        { vkey: 'ph5d206b34c91a6', deleted_on: '2019-07-06 09:51:13' },
-        { vkey: 'ph5d097e477d23a', deleted_on: '2019-07-06 09:50:04' },
-        ...
-    ] */
-})
+const videos = await pornhub.webMaster.getDeletedVideos(2)
+console.log(videos)
 ```
+
+```json5
+[
+  { "vkey": "ph5d205e434de05", "deleted_on": "2019-07-06 09:51:33" },
+  { "vkey": "ph5d0501cb3281f", "deleted_on": "2019-07-06 09:51:20" },
+  { "vkey": "ph5d206b34c91a6", "deleted_on": "2019-07-06 09:51:13" },
+  { "vkey": "ph5d097e477d23a", "deleted_on": "2019-07-06 09:50:04" }
+  // ...
+]
+```
+</details>
 
 ## Get Tag List
 
-**※This API is very heavy**, please store the result locally if you need the data.
+**※This API is very heavy**, please cache the result locally.
 
 ```js
 pornhub.webMaster.getTags(letter)
@@ -151,25 +169,31 @@ pornhub.webMaster.getTags(letter)
 
 | Params | Type     | Description                                        |
 | ------ | -------- | -------------------------------------------------- |
-| letter | `string` | a-z, `a` \| `b` \| `c` \| `d` \| `e` \| ... \| `z` |
+| letter | `string` | a-z, `a` \| `b` \| `c` \| `d` \| ... \| `z` |
+
+<details>
+  <summary><b>Result</b></summary>
 
 ```js
-pornhub.webMaster.getTags('z').then(data => {
-    console.log(data)
-    /* [
-        'z',
-        'z 1',
-        'z 1 n',
-        'z a',
-        'z a d d y',
-        'z alexis',
-        'z alice',
-        'z amber',
-        'z black',
-        ...
-    ] */
-})
+const result = await pornhub.webMaster.getTags('z')
+console.log(result)
 ```
+
+```json5
+[
+  "z",
+  "z 1",
+  "z 1 n",
+  "z a",
+  "z a d d y",
+  "z alexis",
+  "z alice",
+  "z amber",
+  "z black"
+  // ...
+]
+```
+</details>
 
 ## Get Category List
 
@@ -177,20 +201,26 @@ pornhub.webMaster.getTags('z').then(data => {
 pornhub.webMaster.getCategories()
 ```
 
+<details>
+  <summary><b>Result</b></summary>
+
 ```js
-pornhub.webMaster.getCategories().then(categories => {
-    console.log(categories)
-    /* [
-        { id: '1', category: 'asian' },
-        { id: '2', category: 'orgy' },
-        { id: '3', category: 'amateur' },
-        { id: '4', category: 'big-ass' },
-        { id: '5', category: 'babe' },
-        { id: '6', category: 'bbw' },
-        ...
-    ] */
-})
+const categories = await pornhub.webMaster.getCategories()
+console.log(categories)
 ```
+
+```json5
+[
+  { "id": "1", "category": "asian" },
+  { "id": "2", "category": "orgy" },
+  { "id": "3", "category": "amateur" },
+  { "id": "4", "category": "big-ass" },
+  { "id": "5", "category": "babe" },
+  { "id": "6", "category": "bbw" }
+  // ...
+]
+```
+</details>
 
 ## Get Pornstar List
 
@@ -198,53 +228,61 @@ pornhub.webMaster.getCategories().then(categories => {
 pornhub.webMaster.getPornstars()
 ```
 
+<details>
+  <summary><b>Result</b></summary>
+
 ```js
-pornhub.webMaster.getPornstars().then(pornstars => {
-    console.log(pornstars)
-    /*
-    [
-        '2 Pretty 4 Porn',
-        '4play',
-        'Aali Kali',
-        'Aaliyah Brown',
-        'Aaliyah Grey',
-        'Aaliyah Hadid',
-        'Aaliyah Jolie',
-        'Aaliyah Love',
-        'Aaliyah Taylor',
-        ...
-    ]
-    */
-})
+const pornstars = await pornhub.webMaster.getPornstars()
+console.log(pornstars)
 ```
+
+```json5
+[
+  "2 Pretty 4 Porn",
+  "4play",
+  "Aali Kali",
+  "Aaliyah Brown",
+  "Aaliyah Grey",
+  "Aaliyah Hadid",
+  "Aaliyah Jolie",
+  "Aaliyah Love",
+  "Aaliyah Taylor"
+  // ...
+]
+```
+</details>
 
 ## Get Pornstar Detail List
 
-**※This API is very heavy (18K+ records)**, please store the result locally if you need the data.
+**※This API is very heavy (20K+ records)**, please cache the result locally.
 
 ```js
 pornhub.webMaster.getPornstarsDetail()
 ```
 
+<details>
+  <summary><b>Result</b></summary>
+
 ```js
-pornhub.webMaster.getPornstarsDetail().then(pornstars => {
-    console.log(pornstars)
-    /*
-    [{
-        star_name: '2 Pretty 4 Porn',
-        star_thumb: '***.thumb_1256231.jpg',
-        star_url: 'https://www.pornhub.com/pornstar/videos_overview?pornstar=2-pretty-4-porn',
-        gender: 'female',
-        videos_count_all: '71'
-    }, {
-        star_name: '4play',
-        star_thumb: '***.thumb_1025141.jpg',
-        star_url: 'https://www.pornhub.com/pornstar/videos_overview?pornstar=4play',
-        gender: 'male',
-        videos_count_all: '43'
-    },
-        ...
-    ]
-    */
-})
+const pornstars = await pornhub.webMaster.getPornstarsDetail()
+console.log(pornstars)
 ```
+
+```json5
+[{
+  "star_name": "2 Pretty 4 Porn",
+  "star_thumb": "***.thumb_1256231.jpg",
+  "star_url": "https://www.pornhub.com/pornstar/videos_overview?pornstar=2-pretty-4-porn",
+  "gender": "female",
+  "videos_count_all": "71"
+}, {
+  "star_name": "4play",
+  "star_thumb": "***.thumb_1025141.jpg",
+  "star_url": "https://www.pornhub.com/pornstar/videos_overview?pornstar=4play",
+  "gender": "male",
+  "videos_count_all": "43"
+}
+  // ...
+]
+```
+</details>

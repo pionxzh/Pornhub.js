@@ -1,0 +1,114 @@
+import { URLSearchParams } from 'url'
+import type { RequestInit, Response } from 'node-fetch'
+import fetch from 'node-fetch'
+import createDebug from 'debug'
+import { HttpStatusError } from '../utils/constant'
+
+const debug = createDebug('request')
+
+export class Request {
+    _agent: RequestInit['agent']
+    _headers: Record<string, string> = {}
+    _cookie: Map<any, any> = new Map()
+
+    setAgent(agent: RequestInit['agent']) {
+        this._agent = agent
+    }
+
+    setHeader(key: string, value: string) {
+        this._headers[key] = value
+    }
+
+    get cookie() {
+        return Array.from(this._cookie).map(([k, v]) => `${encodeURIComponent(k)}=${encodeURIComponent(v)}`).join('; ')
+    }
+
+    setCookie(key: string, value: any) {
+        this._cookie.set(key, value)
+    }
+
+    checkStatus(res: Response) {
+        if (res.ok) return res
+        return Promise.reject(new HttpStatusError(`${res.status} ${res.statusText}`))
+    }
+
+    parseCookieItem(str: string) {
+        if (str.includes(';')) str = str.split(';')[0]
+
+        return str.split('=')
+    }
+
+    handleSetCookie(res: Response) {
+        if (!res.headers.raw()['set-cookie']) return res
+
+        res.headers.raw()['set-cookie'].forEach((item) => {
+            const [key, value] = this.parseCookieItem(item)
+            this._cookie.set(key, value)
+        })
+
+        this.setHeader('Cookie', this.cookie)
+        return res
+    }
+
+    toJson(res: Response) {
+        const contentType = res.headers.get('content-type') || ''
+        return contentType.includes('json') ? res.json() : res.text()
+    }
+
+    buildParams<U extends Record<string, any>>(data: U) {
+        const params = new URLSearchParams()
+        Object.keys(data).forEach((key) => {
+            params.append(key, data[key])
+        })
+        return params
+    }
+
+    buildRequest<U extends Record<string, any>, T>(method: 'get' | 'post' | 'post-form', url: string, data?: U): Promise<T> {
+        const opts: RequestInit = {}
+        const headers = Object.assign({}, this._headers)
+
+        if (method === 'get') opts.method = 'get'
+
+        if (method === 'post') {
+            headers['Content-Type'] = 'application/json'
+            opts.method = 'post'
+            opts.body = data
+        }
+
+        if (method === 'post-form') {
+            // headers['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8'
+            opts.method = 'post'
+            if (data) opts.body = this.buildParams<U>(data)
+        }
+
+        headers && (opts.headers = headers)
+        this._agent && (opts.agent = this._agent)
+
+        return fetch(url, opts)
+            .then(res => this.checkStatus(res))
+            .then(res => this.handleSetCookie(res))
+            .then(res => this.toJson(res) as T)
+            .catch(err => Promise.reject(err))
+    }
+
+    get<T>(url: string): Promise<T> {
+        debug(`GET ${url}`)
+        return this.buildRequest('get', url)
+    }
+
+    post<T, U extends object = any>(url: string, data: U): Promise<T> {
+        debug(`POST ${url}`)
+        return this.buildRequest('post', url, data)
+    }
+
+    postForm<T, U extends object = any>(url: string, data: U): Promise<T> {
+        debug(`POST ${url}`)
+        return this.buildRequest('post-form', url, data)
+    }
+
+    raw(url: string): Promise<string> {
+        debug(`GET ${url}`)
+        return this.buildRequest('get', url)
+    }
+}
+

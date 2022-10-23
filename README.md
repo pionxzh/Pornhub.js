@@ -1,76 +1,93 @@
 # PornHub.js
-[![npm](https://img.shields.io/npm/v/pornhub.js.svg)](https://www.npmjs.com/package/pornhub.js)
-[![Build Status](https://travis-ci.org/pionxzh/Pornhub.js.svg?branch=master)](https://travis-ci.org/pionxzh/Pornhub.js)
-[![javascript style guide][standard-image]][standard-url]
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
-
 ![logo](images/logo.png)
 
-A powerful Node.js lib to interact with [PornHub API](https://www.pornhub.com/).\
-Easily get information and search for the `Video`/`Album`/`Gif`/`PornStar`.
+[![npm](https://img.shields.io/npm/v/pornhub.js.svg)](https://www.npmjs.com/package/pornhub.js)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
 
-[standard-image]: https://img.shields.io/badge/code_style-standard-brightgreen.svg
-[standard-url]: https://standardjs.com
+Powerful PornHub API for Node.js
 
+## Features
+* **Parser**: Parse pages for `Video`, `Album`, `Photo`, `PornStar` and `Model`
+* **Search**: Search for `Video`, `Album`, `Gif`, `PornStar` and `Model`, support all the query parameters
+* **Pagination**: Support pagination for search results
+* **WebMaster**: Utilize the [WebMaster API](/doc/WebMaster.md) from [Hubtraffic](https://www.hubtraffic.com) like a king :sunglasses:
+
+## Documents
+* [Document](/doc/DOCUMENT.md) for all the APIs and usages
+* [Page Parser](/doc/Page.md) for `Video`, `Album`, `Photo`, `PornStar` and `Model`
+* [Search](/doc/Search.md) for `Video`, `Album`, `Gif`, `PornStar` and `Model`
+* [WebMaster API](/doc/WebMaster.md)
+* **Migrate from v0.x to v1.x? Check [Migrate](/doc/MIGRATE.md)**
 ## Getting Started
 
 ### Requirements
 
-* Node.js >= 14.x
+* Node.js >= 14
 
 ### Installation
 
 ```bash
 npm install pornhub.js --save
+pnpm install pornhub.js --save
+yarn add pornhub.js
 ```
-
-## Links
-* [Document](/doc/DOCUMENT.md)
-* [WebMaster API](/doc/WebMaster.md)
 
 ## Usage
 
-### Search
 ```js
-const PornHub = require('pornhub.js')
+import { PornHub } from 'pornhub.js'
+// const { PornHub } = require('pornhub.js')
 const pornhub = new PornHub()
-
-pornhub.search('Video', 'tokyo hot').then(res => {
-    res.data.forEach(item => {
-        console.log(item)
-        /* {
-            title: 'Japanese Tokyo Hot',
-            url: 'https://www.pornhub.com/view_video.php?viewkey=***',
-            duration: '14:24',
-            hd: true,
-            premium: false,
-            preview: 'https://ci.phncdn.com/videos/***.jpg'
-        } */
-    })
-})
 ```
 
+### Search Video
+```js
+const result = pornhub.searchVideo('tokyo hot')
+console.log(result.data[0]) // first video
+```
+
+<details>
+  <summary><b>Result</b></summary>
+
+```js
+/* {
+    title: 'Japanese Tokyo Hot',
+    url: 'https://www.pornhub.com/view_video.php?viewkey=***',
+    views: '14M',
+    duration: '14:24',
+    hd: true,
+    premium: false,
+    freePremium: false,
+    preview: 'https://ci.phncdn.com/videos/***.jpg'
+} */
+```
+</details>
+
+
 ### Getting Video Information
-You can print out all the video download links.
+***Note***: download videos is currently unavailable due to the changes from pornhub.
 
 ```js
 const url = 'https://www.pornhub.com/view_video.php?viewkey=ph5ac81eabe203d'
-pornhub.video(url).then(res => {
-    console.log(res.data)
+const video = await pornhub.video(url)
+console.log(video)
+```
+
+<details>
+  <summary><b>Result</b></summary>
+```js
     /* {
-        title: 'Susie sheep fucks peppa pig',
+        title: 'Japanese Tokyo Hot',
         views: 49517,
-        voteUp: 352,
-        voteDown: 125,
-        percent: '74%',
-        provider: {
-            username: TheFortniteVirginTheFortniteVirgin',
-            url: '/users/thefortnitevirgin'
-        },
+        duration: 1922,
+        durationFormatted: '32:02'
+        vote: { up: 64, down: 14, total: 78, rating: 0.82 },
         premium: false,
+        thumb: 'data:image/gif...',
+        provider: { username: 'wowgirls', url: '/users/wowgirls' },
         tags: ['hardcore', 'hentai', 'memes', ...],
         categories: ['HD-Porn', 'SFW', ...],
-        pornstars: [],
+        pornstars: ['pig'],
         videos: [{
             quality: '720',
             filename: '720P_1500K_161102592.mp4',
@@ -85,6 +102,15 @@ pornhub.video(url).then(res => {
     } */
 })
 ```
+</details>
+
+### More
+See [DOCUMENT](/doc/DOCUMENT.md) for more information.
+
+## Known Issues
+* ~~Video will always been redirected to a corn video~~ ([#27](https://github.com/pionxzh/Pornhub.js/issues/27))
+  * See [Warmup()](/doc/DOCUMENT.md#warmup)
+
 
 ## License
 [MIT](LICENSE)

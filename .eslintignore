@@ -2,3 +2,5 @@
 /config/
 /dist/
 src/fakeEl.*
+/.vscode/
+.github/

@@ -4,9 +4,20 @@
 [![npm](https://img.shields.io/npm/v/pornhub.js.svg)](https://www.npmjs.com/package/pornhub.js)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
 
-Powerful PornHub API for Node.js\
-Parse and search for `Video`/`Album`/`Gif`/`PornStar` on the fly.
+Powerful PornHub API for Node.js
 
+## Features
+* **Parser**: Parse pages for `Video`, `Album`, `Photo`, `PornStar` and `Model`
+* **Search**: Search for `Video`, `Album`, `Gif`, `PornStar` and `Model`, support all the query parameters
+* **Pagination**: Support pagination for search results
+* **WebMaster**: Utilize the [WebMaster API](/doc/WebMaster.md) from [Hubtraffic](https://www.hubtraffic.com) like a king :sunglasses:
+
+## Documents
+* [Document](/doc/DOCUMENT.md) for all the APIs and usages
+* [Page Parser](/doc/Page.md) for `Video`, `Album`, `Photo`, `PornStar` and `Model`
+* [Search](/doc/Search.md) for `Video`, `Album`, `Gif`, `PornStar` and `Model`
+* [WebMaster API](/doc/WebMaster.md)
+* **Migrate from v0.x to v1.x? Check [Migrate](/doc/MIGRATE.md)**
 ## Getting Started
 
 ### Requirements
@@ -20,18 +31,6 @@ npm install pornhub.js --save
 pnpm install pornhub.js --save
 yarn add pornhub.js
 ```
-
-## Links
-* [Document](/doc/DOCUMENT.md)
-* [WebMaster API](/doc/WebMaster.md)
-
-## Features
-* **Parser**: Parse pages on pornhub: `Video`, `Album`, `Gif`, `PornStar`
-* **Pagination**: Search API will give you the count of item and pagination info
-* **Query**: Support all the search query parameters of pornhub
-* **WebMaster**: Utilize the [WebMaster API](/doc/WebMaster.md) like a king :sunglasses:
-  * This is an API for [webmaster](https://www.pornhub.com/webmasters) to get information from pornhub, which will give you more accurate data!
-  * If this API can meet your needs, please use it instead of the normal API, because the normal API is not stable and may be blocked by pornhub.
 
 ## Usage
 
@@ -107,6 +106,11 @@ console.log(video)
 
 ### More
 See [DOCUMENT](/doc/DOCUMENT.md) for more information.
+
+## Known Issues
+* ~~Video will always been redirected to a corn video~~ ([#27](https://github.com/pionxzh/Pornhub.js/issues/27))
+  * See [Warmup()](/doc/DOCUMENT.md#warmup)
+
 
 ## License
 [MIT](LICENSE)

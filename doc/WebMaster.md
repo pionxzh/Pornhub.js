@@ -1,5 +1,9 @@
 # WebMaster (Hubtraffic API)
 
+[Webmaster](https://www.pornhub.com/webmasters) is the API for [Hubtraffic](https://www.hubtraffic.com), the traffic tracking system for Pornhub. It allows you to get information about the traffic on your videos and your channel.
+
+If this API can meet your needs, please use this instead of the normal API, because the normal API will be affected by the changes on Pornhub website.
+
 - [WebMaster (Hubtraffic API)](#webmaster-hubtraffic-api)
   - [Search Video](#search-video)
   - [Get Video Info](#get-video-info)
@@ -60,31 +64,33 @@ pornhub.webMaster.getVideo(url)
 // https://www.pornhub.com/view_video.php?viewkey=ph5ac81eabe203d
 const result = await pornhub.webMaster.getVideo('ph5ac81eabe203d')
 console.log(result)
-/* {
-    url: 'https://www.pornhub.com/view_video.php?viewkey=ph5ac81eabe203d',
-    title: 'Susie sheep fucks peppa pig',
-    views: 50065,
-    duration: '0:44',
-    thumb: 'https://ci.phncdn.com/videos/201804/07/161102592/original/(m=eaf8Ggaaaa)(mh=mDMLboeH6vZKEuOI)12.jpg',
-    thumbList: [{
-        width: '320',
-        height: '240',
-        src: '***.jpg'
-    }, {
-        ...
-    }, ...
-    ],
-    publishDate: '2018-10-02 00:10:05',
-    vote: {
-        up: 360,
-        down: 130,
-        total: 490,
-        rating: 73.47
-    },
-    tags: ['anal', 'peppa-pig', 'hardcore', 'hentai', ...]
-    pornstars: [],
-    categories: ['sfw', 'step-fantasy']
-} */
+```
+
+```json5
+{
+  "url": "https://www.pornhub.com/view_video.php?viewkey=ph5ac81eabe203d",
+  "title": "Susie sheep fucks peppa pig",
+  "views": 50065,
+  "duration": "0:44",
+  "thumb": "https://ci.phncdn.com/videos/201804/07/161102592/original/(m=eaf8Ggaaaa)(mh=mDMLboeH6vZKEuOI)12.jpg",
+  "thumbList": [{
+    "width": "320",
+    "height": "240",
+    "src": "***.jpg"
+  }
+  // ...
+  ],
+  "publishDate": "2018-10-02 00:10:05",
+  "vote": {
+    "up": 360,
+    "down": 130,
+    "total": 490,
+    "rating": 73.47
+  },
+  "tags": ["anal", "peppa-pig", "hardcore", "hentai"],
+  "pornstars": [],
+  "categories": ["sfw", "step-fantasy"]
+}
 ```
 </details>
 
@@ -105,6 +111,7 @@ pornhub.webMaster.isVideoActive(url)
 const isActive = await pornhub.webMaster.isVideoActive('ph5ac81eabe203d')
 console.log(isActive) // true
 ```
+</details>
 
 ## Get Embed Code
 
@@ -139,13 +146,16 @@ pornhub.webMaster.getDeletedVideos(page)
 ```js
 const videos = await pornhub.webMaster.getDeletedVideos(2)
 console.log(videos)
-/* [
-    { vkey: 'ph5d205e434de05', deleted_on: '2019-07-06 09:51:33' },
-    { vkey: 'ph5d0501cb3281f', deleted_on: '2019-07-06 09:51:20' },
-    { vkey: 'ph5d206b34c91a6', deleted_on: '2019-07-06 09:51:13' },
-    { vkey: 'ph5d097e477d23a', deleted_on: '2019-07-06 09:50:04' },
-    ...
-] */
+```
+
+```json5
+[
+  { "vkey": "ph5d205e434de05", "deleted_on": "2019-07-06 09:51:33" },
+  { "vkey": "ph5d0501cb3281f", "deleted_on": "2019-07-06 09:51:20" },
+  { "vkey": "ph5d206b34c91a6", "deleted_on": "2019-07-06 09:51:13" },
+  { "vkey": "ph5d097e477d23a", "deleted_on": "2019-07-06 09:50:04" }
+  // ...
+]
 ```
 </details>
 
@@ -167,18 +177,21 @@ pornhub.webMaster.getTags(letter)
 ```js
 const result = await pornhub.webMaster.getTags('z')
 console.log(result)
-/* [
-    'z',
-    'z 1',
-    'z 1 n',
-    'z a',
-    'z a d d y',
-    'z alexis',
-    'z alice',
-    'z amber',
-    'z black',
-    ...
-] */
+```
+
+```json5
+[
+  "z",
+  "z 1",
+  "z 1 n",
+  "z a",
+  "z a d d y",
+  "z alexis",
+  "z alice",
+  "z amber",
+  "z black"
+  // ...
+]
 ```
 </details>
 
@@ -194,15 +207,18 @@ pornhub.webMaster.getCategories()
 ```js
 const categories = await pornhub.webMaster.getCategories()
 console.log(categories)
-/* [
-    { id: '1', category: 'asian' },
-    { id: '2', category: 'orgy' },
-    { id: '3', category: 'amateur' },
-    { id: '4', category: 'big-ass' },
-    { id: '5', category: 'babe' },
-    { id: '6', category: 'bbw' },
-    ...
-] */
+```
+
+```json5
+[
+  { "id": "1", "category": "asian" },
+  { "id": "2", "category": "orgy" },
+  { "id": "3", "category": "amateur" },
+  { "id": "4", "category": "big-ass" },
+  { "id": "5", "category": "babe" },
+  { "id": "6", "category": "bbw" }
+  // ...
+]
 ```
 </details>
 
@@ -218,18 +234,21 @@ pornhub.webMaster.getPornstars()
 ```js
 const pornstars = await pornhub.webMaster.getPornstars()
 console.log(pornstars)
-/* [
-    '2 Pretty 4 Porn',
-    '4play',
-    'Aali Kali',
-    'Aaliyah Brown',
-    'Aaliyah Grey',
-    'Aaliyah Hadid',
-    'Aaliyah Jolie',
-    'Aaliyah Love',
-    'Aaliyah Taylor',
-    ...
-] */
+```
+
+```json5
+[
+  "2 Pretty 4 Porn",
+  "4play",
+  "Aali Kali",
+  "Aaliyah Brown",
+  "Aaliyah Grey",
+  "Aaliyah Hadid",
+  "Aaliyah Jolie",
+  "Aaliyah Love",
+  "Aaliyah Taylor"
+  // ...
+]
 ```
 </details>
 
@@ -247,20 +266,23 @@ pornhub.webMaster.getPornstarsDetail()
 ```js
 const pornstars = await pornhub.webMaster.getPornstarsDetail()
 console.log(pornstars)
-/* [{
-    star_name: '2 Pretty 4 Porn',
-    star_thumb: '***.thumb_1256231.jpg',
-    star_url: 'https://www.pornhub.com/pornstar/videos_overview?pornstar=2-pretty-4-porn',
-    gender: 'female',
-    videos_count_all: '71'
+```
+
+```json5
+[{
+  "star_name": "2 Pretty 4 Porn",
+  "star_thumb": "***.thumb_1256231.jpg",
+  "star_url": "https://www.pornhub.com/pornstar/videos_overview?pornstar=2-pretty-4-porn",
+  "gender": "female",
+  "videos_count_all": "71"
 }, {
-    star_name: '4play',
-    star_thumb: '***.thumb_1025141.jpg',
-    star_url: 'https://www.pornhub.com/pornstar/videos_overview?pornstar=4play',
-    gender: 'male',
-    videos_count_all: '43'
-},
-    ...
-] */
+  "star_name": "4play",
+  "star_thumb": "***.thumb_1025141.jpg",
+  "star_url": "https://www.pornhub.com/pornstar/videos_overview?pornstar=4play",
+  "gender": "male",
+  "videos_count_all": "43"
+}
+  // ...
+]
 ```
 </details>

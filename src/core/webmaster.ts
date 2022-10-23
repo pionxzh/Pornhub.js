@@ -8,7 +8,7 @@ export class WebMaster {
 
     /**
      * Search video by keyword
-     * @url https://www.pornhub.com/webmaster/search?search=keyword
+     * @url https://www.pornhub.com/webmasters/search?search=keyword
      * @example
      * const results = await pornhub.webMaster.search('keyword', { page: 2, period: 'weekly' })
     */
@@ -18,7 +18,7 @@ export class WebMaster {
 
     /**
      * Get video information by url/id
-     * @url https://www.pornhub.com/webmaster/video_by_id?id={ID}&thumbsize=large
+     * @url https://www.pornhub.com/webmasters/video_by_id?id={ID}&thumbsize=large
      * @param urlOrId Video ID or page url
      * @param thumbsize Thumbnail photo size
      * @example

@@ -9,6 +9,7 @@ describe('Model Info', () => {
         const result = await pornhub.model(url)
 
         const {
+            avatar,
             rank,
             subscribers,
             videoViews,
@@ -18,6 +19,7 @@ describe('Model Info', () => {
         } = result
 
         expect(result.name).toBe('Luna Okko')
+        expect(avatar).not.to.be.empty
         expect(rank).not.toBe(0)
         expect(subscribers).not.toBe(0)
         expect(videoViews).not.toBe(0)

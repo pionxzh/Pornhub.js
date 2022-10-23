@@ -47,7 +47,8 @@
     "test": "vitest run",
     "test:type": "tsc --noEmit",
     "test:watch": "vitest",
-    "publish": "clean-publish --package-manager pnpm"
+    "prepublishOnly": "rm -rf ./dist && pnpm run build && clean-publish",
+    "postpublish": "rm -rf ./dist"
   },
   "dependencies": {
     "cheerio": "1.0.0-rc.12",
@@ -67,5 +68,12 @@
     "typescript": "^4.8.4",
     "vite": "^3.1.7",
     "vitest": "^0.24.3"
+  },
+  "publishConfig": {
+    "directory": "tmp_release"
+  },
+  "clean-publish": {
+    "withoutPublish": true,
+    "tempDir": "tmp_release"
   }
 }

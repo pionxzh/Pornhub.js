@@ -47,7 +47,7 @@
     "test": "vitest run",
     "test:type": "tsc --noEmit",
     "test:watch": "vitest",
-    "prepublish": "npm run test"
+    "publish": "clean-publish --package-manager pnpm --without-publish"
   },
   "dependencies": {
     "cheerio": "1.0.0-rc.12",

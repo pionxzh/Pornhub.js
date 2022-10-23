@@ -69,5 +69,5 @@ function parseTag($: CheerioAPI) {
 }
 
 function removeComma(str: string) {
-    return str.replaceAll(',', '')
+    return str.replace(/,/g, '')
 }

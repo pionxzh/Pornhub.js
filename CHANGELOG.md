@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/pionxzh/Pornhub.js/compare/v1.0.0...v1.0.1) (2022-10-30)
+
+
+### Bug Fixes
+
+* downgrade node-fetch to 2.6.7 for cjs capability ([ba0d3b7](https://github.com/pionxzh/Pornhub.js/commit/ba0d3b7245d4e3a89a58319cd4ffd8a4e552a3cb)), closes [#30](https://github.com/pionxzh/Pornhub.js/issues/30)
+
 ## 1.0.0 (2022-10-23)
 
 

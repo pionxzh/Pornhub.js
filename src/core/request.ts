@@ -72,7 +72,7 @@ export class Request {
         if (method === 'post') {
             headers['Content-Type'] = 'application/json'
             opts.method = 'post'
-            opts.body = data
+            opts.body = JSON.stringify(data)
         }
 
         if (method === 'post-form') {

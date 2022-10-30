@@ -1,6 +1,6 @@
 # Page Parser
 
-`Pornhub.js` allows you to parse a page and get the information you need. This is useful if you want to build a bot that can search for videos, get information about a video, or anything else that can be done on the website.
+You can use this to parse a page and extract the information you need.
 
 - [Page Parser](#page-parser)
   - [Get Video Info](#get-video-info)
@@ -10,7 +10,7 @@
   - [Get Model Info](#get-model-info)
 
 ## Get Video Info
-Accept both ID and page url
+Accept both ID and page URL
 
 ```js
 // https://www.pornhub.com/view_video.php?viewkey=ph5ac81eabe203d
@@ -20,7 +20,7 @@ console.log(video)
 
 | Params | Type     | Description          |
 | ------ | -------- | -------------------- |
-| url    | `string` | Video ID or page url |
+| url    | `string` | Video ID or page URL |
 
 <details>
   <summary><b>Result</b></summary>
@@ -73,7 +73,7 @@ console.log(video)
 </details>
 
 ## Get Album Info
-Accept both ID and page url
+Accept both ID and page URL
 
 ```js
 // https://www.pornhub.com/album/367633
@@ -107,7 +107,7 @@ console.log(album)
 </details>
 
 ## Get Photo Info
-Accept both ID and page url
+Accept both ID and page URL
 
 ```js
 // pornhub.photo('3683968')
@@ -138,7 +138,7 @@ console.log(photo)
 </details>
 
 ## Get Pornstar Info
-Accept both name and page url
+Accept both name and page URL
 
 ```js
 // pornhub.pornstar('Eva Elfie')
@@ -167,7 +167,7 @@ console.log(result)
 
 ```json5
 {
-  "Name In The Page": "The Value"
+  "Name In The Page": "The String Value"
   // ...
 }
 ```
@@ -176,7 +176,7 @@ console.log(result)
 </details>
 
 ## Get Model Info
-Accept both name and page url
+Accept both name and page URL
 
 ```js
 // pornhub.model('Luna Okko')
@@ -206,11 +206,11 @@ console.log(result)
 ```
 *Note: unhandled property will be displayed like this:*
 
-```js
-// {
-//   "Name In The Page": "The Value"
-//   ...
-// }
+```json5
+{
+  "Name In The Page": "The String Value"
+  // ...
+}
 ```
 
 \> Check the type definition [here](https://github.com/pionxzh/Pornhub.js/blob/master/src/scrapers/page/model.ts).

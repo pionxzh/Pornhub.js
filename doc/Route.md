@@ -2,12 +2,11 @@
 
 > API builder for pornhub.com
 
-***Warning: This is an internal API, which may be changed at any time.***
+You can use `Route` to build the URL of any pages on [pornhub.com](https://www.pornhub.com).\
+Exposing this allows users to utilize low-level APIs to build something more complex.
 
-This API can be used to build most of the [pornhub.com](https://www.pornhub.com) URLs.\
-The purpose of exposing this is to allow users to utilize low level apis to build something more complex.
-
-This document will only cover page related URLs (which is more stable). Please check the source code or type information for more information.
+This document will only cover page-related URLs.\
+Please check the [source code](https://github.com/pionxzh/Pornhub.js/blob/master/src/apis/route.ts) for more information.
 
 # Page
 

@@ -24,13 +24,13 @@ if (!result.success) {
 ```
 
 # Warmup
-Warmup is a simple call to the website to get the cookies.\
+`warmup()` is a simple call to the website to get the cookies.\
 PornHub will redirect you to a corn video if you don't have a proper cookie set.\
-See issue: [#27 Video will always been redirected to a corn video](https://github.com/pionxzh/Pornhub.js/issues/27)\
+See issue: [#27 Video been redirected to a corn video](https://github.com/pionxzh/Pornhub.js/issues/27)\
 
 ```js
 const pornhub = new Pornhub()
-// make this as the first call
+// make this the first call
 await pornhub.warmup()
 
 // some other calls
@@ -38,7 +38,7 @@ await pornhub.warmup()
 ```
 
 # Custom Agent (Proxy)
-You can set custom `agent` to achieve something like `Proxy`.\
+You can set a custom `agent` to achieve something like `Proxy`.\
 For more information, please have a look at [node-https-proxy-agent](https://github.com/TooTallNate/node-https-proxy-agent).
 
 ```
@@ -59,11 +59,11 @@ Check [Page Parser](./Page.md) for more information.
 Check [Search](./Search.md) for more information.
 
 # Get Token
-This method is used to get the token for pornhub's internal api.
+This method is used to get the token for pornhub's internal API.
 
 For now, this token is only used for [autoComplete](./Search.md#autocomplete) and [searchModel](./Search.md#model-search).
 \
-This library will automatically get token if it is not set.
+This library will automatically get a token if it is not set.
 
 *(optional)* You can cache this token to avoid frequent requests.\
 I'm not sure about the expiration time though.
@@ -75,6 +75,6 @@ const result = await pornhub.autoComplete('luna', { token })
 ```
 
 # Route
-Route is used to get the url of any page on PornHub.
+You can use `Route` to build the URL of any pages on [pornhub.com](https://www.pornhub.com).
 
 Check [Route](./Route.md) for more information.

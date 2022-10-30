@@ -14,8 +14,8 @@ Powerful PornHub API for Node.js
 
 ## Documents
 * [Document](/doc/DOCUMENT.md) for all the APIs and usages
-* [Page Parser](/doc/Page.md) for `Video`, `Album`, `Photo`, `PornStar` and `Model`
-* [Search](/doc/Search.md) for `Video`, `Album`, `Gif`, `PornStar` and `Model`
+* [Page Parser](/doc/Page.md) for `Video`, `Album`, `Photo`, `PornStar`, and `Model`
+* [Search](/doc/Search.md) for `Video`, `Album`, `Gif`, `PornStar`, and `Model`
 * [WebMaster API](/doc/WebMaster.md)
 * **Migrate from v0.x to v1.x? Check [Migration Guide](/doc/MIGRATE.md)**
 ## Getting Started
@@ -106,8 +106,9 @@ console.log(video)
 See [DOCUMENT](/doc/DOCUMENT.md) for more information.
 
 ## Known Issues
-* ~~Video will always been redirected to a corn video~~ ([#27](https://github.com/pionxzh/Pornhub.js/issues/27))
+* ~~Video been redirected to a corn video~~ ([#27](https://github.com/pionxzh/Pornhub.js/issues/27))
   * See [Warmup()](/doc/DOCUMENT.md#warmup)
+* Video download is currently unavailable due to the changes from pornhub.
 
 
 ## License

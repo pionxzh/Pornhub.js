@@ -2,7 +2,7 @@
 
 [Webmaster](https://www.pornhub.com/webmasters) is the API for [Hubtraffic](https://www.hubtraffic.com), the traffic tracking system for Pornhub. It allows you to get information about the traffic on your videos and your channel.
 
-If this API can meet your needs, please use this instead of the normal API, because the normal API will be affected by the changes on Pornhub website.
+If this API can meet your needs, please use this instead of the parser API. The parser API will be affected by the changes on the PornHub website.
 
 - [WebMaster (Hubtraffic API)](#webmaster-hubtraffic-api)
   - [Search Video](#search-video)

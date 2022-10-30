@@ -1,6 +1,6 @@
 # Motivation
 
-This package was poorly written and maintained. And the code structure was not good. So I decided to rewrite it with a better structure, and more features.
+This package was poorly written and maintained. And the code structure was not good. So I decided to rewrite it with a better structure and more features.
 
 Here are some of the biggest changes:
 * Rewrite with **TypeScript**
@@ -17,7 +17,7 @@ PornHub.js V1 requires at least Node.js 14, so make sure you upgrade your Node.j
 
 ## Changes
 * Remove unnecessary response structure
-  * All page related API
+  * All page-related API
     ```js
     const result = await pornhub.video(url)
     console.log(result)
@@ -90,7 +90,7 @@ PornHub.js V1 requires at least Node.js 14, so make sure you upgrade your Node.j
   const result = await pornhub.autoComplete('keyword')
   console.log(result)
   ```
-* Expose some internal / low level methods for advanced user
+* Expose some internal / low-level methods for advanced user
   * [getToken()](/doc/DOCUMENT.md#get-token)
   * [Route](/doc/DOCUMENT.md#route)
 

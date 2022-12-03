@@ -8,12 +8,21 @@ export const Route = {
     mainPage() {
         return BASE_URL
     },
+    /**
+     * @url https://www.pornhub.com/front/authenticate
+     */
     authenticate() {
         return urlcat(BASE_URL, '/front/authenticate')
     },
+    /**
+     * @url https://www.pornhub.com/user/logout
+     */
     logout(token: string) {
         return urlcat(BASE_URL, '/user/logout', { token })
     },
+    /**
+     * @url https://www.pornhub.com/video/search_autocomplete?q=random&orientation=straight&pornstars=1&alt=0&token=xxx
+     */
     autocomplete(keyword: string, {
         token,
         sexualOrientation = 'straight',
@@ -46,6 +55,9 @@ export const Route = {
         return urlcat(BASE_URL, '/channels/:name', { name })
     },
 
+    /**
+     * @url https://www.pornhub.com/albums/female-straight-uncategorized?search=random
+     */
     albumSearch(keyword: string, {
         page = 1,
         segments = 'female-straight-uncategorized',
@@ -61,6 +73,9 @@ export const Route = {
             ...(verified && { verified: '1' }),
         })
     },
+    /**
+     * @url https://www.pornhub.com/gifs/search?search=xxx
+     */
     gifSearch(keyword: string, {
         page = 1,
         order = 'Most Relevant',
@@ -77,6 +92,9 @@ export const Route = {
             ...(o && { o }),
         })
     },
+    /**
+     * @url https://www.pornhub.com/pornstars/search?search=hot
+     */
     pornstarSearch(keyword: string, {
         page = 1,
         order = 'Most Relevant',
@@ -88,6 +106,9 @@ export const Route = {
             ...(o && { o }),
         })
     },
+    /**
+     * @url https://www.pornhub.com/video/search?search=random
+     */
     videoSearch(keyword: string, {
         page = 1,
         order = 'Most Relevant',

@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.3](https://github.com/pionxzh/Pornhub.js/compare/v1.0.2...v1.0.3) (2022-12-03)
+
+
+### Bug Fixes
+
+* response of auto-complete might be empty ([6ce225e](https://github.com/pionxzh/Pornhub.js/commit/6ce225ea3e65499b7905e8afcb8f6e131371d42e)), closes [#35](https://github.com/pionxzh/Pornhub.js/issues/35)
+
 ## [1.0.2](https://github.com/pionxzh/Pornhub.js/compare/v1.0.1...v1.0.2) (2022-12-03)
 
 

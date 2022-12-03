@@ -27,7 +27,6 @@ export type { AlbumSearchResult } from './scrapers/search/album'
 export type { PornstarSearchResult } from './scrapers/search/pornstar'
 export type { GifSearchResult } from './scrapers/search/gif'
 export type { VideoSearchResult } from './scrapers/search/video'
-export type { ModelSearchResult } from './scrapers/search/model'
 
 export type { WebmasterCategory } from './apis/webmaster/categories'
 export type { WebmasterDeleted } from './apis/webmaster/deleted'

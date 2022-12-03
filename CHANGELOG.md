@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.2](https://github.com/pionxzh/Pornhub.js/compare/v1.0.1...v1.0.2) (2022-12-03)
+
+
+### Bug Fixes
+
+* fix video preview url always return empty ([50a3b2e](https://github.com/pionxzh/Pornhub.js/commit/50a3b2e6232f5346e10f14c9876835d88ebfc112)), closes [#33](https://github.com/pionxzh/Pornhub.js/issues/33)
+
 ## [1.0.1](https://github.com/pionxzh/Pornhub.js/compare/v1.0.0...v1.0.1) (2022-10-30)
 
 

@@ -3,7 +3,7 @@ import urlcat from 'urlcat'
 import type { Engine } from '../../core/engine'
 import type { Counting, Paging, VideoSearchOptions } from '../../types'
 import { Route } from '../../apis'
-import { getAttribute, getCheerio, getDataAttribute } from '../../utils/cheerio'
+import { getAttribute, getCheerio } from '../../utils/cheerio'
 import { BASE_URL } from '../../utils/constant'
 import { parseCounting, parsePaging } from './base'
 
@@ -45,7 +45,7 @@ function parseResult($: CheerioAPI) {
         const title = getAttribute<string>(thumb, 'title', '')
         const path = getAttribute<string>(thumb, 'href', '')
         const img = item.find('img')
-        const preview = getDataAttribute<string>(img, 'src', '')
+        const preview = getAttribute<string>(img, 'src', '')
 
         return {
             title,

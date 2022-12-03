@@ -46,6 +46,7 @@
     "pretest": "npm run lint",
     "test": "vitest run",
     "test:type": "tsc --noEmit",
+    "test:update": "vitest run --update",
     "test:watch": "vitest",
     "prepublishOnly": "rimraf ./dist && pnpm run build && clean-publish",
     "postpublish": "rimraf ./dist ./tmp_release"

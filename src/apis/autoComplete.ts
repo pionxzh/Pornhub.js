@@ -13,17 +13,17 @@ export async function getAutoComplete(engine: Engine, keyword: string, options: 
 
     return {
         ...result,
-        models: result.models.map(item => ({
+        models: result.models?.map(item => ({
             ...item,
             url: Route.modelPage(item.slug),
-        })).sort((a, b) => a.rank - b.rank),
-        pornstars: result.pornstars.map(item => ({
+        })).sort((a, b) => a.rank - b.rank) ?? [],
+        pornstars: result.pornstars?.map(item => ({
             ...item,
             url: Route.pornstarPage(item.slug),
-        })).sort((a, b) => a.rank - b.rank),
-        channels: result.channels.map(item => ({
+        })).sort((a, b) => a.rank - b.rank) ?? [],
+        channels: result.channels?.map(item => ({
             ...item,
             url: Route.channelPage(item.slug),
-        })).sort((a, b) => +a.rank - +b.rank),
+        })).sort((a, b) => +a.rank - +b.rank) ?? [],
     }
 }

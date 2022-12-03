@@ -5,13 +5,13 @@ export interface AutoCompleteItem<T extends number | string> {
 }
 
 export interface AutoCompleteResponse {
-    queries: string[]
-    albums: string[]
-    models: AutoCompleteItem<number>[]
-    pornstars: AutoCompleteItem<number>[]
-    channels: AutoCompleteItem<string>[]
-    isDdBannedWord: boolean
-    popularSearches: string[]
+    queries?: string[]
+    albums?: string[]
+    models?: AutoCompleteItem<number>[]
+    pornstars?: AutoCompleteItem<number>[]
+    channels?: AutoCompleteItem<string>[]
+    isDdBannedWord: 'true' | 'false'
+    popularSearches?: string[]
 }
 
 export interface AutoCompleteResultItem<T extends number | string> extends AutoCompleteItem<T> {

@@ -5,7 +5,6 @@ const pornhub = new PornHub()
 
 describe('Video Info', () => {
     it('# run()', async () => {
-        await pornhub.warmup()
         const url = 'https://www.pornhub.com/view_video.php?viewkey=ph62f79e2ed1ed8'
         const result = await pornhub.video(url)
 

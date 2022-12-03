@@ -106,8 +106,6 @@ console.log(video)
 See [DOCUMENT](/doc/DOCUMENT.md) for more information.
 
 ## Known Issues
-* ~~Video been redirected to a corn video~~ ([#27](https://github.com/pionxzh/Pornhub.js/issues/27))
-  * See [Warmup()](/doc/DOCUMENT.md#warmup)
 * Video download is currently unavailable due to the changes from pornhub.
 
 

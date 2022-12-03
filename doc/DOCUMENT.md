@@ -2,7 +2,6 @@
 
 - [Document](#document)
 - [Login / Logout](#login--logout)
-- [Warmup](#warmup)
 - [Custom Agent (Proxy)](#custom-agent-proxy)
 - [Page Parser](#page-parser)
 - [Search](#search)
@@ -21,20 +20,6 @@ if (!result.success) {
 /* do something after login */
 
 // pornhub.logout()
-```
-
-# Warmup
-`warmup()` is a simple call to the website to get the cookies.\
-PornHub will redirect you to a corn video if you don't have a proper cookie set.\
-See issue: [#27 Video been redirected to a corn video](https://github.com/pionxzh/Pornhub.js/issues/27)\
-
-```js
-const pornhub = new Pornhub()
-// make this the first call
-await pornhub.warmup()
-
-// some other calls
-// await pornhub.video(url)
 ```
 
 # Custom Agent (Proxy)

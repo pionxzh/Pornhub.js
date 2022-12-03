@@ -57,11 +57,12 @@ export class PornHub {
     }
 
     /**
-     * I don't know why this works, but it does.
      * See: https://github.com/pionxzh/Pornhub.js/issues/27
+     * @deprecated This method is no longer needed.
      */
-    warmup() {
-        return getMainPage(this.engine)
+    async warmup() {
+        console.warn('`warmup` has been deprecated. You can safely remove this method call. It has been handled internally.')
+        // no-op
     }
 
     /**
@@ -94,7 +95,14 @@ export class PornHub {
      * Get video information by url/ID
      * @param urlOrId Video ID or page url
     */
-    video(urlOrId: string) {
+    async video(urlOrId: string) {
+        if (!this.engine.warmedUp) {
+            // make a call to the main page to get the cookies.
+            // PornHub will redirect you to a corn video if you don't have a proper cookie set.
+            // See issue: [#27 Video been redirected to a corn video](https://github.com/pionxzh/Pornhub.js/issues/27)\
+            await getMainPage(this.engine)
+            this.engine.warmedUp = true
+        }
         return videoPage(this.engine, urlOrId)
     }
 

@@ -5,6 +5,10 @@ export class Engine {
     BASE_URL = BASE_URL
     request = new Request()
 
+    // Flag to indicate whether the engine has visited the main page to get the cookies.
+    // See issue: https://github.com/pionxzh/Pornhub.js/issues/27
+    warmedUp = false
+
     constructor() {
         this.request.setHeader('Host', this.BASE_URL.replace('https://', ''))
         this.request.setHeader('Origin', this.BASE_URL)

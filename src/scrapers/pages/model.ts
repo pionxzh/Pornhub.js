@@ -16,6 +16,9 @@ export interface ModelPage {
     subscribers: number
     featuredIn: { name: string; url: string }[]
 
+    uploadedVideoCount: number
+    taggedVideoCount: number
+
     gender?: string
     born?: string
     birthPlace?: string
@@ -176,9 +179,19 @@ const KeyMapper: Record<string, {
     },
 }
 
+const parseVideoCount = (text: string) => {
+    // "Showing 1-XX of YY"
+    if (!text) return 0
+
+    const match = text.match(/Showing \d+-\d+ of (\d+)/)
+    if (match) return parseReadableNumber(match[1])
+
+    return 0
+}
+
 export async function modelPage(engine: Engine, urlOrName: string): Promise<ModelPage> {
     const name = UrlParser.getModelName(urlOrName)
-    if (!name) throw new Error('Invalid pornstar name')
+    if (!name) throw new Error(`Invalid model input: ${urlOrName}`)
 
     const url = Route.modelPage(name)
     const html = await engine.request.raw(url)
@@ -234,6 +247,18 @@ function parseInfo($: CheerioAPI): ModelPage {
         })
         .filter(item => item.name && item.url)
 
+    let uploadedVideoCount = 0
+    const taggedVideoCount = 0
+    if (verified) {
+        const recentVideoCountEl = $('.mostRecentPornstarVideos > .pornstarVideosCounter')
+        uploadedVideoCount = parseVideoCount(recentVideoCountEl.text().trim())
+
+        // looks like model page doesn't have tagged video count
+    }
+    else {
+        // there is no unverified model :D
+    }
+
     const socials = {
         website: getAttribute<string>($('a:has(.officialSiteIcon)'), 'href'),
         twitter: getAttribute<string>($('a:has(.twitterIcon)'), 'href'),
@@ -254,6 +279,8 @@ function parseInfo($: CheerioAPI): ModelPage {
         verified,
         subscribers,
         featuredIn,
+        uploadedVideoCount,
+        taggedVideoCount,
         ...info,
         socials,
     } as ModelPage

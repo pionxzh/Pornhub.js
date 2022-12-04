@@ -16,6 +16,9 @@ export interface PornstarPage {
     subscribers: number
     featuredIn: { name: string; url: string }[]
 
+    uploadedVideoCount: number
+    taggedVideoCount: number
+
     gender?: string
     born?: string
     birthPlace?: string
@@ -180,9 +183,19 @@ const KeyMapper: Record<string, {
     },
 }
 
+const parseVideoCount = (text: string) => {
+    // "Showing 1-XX of YY"
+    if (!text) return 0
+
+    const match = text.match(/Showing \d+-\d+ of (\d+)/)
+    if (match) return parseReadableNumber(match[1])
+
+    return 0
+}
+
 export async function pornstarPage(engine: Engine, urlOrName: string): Promise<PornstarPage> {
     const name = UrlParser.getPornstarName(urlOrName)
-    if (!name) throw new Error('Invalid pornstar name')
+    if (!name) throw new Error(`Invalid pornstar input: ${urlOrName}`)
 
     const url = Route.pornstarPage(name)
     const html = await engine.request.raw(url)
@@ -238,6 +251,28 @@ function parseInfo($: CheerioAPI): PornstarPage {
         })
         .filter(item => item.name && item.url)
 
+    let uploadedVideoCount = 0
+    let taggedVideoCount = 0
+    if (verified) {
+    const uploadedVideoCountEl = $('.pornstarUploadedVideos > .pornstarVideosCounter')
+        uploadedVideoCount = parseVideoCount(uploadedVideoCountEl.text().trim())
+
+    const taggedVideoCountEl = $('.mostRecentPornstarVideos > .pornstarVideosCounter')
+        taggedVideoCount = parseVideoCount(taggedVideoCountEl.text().trim())
+    }
+    else {
+        const videoCounter = $('.pornstarVideosCounter').first()
+        if (videoCounter.length) {
+            const title = videoCounter.parent().find('.sectionTitle > h2').first().text().trim()
+            if (title.endsWith('Tagged Videos')) {
+                taggedVideoCount = parseVideoCount(videoCounter.text().trim())
+            }
+
+            // non-verified pornstar are not allowed to upload videos
+            // uploadedVideoCount = 0
+        }
+    }
+
     const socials = {
         website: getAttribute<string>($('a:has(.officialSiteIcon)'), 'href'),
         twitter: getAttribute<string>($('a:has(.twitterIcon)'), 'href'),
@@ -258,6 +293,8 @@ function parseInfo($: CheerioAPI): PornstarPage {
         verified,
         subscribers,
         featuredIn,
+        uploadedVideoCount,
+        taggedVideoCount,
         ...info,
         socials,
     } as PornstarPage

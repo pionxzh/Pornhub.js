@@ -16,6 +16,8 @@ describe('Model Info', () => {
             videoViews,
             profileViews,
             videoWatched,
+            uploadedVideoCount,
+            taggedVideoCount,
             ...restResult
         } = result
 
@@ -27,6 +29,8 @@ describe('Model Info', () => {
         expect(videoViews).not.toBe(0)
         expect(profileViews).not.toBe(0)
         expect(videoWatched).not.toBe(0)
+        expect(uploadedVideoCount).not.toBe(0)
+        expect(taggedVideoCount).toBe(0)
 
         expect(restResult).toMatchSnapshot()
     })

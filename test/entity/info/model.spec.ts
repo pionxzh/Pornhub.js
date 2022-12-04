@@ -10,6 +10,7 @@ describe('Model Info', () => {
 
         const {
             avatar,
+            cover,
             rank,
             subscribers,
             videoViews,
@@ -20,6 +21,7 @@ describe('Model Info', () => {
 
         expect(result.name).toBe('Luna Okko')
         expect(avatar).not.to.be.empty
+        expect(cover).not.toBe(0)
         expect(rank).not.toBe(0)
         expect(subscribers).not.toBe(0)
         expect(videoViews).not.toBe(0)

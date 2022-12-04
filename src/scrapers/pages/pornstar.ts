@@ -10,6 +10,7 @@ export interface PornstarPage {
     about: string
     bio: string
     avatar: string
+    cover: string
     rank: number
     verified: boolean
     subscribers: number
@@ -209,6 +210,9 @@ function parseInfo($: CheerioAPI): PornstarPage {
     const avatarEl = $('img#getAvatar, .topProfileHeader > .thumbImage > img')
     const avatar = getAttribute<string>(avatarEl, 'src', '')
 
+    const coverEl = $('img#coverPictureDefault, .topProfileHeader > .coverImage > img')
+    const cover = getAttribute<string>(coverEl, 'src', '')
+
     const aboutEl = $('section.aboutMeSection > div:nth-child(2)')
     const about = aboutEl.text().trim()
 
@@ -227,11 +231,11 @@ function parseInfo($: CheerioAPI): PornstarPage {
     const featuredIn = $('div.featuredIn > a')
         .toArray()
         .map((el) => {
-        const item = $(el)
-        const name = item.text().trim()
+            const item = $(el)
+            const name = item.text().trim()
             const url = getAttribute<string>(item, 'href', '')
-        return { name, url }
-    })
+            return { name, url }
+        })
         .filter(item => item.name && item.url)
 
     const socials = {
@@ -249,6 +253,7 @@ function parseInfo($: CheerioAPI): PornstarPage {
         about,
         bio,
         avatar,
+        cover,
         rank,
         verified,
         subscribers,

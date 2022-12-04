@@ -10,6 +10,7 @@ describe('Pornstar Info', () => {
 
         const {
             avatar,
+            cover,
             rank,
             subscribers,
             videoViews,
@@ -21,6 +22,7 @@ describe('Pornstar Info', () => {
 
         expect(result.name).toBe('Eva Elfie')
         expect(avatar).not.to.be.empty
+        expect(cover).not.toBe(0)
         expect(rank).not.toBe(0)
         expect(subscribers).not.toBe(0)
         expect(videoViews).not.toBe(0)

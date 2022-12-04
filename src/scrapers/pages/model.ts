@@ -10,6 +10,7 @@ export interface ModelPage {
     about: string
     bio: string
     avatar: string
+    cover: string
     rank: number
     verified: boolean
     subscribers: number
@@ -205,6 +206,9 @@ function parseInfo($: CheerioAPI): ModelPage {
     const avatarEl = $('img#getAvatar, .topProfileHeader > .thumbImage > img')
     const avatar = getAttribute<string>(avatarEl, 'src', '')
 
+    const coverEl = $('img#coverPictureDefault, .topProfileHeader > .coverImage > img')
+    const cover = getAttribute<string>(coverEl, 'src', '')
+
     const aboutEl = $('section.aboutMeSection > div:nth-child(2)')
     const about = aboutEl.text().trim()
 
@@ -245,6 +249,7 @@ function parseInfo($: CheerioAPI): ModelPage {
         about,
         bio,
         avatar,
+        cover,
         rank,
         verified,
         subscribers,

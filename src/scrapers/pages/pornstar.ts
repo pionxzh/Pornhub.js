@@ -207,7 +207,7 @@ function parseInfo($: CheerioAPI): PornstarPage {
     const rank = parseReadableNumber(rankEl.text().trim())
 
     const avatarEl = $('img#getAvatar, .topProfileHeader > .thumbImage > img')
-    const avatar = getAttribute(avatarEl, 'src')
+    const avatar = getAttribute<string>(avatarEl, 'src', '')
 
     const aboutEl = $('section.aboutMeSection > div:nth-child(2)')
     const about = aboutEl.text().trim()

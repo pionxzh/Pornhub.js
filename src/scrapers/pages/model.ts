@@ -203,7 +203,7 @@ function parseInfo($: CheerioAPI): ModelPage {
     const rank = parseReadableNumber(rankEl.text().trim())
 
     const avatarEl = $('img#getAvatar, .topProfileHeader > .thumbImage > img')
-    const avatar = getAttribute(avatarEl, 'src')
+    const avatar = getAttribute<string>(avatarEl, 'src', '')
 
     const aboutEl = $('section.aboutMeSection > div:nth-child(2)')
     const about = aboutEl.text().trim()
@@ -221,11 +221,11 @@ function parseInfo($: CheerioAPI): ModelPage {
     const subscribers = parseReadableNumber(subscribersText) || parseReadableNumber(subscribersText2)
 
     const featuredIn = $('div.featuredIn > a').toArray().map((el) => {
-        const item = $(el)
-        const name = item.text().trim()
+            const item = $(el)
+            const name = item.text().trim()
         const url = getAttribute(item, 'href')
-        return { name, url }
-    })
+            return { name, url }
+        })
 
     const socials = {
         website: getAttribute<string>($('a:has(.officialSiteIcon)'), 'href'),

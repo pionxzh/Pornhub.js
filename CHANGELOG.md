@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.1.0](https://github.com/pionxzh/Pornhub.js/compare/v1.0.3...v1.1.0) (2022-12-04)
+
+
+### Features
+
+* automatically handle warmup for video ([ba7cd24](https://github.com/pionxzh/Pornhub.js/commit/ba7cd24e514d763340f05b9d9be42d78afb51ff4))
+* support `awarded` and `premium` for both pstar and model ([aeed1bd](https://github.com/pionxzh/Pornhub.js/commit/aeed1bd59b466854020cdbab96317039cff22a1c))
+* support `cover` image for both pstar and model ([5e6a56b](https://github.com/pionxzh/Pornhub.js/commit/5e6a56bcc0e5ed56bc70ae676e85be06f86ded40)), closes [#38](https://github.com/pionxzh/Pornhub.js/issues/38)
+* support `uploadedVideoCount` and `taggedVideoCount` for both pstar and model ([1fc0f1e](https://github.com/pionxzh/Pornhub.js/commit/1fc0f1e2eb09d0d72c34052e2127867f5a422e4a))
+
+
+### Bug Fixes
+
+* improve the default value and filtering of model and pstar's `featuredIn` ([b0099e7](https://github.com/pionxzh/Pornhub.js/commit/b0099e78698d1bce9a1ba0080817217cec27605b))
+* improve the default value of model and pstar's `avatar` ([47aa12b](https://github.com/pionxzh/Pornhub.js/commit/47aa12b75908589e026e85cb36879d48e6f6978f))
+* prevent duplicate provider username ([3a3dc3b](https://github.com/pionxzh/Pornhub.js/commit/3a3dc3bdb94a47a03d99a2ebf48e8ebfbc3119b9))
+* remove unused ModelSearchResult interface ([1e9ecf5](https://github.com/pionxzh/Pornhub.js/commit/1e9ecf5bd04491260ce9566c7962f01197ba91a2))
+
 ## [1.0.3](https://github.com/pionxzh/Pornhub.js/compare/v1.0.2...v1.0.3) (2022-12-03)
 
 

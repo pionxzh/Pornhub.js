@@ -224,12 +224,15 @@ function parseInfo($: CheerioAPI): PornstarPage {
     const subscribersText2 = $('div.infoBox:has(.title:contains("Subscribers")) > span').text().trim()
     const subscribers = parseReadableNumber(subscribersText) || parseReadableNumber(subscribersText2)
 
-    const featuredIn = $('div.featuredIn > a').toArray().map((el) => {
+    const featuredIn = $('div.featuredIn > a')
+        .toArray()
+        .map((el) => {
         const item = $(el)
         const name = item.text().trim()
-        const url = getAttribute(item, 'href')
+            const url = getAttribute<string>(item, 'href', '')
         return { name, url }
     })
+        .filter(item => item.name && item.url)
 
     const socials = {
         website: getAttribute<string>($('a:has(.officialSiteIcon)'), 'href'),

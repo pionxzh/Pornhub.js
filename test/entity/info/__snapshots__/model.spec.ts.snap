@@ -3,6 +3,7 @@
 exports[`Model Info > # run() 1`] = `
 {
   "about": "I travel the world with my boyfriend, bringing you with us in our adventures!",
+  "awarded": false,
   "bio": "",
   "ethnicity": "Asian",
   "fakeBoobs": false,
@@ -13,6 +14,7 @@ exports[`Model Info > # run() 1`] = `
   "interestedIn": "Guys and Girls",
   "name": "Luna Okko",
   "piercings": false,
+  "premium": false,
   "relationship": "Taken",
   "socials": {
     "amazonWishList": undefined,

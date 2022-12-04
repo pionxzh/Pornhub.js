@@ -13,6 +13,8 @@ export interface ModelPage {
     cover: string
     rank: number
     verified: boolean
+    awarded: boolean
+    premium: boolean
     subscribers: number
     featuredIn: { name: string; url: string }[]
 
@@ -231,6 +233,12 @@ function parseInfo($: CheerioAPI): ModelPage {
     const verifiedEl = $('.badge-username > .verifiedPornstar')
     const verified = !!verifiedEl.length
 
+    const awardEl = $('.badge-username > .trophyPornStar')
+    const awarded = !!awardEl.length
+
+    const premiumEl = $('.badge-username > .premium-icon')
+    const premium = !!premiumEl.length
+
     const subscribersEl = $('div.tooltipTrig.infoBox[data-title^="Subscribers:"]')
     const subscribersText = getDataAttribute<string>(subscribersEl, 'title', '')
         .replace('Subscribers: ', '')
@@ -277,6 +285,8 @@ function parseInfo($: CheerioAPI): ModelPage {
         cover,
         rank,
         verified,
+        awarded,
+        premium,
         subscribers,
         featuredIn,
         uploadedVideoCount,

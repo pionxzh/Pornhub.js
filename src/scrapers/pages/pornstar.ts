@@ -13,6 +13,8 @@ export interface PornstarPage {
     cover: string
     rank: number
     verified: boolean
+    awarded: boolean
+    premium: boolean
     subscribers: number
     featuredIn: { name: string; url: string }[]
 
@@ -235,6 +237,12 @@ function parseInfo($: CheerioAPI): PornstarPage {
     const verifiedEl = $('.badge-username > .verifiedPornstar')
     const verified = !!verifiedEl.length
 
+    const awardEl = $('.badge-username > .trophyPornStar')
+    const awarded = !!awardEl.length
+
+    const premiumEl = $('.badge-username > .premium-icon')
+    const premium = !!premiumEl.length
+
     const subscribersEl = $('div.tooltipTrig.infoBox[data-title^="Subscribers:"]')
     const subscribersText = getDataAttribute<string>(subscribersEl, 'title', '')
         .replace('Subscribers: ', '')
@@ -254,10 +262,10 @@ function parseInfo($: CheerioAPI): PornstarPage {
     let uploadedVideoCount = 0
     let taggedVideoCount = 0
     if (verified) {
-    const uploadedVideoCountEl = $('.pornstarUploadedVideos > .pornstarVideosCounter')
+        const uploadedVideoCountEl = $('.pornstarUploadedVideos > .pornstarVideosCounter')
         uploadedVideoCount = parseVideoCount(uploadedVideoCountEl.text().trim())
 
-    const taggedVideoCountEl = $('.mostRecentPornstarVideos > .pornstarVideosCounter')
+        const taggedVideoCountEl = $('.mostRecentPornstarVideos > .pornstarVideosCounter')
         taggedVideoCount = parseVideoCount(taggedVideoCountEl.text().trim())
     }
     else {
@@ -291,6 +299,8 @@ function parseInfo($: CheerioAPI): PornstarPage {
         cover,
         rank,
         verified,
+        awarded,
+        premium,
         subscribers,
         featuredIn,
         uploadedVideoCount,

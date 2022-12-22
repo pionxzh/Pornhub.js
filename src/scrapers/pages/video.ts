@@ -55,7 +55,7 @@ function parseByDom(html: string, $: CheerioAPI) {
     const voteUp = parseReadableNumber($('span.votesUp').text() || '0')
     const voteDown = parseReadableNumber($('span.votesDown').text() || '0')
 
-    const title = $('head > title').text().replace(' - Pornhub.com', '')
+    const title = $('head > title').first().text().replace(' - Pornhub.com', '')
     const viewsText = $('span.count').text() || '0'
     const views = parseReadableNumber(viewsText)
     const vote = {

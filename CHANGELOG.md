@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.1.1](https://github.com/pionxzh/Pornhub.js/compare/v1.1.0...v1.1.1) (2022-12-22)
+
+
+### Bug Fixes
+
+* apply fix broken esm `url` to all ([83fe317](https://github.com/pionxzh/Pornhub.js/commit/83fe3179d8d393611f76d9d836c34e80cb9b6aa8))
+* fix broken esm `url` ([a8e16e3](https://github.com/pionxzh/Pornhub.js/commit/a8e16e37864f616ba8f9a71de46ebe683e62a194)), closes [#40](https://github.com/pionxzh/Pornhub.js/issues/40)
+* prevent duplicate video title ([275ca5e](https://github.com/pionxzh/Pornhub.js/commit/275ca5edfa0feb7f777d44985335a39b19fd945d))
+
 ## [1.1.0](https://github.com/pionxzh/Pornhub.js/compare/v1.0.3...v1.1.0) (2022-12-04)
 
 

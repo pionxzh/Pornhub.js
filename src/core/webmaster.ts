@@ -104,4 +104,3 @@ export class WebMaster {
         return stars_detailed(this.engine)
     }
 }
-

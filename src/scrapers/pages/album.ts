@@ -61,4 +61,3 @@ function parseTag($: CheerioAPI) {
     const $list = $('div.tagContainer > a')
     return $list.map((_, el) => $(el).text().trim()).get()
 }
-

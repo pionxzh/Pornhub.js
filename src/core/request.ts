@@ -111,4 +111,3 @@ export class Request {
         return this.buildRequest('get', url)
     }
 }
-

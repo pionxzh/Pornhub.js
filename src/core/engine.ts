@@ -18,4 +18,3 @@ export class Engine {
         this.request.setCookie('platform', 'pc')
     }
 }
-

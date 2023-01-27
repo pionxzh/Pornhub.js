@@ -58,7 +58,7 @@
     "urlcat": "^2.0.4"
   },
   "devDependencies": {
-    "@pionxzh/eslint-config-ts": "^0.1.1",
+    "@pionxzh/eslint-config-ts": "^0.2.0",
     "@types/cheerio": "^0.22.31",
     "@types/debug": "^4.1.7",
     "@types/node": "^18.11.18",
@@ -66,11 +66,11 @@
     "clean-publish": "^4.1.1",
     "eslint": "^8.32.0",
     "esno": "^0.16.3",
-    "rimraf": "^4.0.5",
+    "rimraf": "^4.1.2",
     "tsup": "^6.5.0",
     "typescript": "^4.9.4",
     "vite": "^4.0.4",
-    "vitest": "^0.27.1"
+    "vitest": "^0.28.2"
   },
   "publishConfig": {
     "directory": "tmp_release"

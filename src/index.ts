@@ -17,6 +17,7 @@ import { modelPage } from './scrapers/pages/model'
 import { pornstarPage } from './scrapers/pages/pornstar'
 
 export * from './types'
+export * from './utils/error'
 export type { AlbumPage } from './scrapers/pages/album'
 export type { PhotoPage } from './scrapers/pages/photo'
 export type { VideoPage } from './scrapers/pages/video'

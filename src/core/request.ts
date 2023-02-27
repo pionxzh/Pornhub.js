@@ -2,7 +2,8 @@ import { URLSearchParams } from 'url'
 import type { RequestInit, Response } from 'node-fetch'
 import fetch from 'node-fetch'
 import createDebug from 'debug'
-import { HttpStatusError } from '../utils/constant'
+import { HttpStatusError, IllegalError } from '../utils/error'
+import { getCheerio } from '../utils/cheerio'
 
 const debug = createDebug('request')
 
@@ -27,8 +28,26 @@ export class Request {
         this._cookie.set(key, value)
     }
 
-    checkStatus(res: Response) {
+    async checkStatus(res: Response) {
         if (res.ok) return res
+
+        if (res.status === 404) {
+            let html = ''
+            try {
+                html = await res.text()
+            }
+            catch (error) {
+                // ignore
+            }
+
+            if (/class="deterrenceWarn"/.test(html)) {
+                const $ = getCheerio(html)
+                const warning = $('.deterrenceWarn').text()
+                if (warning) {
+                    return Promise.reject(new IllegalError(warning))
+                }
+            }
+        }
         return Promise.reject(new HttpStatusError(`${res.status} ${res.statusText}`))
     }
 

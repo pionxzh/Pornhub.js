@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.2.0](https://github.com/pionxzh/Pornhub.js/compare/v1.1.1...v1.2.0) (2023-02-27)
+
+
+### Features
+
+* support detecting illegal search and throw IllegalError ([dba13c5](https://github.com/pionxzh/Pornhub.js/commit/dba13c52ec026aebd74ae37890f4e5ff927bf94e)), closes [#45](https://github.com/pionxzh/Pornhub.js/issues/45)
+
+
+### Bug Fixes
+
+* output sourcemap ([4e2a08b](https://github.com/pionxzh/Pornhub.js/commit/4e2a08b776a87e729237ef3e4787e7c34b572b17))
+
 ## [1.1.1](https://github.com/pionxzh/Pornhub.js/compare/v1.1.0...v1.1.1) (2022-12-22)
 
 

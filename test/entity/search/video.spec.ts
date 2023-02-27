@@ -17,9 +17,9 @@ describe('Video Search', () => {
         expect(result.paging.current).to.equal(2)
         expect(result.paging.isEnd).to.equal(false)
 
-        expect(result.counting.from).to.equal(21)
-        expect(result.counting.to).to.equal(40)
+        expect(result.counting.from).to.equal(33)
+        expect(result.counting.to).to.equal(76)
 
-        expect(result.data.length).to.equal(20)
+        expect(result.data.length).to.equal(44)
     })
 })

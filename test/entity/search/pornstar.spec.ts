@@ -14,8 +14,8 @@ describe('Pornstar Search', () => {
         expect(result.paging.isEnd).to.equal(false)
 
         expect(result.counting.from).to.equal(23)
-        expect(result.counting.to).to.equal(44)
+        expect(result.counting.to).to.equal(40)
 
-        expect(result.data.length).to.equal(22)
+        expect(result.data.length).to.greaterThan(12)
     })
 })

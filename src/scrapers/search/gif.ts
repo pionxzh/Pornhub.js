@@ -34,7 +34,7 @@ export async function gifSearch(engine: Engine, keyword: string, options: GifSea
 }
 
 function parseResult($: CheerioAPI) {
-    const list = $('ul.gifLink li.gifVideoBlock ')
+    const list = $('ul.gifLink li.gifVideoBlock')
     const result = list.map((_, el) => {
         const item = $(el)
 

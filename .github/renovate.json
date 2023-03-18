@@ -18,6 +18,7 @@
     { "depTypeList": ["devDependencies"], "enabled": false }
   ],
   "ignoreDeps": [
-    "node"
+    "node",
+    "pnpm"
   ]
 }

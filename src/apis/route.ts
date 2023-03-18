@@ -158,7 +158,7 @@ export const Route = {
             ...(ethnicity && { ethnicity }),
             ...(typeof piercings === 'boolean' && { piercings: getYesNo(piercings) }),
             ...(age !== '18-99' && { age }),
-            ...(cup && { cup }),
+            ...(cup && { cup: cup.toLowerCase() }),
             ...(breastType && { breastType }),
             ...(hair && { hair }),
             ...(typeof tattoos === 'boolean' && { tattoos: getYesNo(tattoos) }),

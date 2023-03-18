@@ -16,5 +16,8 @@
   "packageRules": [
     { "matchPackagePatterns": ["^@types/"], "groupName": "TypeScript types" },
     { "depTypeList": ["devDependencies"], "enabled": false }
+  ],
+  "ignoreDeps": [
+    "node"
   ]
 }

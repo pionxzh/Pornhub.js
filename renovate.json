@@ -1,6 +1,15 @@
 {
-    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-    "extends": [
-        "config:base"
-    ]
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:base",
+    ":combinePatchMinorReleases",
+    ":rebaseStalePrs",
+    ":label(dependencies)",
+    ":disablePeerDependencies",
+    ":automergeLinters",
+    ":automergeTesters"
+  ],
+  "packageRules": [
+    { "matchPackagePatterns": ["^@types/"], "groupName": "TypeScript types" }
+  ]
 }

@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://github.com/pionxzh/Pornhub.js/compare/v1.2.0...v1.3.0) (2023-03-18)
+
+
+### Features
+
+* support pornstar list `pornstarList` ([e4480af](https://github.com/pionxzh/Pornhub.js/commit/e4480af35540f6f85b71b711b646b8ea5c5b5084)), closes [#44](https://github.com/pionxzh/Pornhub.js/issues/44)
+
 ## [1.2.0](https://github.com/pionxzh/Pornhub.js/compare/v1.1.1...v1.2.0) (2023-02-27)
 
 

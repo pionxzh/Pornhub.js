@@ -135,6 +135,7 @@ export const Route = {
      */
     pornstarList(param: PornstarListOptions) {
         const {
+            gay = false,
             performerType,
             gender,
             ethnicity,
@@ -151,7 +152,7 @@ export const Route = {
         const getYesNo = (v: boolean) => v ? 'yes' : 'no'
         const o = PornstarListOrderingMapping[order]
         const age = `${ageFrom}-${ageTo}`
-        return urlcat(BASE_URL, '/pornstars', {
+        return urlcat(BASE_URL, gay ? '/gay/pornstars' : '/pornstars', {
             ...(performerType && { performerType }),
             ...(gender && { gender }),
             ...(ethnicity && { ethnicity }),

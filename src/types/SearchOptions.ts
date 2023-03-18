@@ -30,6 +30,7 @@ export interface PornstarSearchOptions {
 }
 
 export type PornstarListOptions = {
+    gay?: boolean
     performerType?: 'pornstar' | 'amateur' | (string & {})
     gender?: 'male' | 'female' | 'm2f' | 'f2m' | (string & {})
     ethnicity?: 'asian' | 'black' | 'indian' | 'latin' | 'middle eastern' | 'mixed' | 'white' | 'other' | (string & {})

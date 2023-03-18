@@ -1,0 +1,43 @@
+{
+    "editor.codeActionsOnSave": {
+        "source.fixAll": false,
+        "source.fixAll.eslint": true, // this allows ESLint to auto fix on save
+        "source.organizeImports": false
+    },
+    "editor.formatOnSave": false,
+    "eslint.validate": [
+        "javascript",
+        "typescript",
+        "javascriptreact",
+        "typescriptreact",
+        "vue",
+        "html",
+        "markdown",
+        "json",
+        "jsonc",
+        "json5"
+    ],
+    "prettier.enable": false,
+    "cSpell.words": [
+        "adsbytrafficjunkycontext",
+        "alltime",
+        "arraify",
+        "automerge",
+        "dashify",
+        "gifs",
+        "hubtraffic",
+        "itemprop",
+        "modelhub",
+        "mostviewed",
+        "nofollow",
+        "pnpm",
+        "pornhub",
+        "pornstar",
+        "pornstars",
+        "searchify",
+        "thumbsize",
+        "uncategorized",
+        "viewkey",
+        "vkey"
+    ]
+}

@@ -1,10 +1,8 @@
-import urlcatM from 'urlcat'
+import urlcat from 'urlcat'
 import { BASE_URL } from '../utils/constant'
 import { dashify, searchify } from '../utils/string'
 import type { AlbumSearchOptions, AutoCompleteOptions, GifSearchOptions, PornstarListOptions, PornstarSearchOptions, VideoSearchOptions, WebmasterSearchOptions } from '../types'
 import { AlbumOrderingMapping, GifOrderingMapping, PornstarListOrderingMapping, PornstarOrderingMapping, PornstarPopularPeriodMapping, PornstarViewedPeriodMapping, VideoOrderingMapping } from '../types'
-
-const urlcat = (urlcatM as unknown as { default: typeof urlcatM }).default ?? urlcatM
 
 export const Route = {
     mainPage() {

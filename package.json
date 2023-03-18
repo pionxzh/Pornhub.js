@@ -36,7 +36,7 @@
     "package.json"
   ],
   "engines": {
-    "node": ">=14.0.0",
+    "node": ">=v14.21.3",
     "pnpm": ">=7.0.0"
   },
   "scripts": {

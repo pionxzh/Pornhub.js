@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.3.1](https://github.com/pionxzh/Pornhub.js/compare/v1.3.0...v1.3.1) (2023-03-18)
+
+
+### Bug Fixes
+
+* `cup` should be lowercase in `pornstarList` ([422e463](https://github.com/pionxzh/Pornhub.js/commit/422e463bd967f938e31f33d33c0dbf0df8ea24fd))
+* **deps:** update dependency urlcat to v3  ([#48](https://github.com/pionxzh/Pornhub.js/issues/48)) ([2647d10](https://github.com/pionxzh/Pornhub.js/commit/2647d1008e38be1e7c4cea718166b0e0b1f51b21))
+* support search for gay pornstar list ([908d0f2](https://github.com/pionxzh/Pornhub.js/commit/908d0f2fba6621382dc45c9e6d17bbbfffdca253))
+
 ## [1.3.0](https://github.com/pionxzh/Pornhub.js/compare/v1.2.0...v1.3.0) (2023-03-18)
 
 

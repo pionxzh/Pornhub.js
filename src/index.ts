@@ -1,5 +1,5 @@
 import type { RequestInit } from 'node-fetch'
-import type { AlbumSearchOptions, AutoCompleteOptions, GifSearchOptions, PornstarSearchOptions, VideoSearchOptions } from './types'
+import type { AlbumSearchOptions, AutoCompleteOptions, GifSearchOptions, PornstarListOptions, PornstarSearchOptions, VideoSearchOptions } from './types'
 import { Route, getMainPage, login, logout } from './apis'
 import { Engine } from './core/engine'
 import { WebMaster } from './core/webmaster'
@@ -15,6 +15,7 @@ import { getAutoComplete } from './apis/autoComplete'
 import { getToken } from './apis/getToken'
 import { modelPage } from './scrapers/pages/model'
 import { pornstarPage } from './scrapers/pages/pornstar'
+import { pornstarList } from './scrapers/search/pornstars'
 
 export * from './types'
 export * from './utils/error'
@@ -178,5 +179,12 @@ export class PornHub {
      */
     searchVideo(keyword: string, options: VideoSearchOptions = {}) {
         return videoSearch(this.engine, keyword, options)
+    }
+
+    /**
+     * Get pornstar list.
+     */
+    pornstarList(options: PornstarListOptions = {}) {
+        return pornstarList(this.engine, options)
     }
 }

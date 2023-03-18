@@ -1,8 +1,8 @@
 import urlcatM from 'urlcat'
 import { BASE_URL } from '../utils/constant'
 import { dashify, searchify } from '../utils/string'
-import type { AlbumSearchOptions, AutoCompleteOptions, GifSearchOptions, PornstarSearchOptions, VideoSearchOptions, WebmasterSearchOptions } from '../types'
-import { AlbumOrderingMapping, GifOrderingMapping, PornstarOrderingMapping, VideoOrderingMapping } from '../types'
+import type { AlbumSearchOptions, AutoCompleteOptions, GifSearchOptions, PornstarListOptions, PornstarSearchOptions, VideoSearchOptions, WebmasterSearchOptions } from '../types'
+import { AlbumOrderingMapping, GifOrderingMapping, PornstarListOrderingMapping, PornstarOrderingMapping, PornstarPopularPeriodMapping, PornstarViewedPeriodMapping, VideoOrderingMapping } from '../types'
 
 const urlcat = (urlcatM as unknown as { default: typeof urlcatM }).default ?? urlcatM
 
@@ -132,6 +132,49 @@ export const Route = {
             ...(filterCategory && { filter_category: filterCategory }),
         })
     },
+    /**
+     * @url https://www.pornhub.com/pornstars
+     */
+    pornstarList(param: PornstarListOptions) {
+        const {
+            performerType,
+            gender,
+            ethnicity,
+            tattoos,
+            cup,
+            piercings,
+            hair,
+            breastType,
+            ageFrom = 18,
+            ageTo = 99,
+            order = 'Most Popular',
+            page = 1,
+        } = param
+        const getYesNo = (v: boolean) => v ? 'yes' : 'no'
+        const o = PornstarListOrderingMapping[order]
+        const age = `${ageFrom}-${ageTo}`
+        return urlcat(BASE_URL, '/pornstars', {
+            ...(performerType && { performerType }),
+            ...(gender && { gender }),
+            ...(ethnicity && { ethnicity }),
+            ...(typeof piercings === 'boolean' && { piercings: getYesNo(piercings) }),
+            ...(age !== '18-99' && { age }),
+            ...(cup && { cup }),
+            ...(breastType && { breastType }),
+            ...(hair && { hair }),
+            ...(typeof tattoos === 'boolean' && { tattoos: getYesNo(tattoos) }),
+            ...(o && { o }),
+            ...(param.order === 'Alphabetical' && { letter: (param.letter ?? 'a').toLowerCase() }),
+            ...(param.order === 'Most Popular' && param.timeRange && param.timeRange !== 'monthly' && {
+                timeRange: PornstarPopularPeriodMapping[param.timeRange],
+            }),
+            ...(param.order === 'Most Viewed' && param.timeRange && param.timeRange !== 'alltime' && {
+                timeRange: PornstarViewedPeriodMapping[param.timeRange],
+            }),
+            ...(page !== 1 && { page }),
+        })
+    },
+
 }
 
 const WebmasterBaseUrl = urlcat(BASE_URL, '/webmasters')

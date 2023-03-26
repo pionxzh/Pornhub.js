@@ -1,6 +1,6 @@
-import type { Engine } from '../core/engine'
 import { getMainPage } from './getMainPage'
 import { Route } from './route'
+import type { Engine } from '../core/engine'
 
 export async function logout(engine: Engine) {
     try {

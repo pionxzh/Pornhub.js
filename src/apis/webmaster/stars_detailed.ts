@@ -1,8 +1,8 @@
-import type { Engine } from '../../core/engine'
 import { WebmasterRoute } from '../route'
+import type { Engine } from '../../core/engine'
 
 export interface WebmasterStarsDetailed {
-    stars: { star: DetailedStar }[]
+    stars: Array<{ star: DetailedStar }>
 }
 
 export interface DetailedStar {

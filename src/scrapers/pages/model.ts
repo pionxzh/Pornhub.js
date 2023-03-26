@@ -1,9 +1,9 @@
-import type { CheerioAPI } from 'cheerio'
 import { Route } from '../../apis'
-import type { Engine } from '../../core/engine'
 import { getAttribute, getCheerio, getDataAttribute } from '../../utils/cheerio'
 import { parseReadableNumber } from '../../utils/number'
 import { UrlParser } from '../../utils/url'
+import type { Engine } from '../../core/engine'
+import type { CheerioAPI } from 'cheerio'
 
 export interface ModelPage {
     name: string
@@ -16,7 +16,7 @@ export interface ModelPage {
     awarded: boolean
     premium: boolean
     subscribers: number
-    featuredIn: { name: string; url: string }[]
+    featuredIn: Array<{ name: string; url: string }>
 
     uploadedVideoCount: number
     taggedVideoCount: number

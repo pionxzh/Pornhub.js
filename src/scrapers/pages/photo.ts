@@ -1,8 +1,8 @@
-import type { CheerioAPI } from 'cheerio'
 import { Route } from '../../apis'
-import type { Engine } from '../../core/engine'
 import { getCheerio } from '../../utils/cheerio'
 import { UrlParser } from '../../utils/url'
+import type { Engine } from '../../core/engine'
+import type { CheerioAPI } from 'cheerio'
 
 export interface PhotoPage {
     info: {

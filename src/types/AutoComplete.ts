@@ -7,9 +7,9 @@ export interface AutoCompleteItem<T extends number | string> {
 export interface AutoCompleteResponse {
     queries?: string[]
     albums?: string[]
-    models?: AutoCompleteItem<number>[]
-    pornstars?: AutoCompleteItem<number>[]
-    channels?: AutoCompleteItem<string>[]
+    models?: Array<AutoCompleteItem<number>>
+    pornstars?: Array<AutoCompleteItem<number>>
+    channels?: Array<AutoCompleteItem<string>>
     isDdBannedWord: 'true' | 'false'
     popularSearches?: string[]
 }
@@ -21,9 +21,9 @@ export interface AutoCompleteResultItem<T extends number | string> extends AutoC
 export interface AutoCompleteResult {
     queries: string[]
     albums: string[]
-    models: AutoCompleteResultItem<number>[]
-    pornstars: AutoCompleteResultItem<number>[]
-    channels: AutoCompleteResultItem<string>[]
+    models: Array<AutoCompleteResultItem<number>>
+    pornstars: Array<AutoCompleteResultItem<number>>
+    channels: Array<AutoCompleteResultItem<string>>
     isDdBannedWord: boolean
     popularSearches: string[]
 }

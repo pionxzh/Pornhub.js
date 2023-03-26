@@ -15,11 +15,11 @@ export interface VideoDetail {
     default_thumb: string
     thumb: string
     publish_date: string
-    thumbs: {
+    thumbs: Array<{
         width: string
         height: string
         src: string
-    }[]
+    }>
     tags: string[]
     pornstars: string[]
     categories: string[]

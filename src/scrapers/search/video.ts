@@ -1,11 +1,11 @@
-import type { CheerioAPI } from 'cheerio'
 import urlcat from 'urlcat'
-import type { Engine } from '../../core/engine'
-import type { Counting, Paging, VideoSearchOptions } from '../../types'
 import { Route } from '../../apis'
 import { getAttribute, getCheerio } from '../../utils/cheerio'
 import { BASE_URL } from '../../utils/constant'
 import { parseCounting, parsePaging } from './base'
+import type { Engine } from '../../core/engine'
+import type { Counting, Paging, VideoSearchOptions } from '../../types'
+import type { CheerioAPI } from 'cheerio'
 
 export interface VideoSearchResult {
     title: string

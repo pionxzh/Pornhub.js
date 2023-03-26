@@ -1,6 +1,6 @@
 import { categories, deleted, search, stars, stars_detailed, tags, video_by_id, video_embed_code, video_is_active } from '../apis/webmaster'
-import type { LowerLetter, ThumbSize, WebmasterSearchOptions } from '../types'
 import type { Engine } from './engine'
+import type { LowerLetter, ThumbSize, WebmasterSearchOptions } from '../types'
 
 export class WebMaster {
     constructor(private engine: Engine) {

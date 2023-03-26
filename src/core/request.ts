@@ -1,9 +1,9 @@
 import { URLSearchParams } from 'url'
-import type { RequestInit, Response } from 'node-fetch'
-import fetch from 'node-fetch'
 import createDebug from 'debug'
-import { HttpStatusError, IllegalError } from '../utils/error'
+import fetch from 'node-fetch'
 import { getCheerio } from '../utils/cheerio'
+import { HttpStatusError, IllegalError } from '../utils/error'
+import type { RequestInit, Response } from 'node-fetch'
 
 const debug = createDebug('request')
 

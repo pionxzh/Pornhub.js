@@ -1,8 +1,8 @@
-import type { Engine } from '../../core/engine'
 import { UrlParser } from '../../utils/url'
 import { WebmasterRoute } from '../route'
-import type { ThumbSize, VideoDetail, VideoResponse } from '../../types'
 import { videoTransform } from './utils/videoTransform'
+import type { Engine } from '../../core/engine'
+import type { ThumbSize, VideoDetail, VideoResponse } from '../../types'
 
 export interface WebmasterVideoById {
     video: VideoResponse

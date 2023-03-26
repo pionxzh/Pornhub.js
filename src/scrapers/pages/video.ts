@@ -1,10 +1,10 @@
-import type { CheerioAPI } from 'cheerio'
 import { Route } from '../../apis'
-import type { Engine } from '../../core/engine'
 import { getAttribute, getCheerio, getDataAttribute } from '../../utils/cheerio'
 import { parseReadableNumber } from '../../utils/number'
 import { toHHMMSS } from '../../utils/time'
 import { UrlParser } from '../../utils/url'
+import type { Engine } from '../../core/engine'
+import type { CheerioAPI } from 'cheerio'
 
 export interface VideoPage {
     id: string
@@ -18,12 +18,12 @@ export interface VideoPage {
     }
     premium: boolean
     thumb: string
-    videos: {
+    videos: Array<{
         url: string
         quality: string
         filename: string
         extension: string
-    }[]
+    }>
     provider: {
         username: string
         url: string

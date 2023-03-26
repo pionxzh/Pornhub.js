@@ -1,5 +1,5 @@
-import type { CheerioAPI } from 'cheerio'
 import type { Counting, Paging } from '../../types'
+import type { CheerioAPI } from 'cheerio'
 
 export function parsePaging($: CheerioAPI): Paging {
     const current = parseInt($('li.page_current').text())

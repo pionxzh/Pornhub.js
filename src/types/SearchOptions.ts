@@ -1,5 +1,5 @@
-import type { AlbumSearchOrdering, GifSearchOrdering, PornstarListOrdering, PornstarSearchOrdering, VideoSearchOrdering } from './SearchOrdering'
 import type { PornstarSearchPopularPeriod, PornstarSearchViewedPeriod, SearchPeriod, Segment, SexualOrientation, ThumbSize, WebmasterSearchOrdering } from '.'
+import type { AlbumSearchOrdering, GifSearchOrdering, PornstarListOrdering, PornstarSearchOrdering, VideoSearchOrdering } from './SearchOrdering'
 
 export interface WebmasterSearchOptions {
     page?: number

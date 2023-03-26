@@ -1,10 +1,10 @@
-import type { CheerioAPI } from 'cheerio'
-import type { Engine } from '../../core/engine'
-import type { AlbumSearchOptions, Counting, Paging } from '../../types'
 import { Route } from '../../apis'
 import { getAttribute, getCheerio, getDataAttribute } from '../../utils/cheerio'
 import { BASE_URL } from '../../utils/constant'
 import { parseCounting, parsePaging } from './base'
+import type { Engine } from '../../core/engine'
+import type { AlbumSearchOptions, Counting, Paging } from '../../types'
+import type { CheerioAPI } from 'cheerio'
 
 export interface AlbumSearchResult {
     title: string

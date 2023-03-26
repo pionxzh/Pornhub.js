@@ -1,6 +1,6 @@
-import type { Engine } from '../core/engine'
 import { getCheerio, getDataAttribute } from '../utils/cheerio'
 import { getMainPage } from './getMainPage'
+import type { Engine } from '../core/engine'
 
 export async function getToken(engine: Engine) {
     const html = await getMainPage(engine)

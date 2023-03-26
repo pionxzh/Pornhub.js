@@ -1,17 +1,17 @@
-import type { CheerioAPI } from 'cheerio'
 import { Route } from '../../apis'
-import type { Engine } from '../../core/engine'
-import { BASE_URL } from '../../utils/constant'
 import { getAttribute, getCheerio, getDataAttribute } from '../../utils/cheerio'
+import { BASE_URL } from '../../utils/constant'
 import { UrlParser } from '../../utils/url'
+import type { Engine } from '../../core/engine'
+import type { CheerioAPI } from 'cheerio'
 
 export interface AlbumPage {
-    photos: {
+    photos: Array<{
         url: string
         views: string
         rating: string
         preview: string
-    }[]
+    }>
     provider: {
         id: string
         username: string

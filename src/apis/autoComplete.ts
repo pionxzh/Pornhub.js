@@ -1,8 +1,8 @@
+import { getToken } from './getToken'
+import { Route } from './route'
 import type { Engine } from '../core/engine'
 import type { AutoCompleteOptions } from '../types'
 import type { AutoCompleteResponse } from '../types/AutoComplete'
-import { getToken } from './getToken'
-import { Route } from './route'
 
 export async function getAutoComplete(engine: Engine, keyword: string, options: AutoCompleteOptions) {
     const token = options.token ?? await getToken(engine)

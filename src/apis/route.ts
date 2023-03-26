@@ -1,8 +1,8 @@
 import urlcat from 'urlcat'
+import { AlbumOrderingMapping, GifOrderingMapping, PornstarListOrderingMapping, PornstarOrderingMapping, PornstarPopularPeriodMapping, PornstarViewedPeriodMapping, VideoOrderingMapping } from '../types'
 import { BASE_URL } from '../utils/constant'
 import { dashify, searchify } from '../utils/string'
 import type { AlbumSearchOptions, AutoCompleteOptions, GifSearchOptions, PornstarListOptions, PornstarSearchOptions, VideoSearchOptions, WebmasterSearchOptions } from '../types'
-import { AlbumOrderingMapping, GifOrderingMapping, PornstarListOrderingMapping, PornstarOrderingMapping, PornstarPopularPeriodMapping, PornstarViewedPeriodMapping, VideoOrderingMapping } from '../types'
 
 export const Route = {
     mainPage() {

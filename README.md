@@ -65,7 +65,6 @@ console.log(result.data[0]) // first video
 
 
 ### Getting Video Information
-***Note***: download videos is currently unavailable due to the changes from pornhub.
 
 ```js
 const url = 'https://www.pornhub.com/view_video.php?viewkey=ph5ac81eabe203d'
@@ -88,16 +87,7 @@ console.log(video)
   "provider": { "username": "wowgirls", "url": "/users/wowgirls" },
   "tags": ["hardcore", "hentai", "memes"],
   "categories": ["HD-Porn", "SFW"],
-  "pornstars": ["pig"],
-  "videos": [
-    {
-      "quality": "720",
-      "filename": "720P_1500K_161102592.mp4",
-      "extension": "mp4",
-      "url": "..."
-    }
-    // ...
-  ]
+  "pornstars": ["pig"]
 }
 ```
 </details>
@@ -105,8 +95,8 @@ console.log(video)
 ### More
 See [DOCUMENT](/doc/DOCUMENT.md) for more information.
 
-## Known Issues
-* Video download is currently unavailable due to the changes from pornhub.
+## Notice
+* Please note that video downloading is **no longer supported**. We are unable to provide a download link due to the changes made by PornHub. However, you can still download videos using alternative tools such as [yt-dlp](https://github.com/yt-dlp/yt-dlp).
 
 
 ## License

@@ -14,8 +14,6 @@ describe('Video Info', () => {
         expect(result.premium).to.be.equal(false)
         expect(result.duration).to.equal(855)
         expect(result.durationFormatted).to.equal('14:15')
-        // video can only be access after logged in
-        // expect(result.videos).to.have.lengthOf(0)
         expect(result.provider).not.to.be.empty
         expect(result.provider?.username).toBe('Hansel Grettel')
         expect(result.provider?.url).toBe('/model/hansel-grettel')

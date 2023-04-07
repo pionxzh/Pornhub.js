@@ -18,6 +18,9 @@ export interface VideoPage {
     }
     premium: boolean
     thumb: string
+    /**
+     * @deprecated We no longer support video download. Use alternative tools such as `yt-dlp` instead.
+     */
     videos: Array<{
         url: string
         quality: string
@@ -67,9 +70,6 @@ function parseByDom(html: string, $: CheerioAPI) {
     const premium = $('.video-wrapper .ph-icon-badge-premium').length !== 0
     const thumb = getAttribute<string>($('.thumbnail img'), 'src', '')
 
-    // parse video
-    const videos = parseVideo(html)
-
     // wtf...is this double rel a coding bug from pornhub?
     // <a rel="rel="nofollow"" href="/users/xxxx"  class="bolded">XXXXX</a>
     const providerLink = $('.usernameBadgesWrapper a.bolded').first()
@@ -85,7 +85,6 @@ function parseByDom(html: string, $: CheerioAPI) {
     const durationMeta = $('head meta[property="video:duration"]')
     const duration = +getAttribute<number>(durationMeta, 'content', 0)
     const durationFormatted = toHHMMSS(duration)
-    // TODO: VideoObject
 
     return {
         title,
@@ -93,7 +92,7 @@ function parseByDom(html: string, $: CheerioAPI) {
         vote,
         premium,
         thumb,
-        videos,
+        videos: [],
         provider,
         tags,
         pornstars,
@@ -101,34 +100,4 @@ function parseByDom(html: string, $: CheerioAPI) {
         duration,
         durationFormatted,
     }
-}
-
-function parseVideo(_html: string) {
-    return []
-    // let rsl = {}
-    // const matches = html.match(/(?<=\*\/)\w+/g)
-    // const urls = []
-    // for (const match of matches) {
-    //     const regex = new RegExp(`(?<=${match}=")[^;]+(?=")`, 'g')
-    //     const value = html.match(regex)[0].replace(/[" +]/g, '')
-
-    //     if (value.startsWith('https')) {
-    //         if (urls.length === 4) {
-    //             break
-    //         }
-
-    //         urls.push(value)
-    //     }
-    //     else {
-    //         urls[urls.length - 1] += value
-    //     }
-    // }
-
-    // rsl = urls.map((x) => {
-    // // Sometime PH does not provide a resolution, meaning the link is broken
-    //     const resolution = x.match(/(?<=_|\/)\d*P(?=_)/g)
-    //     return resolution !== null && resolution.length > 0 ? [x.match(/(?<=_|\/)\d*P(?=_)/g)[0], x] : null
-    // }).filter(x => x !== null)
-    // rsl = Object.fromEntries(rsl)
-    // return rsl
 }

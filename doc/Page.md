@@ -66,7 +66,7 @@ console.log(video)
 | provider          | `object`        | Video provider/uploader                                                                                                            |
 | provider.username | `string`        | Provider's username                                                                                                                |
 | provider.url      | `string`        | Provider's account page                                                                                                            |
-| videos            | `Array`         | List of the videos. Sorted by quality(low->hight).                                                                                 |
+| ~~videos~~ (*deprecated*) | `Array`         | List of the videos. Sorted by quality(low->hight).                                                                                 |
 | tags              | `Array<string>` | example: `['couple', 'kissing']`                                                                                                   |
 | pornstars         | `Array<string>` | example: `['Bob', 'John', 'Emily]`                                                                                                 |
 | categories        | `Array<string>` | example: `['HD-Porn', 'Small-Tits']`                                                                                               |

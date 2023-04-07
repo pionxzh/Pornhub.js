@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.2](https://github.com/pionxzh/Pornhub.js/compare/v1.3.1...v1.3.2) (2023-04-07)
+
+
+### Bug Fixes
+
+* mark `videos` video download as deprecated ([304f221](https://github.com/pionxzh/Pornhub.js/commit/304f22109c4e405d07d78671a093de5b9690f6bd))
+
 ## [1.3.1](https://github.com/pionxzh/Pornhub.js/compare/v1.3.0...v1.3.1) (2023-03-18)
 
 

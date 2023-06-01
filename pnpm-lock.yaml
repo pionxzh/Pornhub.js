@@ -11,7 +11,7 @@ specifiers:
   debug: ^4.3.4
   eslint: ^8.36.0
   esno: ^0.16.3
-  node-fetch: ^2.6.9
+  node-fetch: ^2.6.11
   rimraf: ^4.4.1
   tsup: ^6.7.0
   typescript: ^5.0.2
@@ -22,7 +22,7 @@ specifiers:
 dependencies:
   cheerio: 1.0.0-rc.12
   debug: 4.3.4
-  node-fetch: 2.6.9
+  node-fetch: 2.6.11
   urlcat: 3.1.0
 
 devDependencies:
@@ -2669,8 +2669,8 @@ packages:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
     dev: true
 
-  /node-fetch/2.6.9:
-    resolution: {integrity: sha512-DJm/CJkZkRjKKj4Zi4BsKVZh3ValV5IR5s7LVZnW+6YMh0W1BfNA8XSs6DLMGYlId5F3KnA70uu2qepcR08Qqg==}
+  /node-fetch/2.6.11:
+    resolution: {integrity: sha512-4I6pdBY1EthSqDmJkiNk3JIT8cswwR9nfeW/cPdUagJYEQG7R95WRH74wpz7ma8Gh/9dI9FP+OU+0E4FvtA55w==}
     engines: {node: 4.x || >=6.0.0}
     peerDependencies:
       encoding: ^0.1.0

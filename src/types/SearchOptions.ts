@@ -1,4 +1,4 @@
-import type { PornstarSearchPopularPeriod, PornstarSearchViewedPeriod, SearchPeriod, Segment, SexualOrientation, ThumbSize, WebmasterSearchOrdering } from '.'
+import type { PornstarSearchPopularPeriod, PornstarSearchViewedPeriod, SearchPeriod, Segment, SexualOrientation, ThumbSize, VideoSearchPeriod, WebmasterSearchOrdering } from '.'
 import type { AlbumSearchOrdering, GifSearchOrdering, PornstarListOrdering, PornstarSearchOrdering, VideoSearchOrdering } from './SearchOrdering'
 
 export interface WebmasterSearchOptions {
@@ -55,16 +55,20 @@ export type PornstarListOptions = {
     timeRange?: PornstarSearchViewedPeriod
 })
 
-export interface VideoSearchOptions {
+export type VideoSearchOptions = {
     page?: number
-    order?: VideoSearchOrdering
     hd?: boolean
     production?: 'all' | 'professional' | 'homemade'
     durationMin?: 10 | 20 | 30
     durationMax?: 10 | 20 | 30
     /** Category id */
     filterCategory?: number
-}
+} & ({
+    order?: Exclude<VideoSearchOrdering, 'Most Viewed' | 'Top Rated'>
+} | {
+    order: Extract<VideoSearchOrdering, 'Most Viewed' | 'Top Rated'>
+    period?: VideoSearchPeriod
+})
 
 export interface AutoCompleteOptions {
     token?: string

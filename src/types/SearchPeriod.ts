@@ -16,3 +16,13 @@ export const PornstarViewedPeriodMapping: Record<PornstarSearchViewedPeriod, str
     monthly: 'm',
     alltime: '',
 }
+
+export type VideoSearchPeriod = 'daily' | 'weekly' | 'monthly' | 'yearly' | 'alltime'
+
+export const VideoSearchPeriodMapping: Record<VideoSearchPeriod, string> = {
+    daily: 't',
+    weekly: 'w',
+    monthly: 'm',
+    yearly: 'y',
+    alltime: '',
+}

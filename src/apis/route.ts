@@ -1,8 +1,8 @@
 import urlcat from 'urlcat'
-import { AlbumOrderingMapping, GifOrderingMapping, PornstarListOrderingMapping, PornstarOrderingMapping, PornstarPopularPeriodMapping, PornstarViewedPeriodMapping, VideoOrderingMapping } from '../types'
+import { AlbumOrderingMapping, GifOrderingMapping, PornstarListOrderingMapping, PornstarOrderingMapping, PornstarPopularPeriodMapping, PornstarViewedPeriodMapping, VideoOrderingMapping, VideoSearchPeriodMapping } from '../types'
 import { BASE_URL } from '../utils/constant'
 import { dashify, searchify } from '../utils/string'
-import type { AlbumSearchOptions, AutoCompleteOptions, GifSearchOptions, PornstarListOptions, PornstarSearchOptions, VideoSearchOptions, WebmasterSearchOptions } from '../types'
+import type { AlbumSearchOptions, AutoCompleteOptions, GifSearchOptions, PornstarListOptions, PornstarSearchOptions, VideoSearchOptions, VideoSearchOrdering, WebmasterSearchOptions } from '../types'
 
 export const Route = {
     mainPage() {
@@ -109,15 +109,16 @@ export const Route = {
     /**
      * @url https://www.pornhub.com/video/search?search=random
      */
-    videoSearch(keyword: string, {
-        page = 1,
-        order = 'Most Relevant',
-        hd = false,
-        production = 'all',
-        durationMin,
-        durationMax,
-        filterCategory,
-    }: VideoSearchOptions) {
+    videoSearch(keyword: string, param: VideoSearchOptions) {
+        const {
+            page = 1,
+            order = 'Most Relevant',
+            hd = false,
+            production = 'all',
+            durationMin,
+            durationMax,
+            filterCategory,
+        } = param
         const o = VideoOrderingMapping[order]
         return urlcat(BASE_URL, '/video/search', {
             search: searchify(keyword),
@@ -128,6 +129,8 @@ export const Route = {
             ...(durationMin && { min_duration: durationMin }),
             ...(durationMax && { max_duration: durationMax }),
             ...(filterCategory && { filter_category: filterCategory }),
+            ...((param.order === 'Most Viewed' || param.order === 'Top Rated')
+                && param.period && param.period !== 'alltime' && { t: VideoSearchPeriodMapping[param.period] }),
         })
     },
     /**

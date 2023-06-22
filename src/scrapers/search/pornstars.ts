@@ -41,8 +41,8 @@ function parseResult($: CheerioAPI) {
         const path = getAttribute<string>(item.find('a.title'), 'href', '')
         const url = urlcat(BASE_URL, path)
         const views = item.find('.viewsNumber').text().replace('Views', '').trim() || '0'
-        const videoNum = parseInt(item.find('.videosNumber').text().replace('Videos', '')) || 0
-        const rank = parseInt(item.find('.rank_number').text()) || 0
+        const videoNum = Number.parseInt(item.find('.videosNumber').text().replace('Videos', '')) || 0
+        const rank = Number.parseInt(item.find('.rank_number').text()) || 0
         const img = item.find('img')
         const photo = getDataAttribute<string>(img, 'thumb_url', '')
         const verified = item.find('.verifiedPornstar').length > 0

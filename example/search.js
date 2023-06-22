@@ -1,4 +1,5 @@
 import { PornHub } from '../src'
+
 const pornhub = new PornHub()
 
 const keyword = 'tits';

@@ -1,4 +1,4 @@
-import { URLSearchParams } from 'url'
+import { URLSearchParams } from 'node:url'
 import createDebug from 'debug'
 import fetch from 'node-fetch'
 import { getCheerio } from '../utils/cheerio'

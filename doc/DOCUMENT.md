@@ -31,6 +31,7 @@ npm install https-proxy-agent --save
 ```
 ```js
 const HttpsProxyAgent = require('https-proxy-agent')
+
 const proxy = 'https://xxx.xxx.xxx.xxx:xx'
 const httpsAgent = new HttpsProxyAgent(proxy)
 

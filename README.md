@@ -36,6 +36,7 @@ yarn add pornhub.js
 
 ```js
 import { PornHub } from 'pornhub.js'
+
 // const { PornHub } = require('pornhub.js')
 const pornhub = new PornHub()
 ```

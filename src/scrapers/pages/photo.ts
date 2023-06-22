@@ -42,7 +42,7 @@ function parsePhoto($: CheerioAPI) {
     const rating = `${photoWrapper.find('span#votePercentageNumber').text()}%` || ''
 
     const viewsText = photoWrapper.find('section#photoInfoSection strong').text()
-    const views = parseInt(removeComma(viewsText)) || 0
+    const views = Number.parseInt(removeComma(viewsText)) || 0
 
     return {
         title,

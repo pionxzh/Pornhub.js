@@ -43,8 +43,8 @@ function parseResult($: CheerioAPI) {
             name: item.find('.title').text(),
             url: urlcat(BASE_URL, path),
             views: item.find('.pstarViews').text().replace('views', '').trim() || '0',
-            videoNum: parseInt(item.find('.videosNumber').text()) || 0,
-            rank: parseInt(item.find('.rank_number').text()) || 0,
+            videoNum: Number.parseInt(item.find('.videosNumber').text()) || 0,
+            rank: Number.parseInt(item.find('.rank_number').text()) || 0,
             photo: getDataAttribute<string>(img, 'thumb_url', ''),
         }
     }).get()

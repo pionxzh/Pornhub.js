@@ -43,14 +43,16 @@ console.log(result.counting)
   <summary><b>Options</b></summary>
 All options are optional.
 
-| Options     | Type      | Description                                                                             |
-| ----------- | --------- | --------------------------------------------------------------------------------------- |
-| page        | `int`     | Page number                                                                             |
-| order       | `string`  | `"Most Relevant"` \| `"Most Recent"` \| `"Most Viewed"` \| `"Top Rated"` \| `"Longest"` |
-| hd          | `boolean` | Show HD video only or not                                                               |
-| production  | `string`  | `"all"` \| `"professional"` \| `"homemade"`                                             |
-| durationMin | `int`     | `10` \| `20` \| `30`                                                                    |
-| durationMax | `int`     | `10` \| `20` \| `30`                                                                    |
+| Options        | Type      | Description                                                                                            |
+| -------------- | --------- | ------------------------------------------------------------------------------------------------------ |
+| page           | `int`     | Page number                                                                                            |
+| order          | `string`  | `"Most Relevant"` \| `"Most Recent"` \| `"Most Viewed"` \| `"Top Rated"` \| `"Longest"`                |
+| hd             | `boolean` | Show HD video only or not                                                                              |
+| production     | `string`  | `"all"` \| `"professional"` \| `"homemade"`                                                            |
+| durationMin    | `int`     | `10` \| `20` \| `30`                                                                                   |
+| durationMax    | `int`     | `10` \| `20` \| `30`                                                                                   |
+| filterCategory | `int`     | Category ID. You will see the list on the [Pornhub Category](https://www.pornhub.com/categories) page. |
+| period         | `string`  | `"daily"` \| `"weekly"` \| `"monthly"` \| `"yearly"` \| `"alltime"`                                    |
 </details>
 
 <details>

@@ -2,7 +2,7 @@ import urlcat from 'urlcat'
 import { AlbumOrderingMapping, GifOrderingMapping, PornstarListOrderingMapping, PornstarOrderingMapping, PornstarPopularPeriodMapping, PornstarViewedPeriodMapping, VideoOrderingMapping, VideoSearchPeriodMapping } from '../types'
 import { BASE_URL } from '../utils/constant'
 import { dashify, searchify } from '../utils/string'
-import type { AlbumSearchOptions, AutoCompleteOptions, GifSearchOptions, PornstarListOptions, PornstarSearchOptions, VideoSearchOptions, VideoSearchOrdering, WebmasterSearchOptions } from '../types'
+import type { AlbumSearchOptions, AutoCompleteOptions, GifSearchOptions, PornstarListOptions, PornstarSearchOptions, VideoSearchOptions, WebmasterSearchOptions } from '../types'
 
 export const Route = {
     mainPage() {
@@ -53,6 +53,12 @@ export const Route = {
     },
     channelPage(name: string) {
         return urlcat(BASE_URL, '/channels/:name', { name })
+    },
+    /**
+     * @url https://www.pornhub.com/random
+     */
+    randomPage() {
+        return urlcat(BASE_URL, '/random')
     },
 
     /**

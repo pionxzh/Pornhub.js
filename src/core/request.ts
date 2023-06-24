@@ -3,7 +3,7 @@ import createDebug from 'debug'
 import fetch from 'node-fetch'
 import { getCheerio } from '../utils/cheerio'
 import { HttpStatusError, IllegalError } from '../utils/error'
-import type { RequestInit, Response } from 'node-fetch'
+import type { HeadersInit, RequestInit, Response } from 'node-fetch'
 
 const debug = createDebug('request')
 
@@ -83,14 +83,11 @@ export class Request {
     }
 
     buildRequest<U extends Record<string, any>, T>(method: 'get' | 'post' | 'post-form', url: string, data?: U): Promise<T> {
-        const opts: RequestInit = {}
-        const headers = Object.assign({}, this._headers)
-
-        if (method === 'get') opts.method = 'get'
+        const headers: HeadersInit = {}
+        const opts: RequestInit = { method, headers }
 
         if (method === 'post') {
             headers['Content-Type'] = 'application/json'
-            opts.method = 'post'
             opts.body = JSON.stringify(data)
         }
 
@@ -100,14 +97,21 @@ export class Request {
             if (data) opts.body = this.buildParams<U>(data)
         }
 
-        headers && (opts.headers = headers)
-        this._agent && (opts.agent = this._agent)
-
-        return fetch(url, opts)
-            .then(res => this.checkStatus(res))
-            .then(res => this.handleSetCookie(res))
+        return this.fetch(url, opts)
             .then(res => this.toJson(res) as T)
             .catch(err => Promise.reject(err))
+    }
+
+    fetch(url: string, opts: RequestInit = {}): Promise<Response> {
+        const headers = Object.assign({}, this._headers, opts.headers)
+
+        return fetch(url, {
+            ...opts,
+            headers,
+            ...this._agent && { agent: this._agent },
+        })
+            .then(res => this.checkStatus(res))
+            .then(res => this.handleSetCookie(res))
     }
 
     get<T>(url: string): Promise<T> {

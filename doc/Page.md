@@ -8,6 +8,7 @@ You can use this to parse a page and extract the information you need.
   - [Get Photo Info](#get-photo-info)
   - [Get Pornstar Info](#get-pornstar-info)
   - [Get Model Info](#get-model-info)
+  - [Get Random Video](#get-random-video)
 
 ## Get Video Info
 Accept both ID and page URL
@@ -215,3 +216,14 @@ console.log(result)
 
 \> Check the type definition [here](https://github.com/pionxzh/Pornhub.js/blob/master/src/scrapers/page/model.ts).
 </details>
+
+## Get Random Video
+
+Get a random video from pornhub
+
+```js
+const video = await pornhub.randomVideo()
+console.log(video)
+```
+
+Result is the same as [Get Video Info](#get-video-info)

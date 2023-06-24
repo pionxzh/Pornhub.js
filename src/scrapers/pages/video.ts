@@ -40,8 +40,6 @@ export interface VideoPage {
     categories: string[]
 }
 
-// const parseFileName = (str: string) => /\/([a-zA-Z0-9%=&_-]+\.(mp4|flv))/.exec(str)
-
 export async function videoPage(engine: Engine, urlOrId: string): Promise<VideoPage> {
     const id = UrlParser.getVideoID(urlOrId)
     const url = Route.videoPage(id)
@@ -54,7 +52,7 @@ export async function videoPage(engine: Engine, urlOrId: string): Promise<VideoP
     }
 }
 
-function parseByDom(html: string, $: CheerioAPI) {
+export function parseByDom(html: string, $: CheerioAPI) {
     const voteUp = parseReadableNumber($('span.votesUp').text() || '0')
     const voteDown = parseReadableNumber($('span.votesDown').text() || '0')
 

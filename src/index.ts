@@ -7,6 +7,7 @@ import { albumPage } from './scrapers/pages/album'
 import { modelPage } from './scrapers/pages/model'
 import { photoPage } from './scrapers/pages/photo'
 import { pornstarPage } from './scrapers/pages/pornstar'
+import { randomPage } from './scrapers/pages/random'
 import { videoPage } from './scrapers/pages/video'
 import { albumSearch } from './scrapers/search/album'
 import { gifSearch } from './scrapers/search/gif'
@@ -137,6 +138,14 @@ export class PornHub {
      */
     model(urlOrName: string) {
         return modelPage(this.engine, urlOrName)
+    }
+
+    /**
+     * Get a random video.
+     * @returns The same object as `video()`
+     */
+    randomVideo() {
+        return randomPage(this.engine)
     }
 
     /**

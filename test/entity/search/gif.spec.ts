@@ -7,7 +7,6 @@ describe('Gif Search', () => {
     it('# run()', async () => {
         const result = await pornhub.searchGif('tits', {
             page: 1,
-            order: 'Most Viewed',
             sexualOrientation: 'transgender',
         })
 

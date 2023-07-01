@@ -6,7 +6,7 @@ export interface WebmasterCategory {
 }
 
 export interface Category {
-    id: string
+    id: number
     category: string
 }
 

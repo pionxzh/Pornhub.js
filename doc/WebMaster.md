@@ -211,12 +211,12 @@ console.log(categories)
 
 ```json5
 [
-  { "id": "1", "category": "asian" },
-  { "id": "2", "category": "orgy" },
-  { "id": "3", "category": "amateur" },
-  { "id": "4", "category": "big-ass" },
-  { "id": "5", "category": "babe" },
-  { "id": "6", "category": "bbw" }
+  { "id": 1, "category": "asian" },
+  { "id": 2, "category": "orgy" },
+  { "id": 3, "category": "amateur" },
+  { "id": 4, "category": "big-ass" },
+  { "id": 5, "category": "babe" },
+  { "id": 6, "category": "bbw" }
   // ...
 ]
 ```

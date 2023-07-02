@@ -6,7 +6,11 @@ export interface WebmasterCategory {
 }
 
 export interface Category {
-    id: number
+    /**
+     * The official API is inconsistent with the type of id.
+     * Sometimes it's all numbers, sometimes it's all strings.
+     */
+    id: number | string
     category: string
 }
 

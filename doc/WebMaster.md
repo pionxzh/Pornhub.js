@@ -201,6 +201,8 @@ console.log(result)
 pornhub.webMaster.getCategories()
 ```
 
+※ The official API is inconsistent with the type of returned `id`. Sometimes it's all numbers, sometimes it's all strings.
+
 <details>
   <summary><b>Result</b></summary>
 

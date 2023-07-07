@@ -8,7 +8,6 @@
   - [GIF Search](#gif-search)
   - [PornStar Search](#pornstar-search)
   - [Model Search](#model-search)
-- [PornstarList](#pornstarlist)
 - [AutoComplete](#autocomplete)
 
 And you can also get various suggestions with [AutoComplete](#autocomplete).
@@ -257,61 +256,6 @@ console.log(models)
 
 const model = await pornhub.model(models[0].name)
 console.log(model)
-```
-</details>
-
-# PornstarList
-
-`pornhub.pornstarList(options?)`
-
-<details>
-  <summary><b>Options</b></summary>
-
-| Options | Type     | Description                                                                  |
-| ------- | -------- | ---------------------------------------------------------------------------- |
-| performerType    | `string` | `"pornstar"` \| `"amateur"` Default will be both pornstar and model |
-| gender | `string` | `"male"` \| `"female"` \| `"m2f"` \| `"f2m"` |
-| ethnicity | `string` | `"asian"` \| `"black"` \| `"indian"` \| `"latin"` \| `"middle eastern"` \| `"mixed"` \| `"white"` \| `"other"` |
-| tattoos | `boolean` | Has tattoos or not |
-| cup | `string` | `"A"` \| `"B"` \| `"C"` \| `"D"` \| `"E"` \| `"F-Z"` |
-| piercings | `boolean` | Has piercings or not |
-| hair | `string` | `"auburn"` \| `"bald"` \| `"black"` \| `"blonde"` \| `"brown"` \| `"brunette"` \| `"gray"` \| `"red"` \| `"various"` \| `"other"` |
-| breastType | `string` | `"natural"` \| `"fake"` |
-| ageFrom | `int` | (`18`) \| `20` \| `30` \| `40` |
-| ageTo | `int` | `20` \| `30` \| `40` \| (`99`) |
-| page    | `int`    | Show which page of search result |
-| order   | `string` | `"Most Popular"` \| `"Most Viewed"` \| `"Top Trending"` \| `"Most Subscribed"` \| `"Alphabetical"` \| `"No. of Videos"` \| `"Random"` |
-| letter | `string` | (only when `order` = `"Alphabetical"`)<br>`"A"` to `"Z"`. `"num"` for number |
-| timeRange | `string` | (only when `order` = `"Most Popular"`)<br>`"weekly"` \| `"monthly"` \| `"yearly"` |
-| timeRange | `string` | (only when `order` = `"Most Viewed"`)<br>`"daily"` \| `"weekly"` \| `"monthly"` \| `"alltime"` |
-</details>
-
-
-<details>
-  <summary><b>Example</b></summary>
-
-```js
-const res = await pornhub.pornstarList({
-    page: 1,
-    gender: 'female',
-    order: 'No. of Videos',
-})
-console.log(res.paging)
-// { current: 1, maxPage: 5, isEnd: false }
-
-res.data.forEach((item) => {
-    console.log(item)
-    /* {
-      name: 'maria1099',
-      url: 'https://www.pornhub.com/model/maria1099',
-      views: '43M',
-      videoNum: 13948,
-      rank: 7286,
-      photo: 'https://ci.phncdn.com/pics/pornstars/default/female.jpg'
-      verified: true,
-      awarded: false
-    } */
-})
 ```
 </details>
 

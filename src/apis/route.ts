@@ -1,8 +1,9 @@
 import urlcat from 'urlcat'
-import { AlbumOrderingMapping, GifOrderingMapping, PornstarListOrderingMapping, PornstarOrderingMapping, PornstarPopularPeriodMapping, PornstarViewedPeriodMapping, VideoOrderingMapping, VideoSearchPeriodMapping } from '../types'
+import { AlbumOrderingMapping, GifOrderingMapping, PornstarListOrderingMapping, PornstarOrderingMapping, PornstarPopularPeriodMapping, PornstarViewedPeriodMapping, VideoListOrderingMapping, VideoOrderingMapping, VideoSearchPeriodMapping } from '../types'
 import { BASE_URL } from '../utils/constant'
 import { dashify, searchify } from '../utils/string'
 import type { AlbumSearchOptions, AutoCompleteOptions, GifSearchOptions, PornstarListOptions, PornstarSearchOptions, VideoSearchOptions, WebmasterSearchOptions } from '../types'
+import type { VideoListOptions } from '../types/ListOptions'
 
 export const Route = {
     mainPage() {
@@ -137,6 +138,32 @@ export const Route = {
             ...(filterCategory && { filter_category: filterCategory }),
             ...((param.order === 'Most Viewed' || param.order === 'Top Rated')
                 && param.period && param.period !== 'alltime' && { t: VideoSearchPeriodMapping[param.period] }),
+        })
+    },
+    /**
+     * @url https://www.pornhub.com/video
+     */
+    videoList(param: VideoListOptions) {
+        const {
+            page = 1,
+            order = 'Featured Recently',
+            hd = false,
+            production = 'all',
+            durationMin,
+            durationMax,
+            filterCategory,
+        } = param
+        const o = VideoListOrderingMapping[order]
+        return urlcat(BASE_URL, '/video', {
+            ...(filterCategory && { c: filterCategory }),
+            ...(production !== 'all' && { p: production }),
+            ...(o && { o }),
+            ...((param.order === 'Most Viewed' || param.order === 'Top Rated')
+                && param.period && param.period !== 'alltime' && { t: VideoSearchPeriodMapping[param.period] }),
+            ...(durationMin && { min_duration: durationMin }),
+            ...(durationMax && { max_duration: durationMax }),
+            ...(hd && { hd: '1' }),
+            ...(page !== 1 && { page }),
         })
     },
     /**

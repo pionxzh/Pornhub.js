@@ -9,6 +9,8 @@ You can use this to parse a page and extract the information you need.
   - [Get Pornstar Info](#get-pornstar-info)
   - [Get Model Info](#get-model-info)
   - [Get Random Video](#get-random-video)
+  - [Get Video List](#get-video-list)
+  - [Get Pornstar List](#get-pornstar-list)
 
 ## Get Video Info
 Accept both ID and page URL
@@ -227,3 +229,122 @@ console.log(video)
 ```
 
 Result is the same as [Get Video Info](#get-video-info)
+
+## Get Video List
+
+Get a list of videos from pornhub
+
+Response type is the same as [Get Video Info](./Search.md#video-search)
+
+```js
+const videos = await pornhub.videoList(options)
+console.log(videos)
+```
+
+<details>
+  <summary><b>Options</b></summary>
+
+| Options | Type     | Description                                                                  |
+| ------- | -------- | ---------------------------------------------------------------------------- |
+| page           | `int`     | Page number                                                                                            |
+| order          | `string`  | `"Featured Recently"` \| `"Most Viewed"` \| `"Top Rated"` \| `"Hottest"` \| `"Longest"` \| `"Newest"`                |
+| hd             | `boolean` | Show HD video only or not                                                                              |
+| production     | `string`  | `"all"` \| `"professional"` \| `"homemade"`                                                            |
+| durationMin    | `int`     | `10` \| `20` \| `30`                                                                                   |
+| durationMax    | `int`     | `10` \| `20` \| `30`                                                                                   |
+| filterCategory | `int`     | Category ID. You will see the list on the [Pornhub Category](https://www.pornhub.com/categories) page. |
+| period         | `string`  | `"daily"` \| `"weekly"` \| `"monthly"` \| `"yearly"` \| `"alltime"`                                    |
+</details>
+
+<details>
+  <summary><b>Example</b></summary>
+
+Warning: `data.hd` and `data.premium` has been **deprecated**.\
+Currently pornhub will put premium video to another domain.\
+And no more information about `hd`, so it wil always be `false`.
+
+```js
+const res = await pornhub.videoList({
+    page: 2,
+    production: 'professional',
+    durationMin: 10,
+    durationMax: 30
+})
+console.log(res.paging)
+// { current: 2, maxPage: 10, isEnd: false }
+console.log(res.counting)
+// { from: 35, to: 68, total: 220966 }
+
+res.data.forEach((item) => {
+    console.log(item)
+    /* {
+        title: 'tokyo hot ep1',
+        url: 'https://www.pornhub.com/view_video.php?viewkey=***',
+        duration: '21:43',
+        hd: true,
+        premium: false,
+        freePremium: false,
+        preview: 'https://ci.phncdn.com/videos/***.jpg'
+    } */
+})
+```
+</details>
+
+## Get Pornstar List
+
+Get a list of pornstars from pornhub
+
+```js
+const pornstars = await pornhub.pornstarList(options)
+console.log(pornstars)
+```
+
+<details>
+  <summary><b>Options</b></summary>
+
+| Options | Type     | Description                                                                  |
+| ------- | -------- | ---------------------------------------------------------------------------- |
+| performerType    | `string` | `"pornstar"` \| `"amateur"` Default will be both pornstar and model |
+| gender | `string` | `"male"` \| `"female"` \| `"m2f"` \| `"f2m"` |
+| ethnicity | `string` | `"asian"` \| `"black"` \| `"indian"` \| `"latin"` \| `"middle eastern"` \| `"mixed"` \| `"white"` \| `"other"` |
+| tattoos | `boolean` | Has tattoos or not |
+| cup | `string` | `"A"` \| `"B"` \| `"C"` \| `"D"` \| `"E"` \| `"F-Z"` |
+| piercings | `boolean` | Has piercings or not |
+| hair | `string` | `"auburn"` \| `"bald"` \| `"black"` \| `"blonde"` \| `"brown"` \| `"brunette"` \| `"gray"` \| `"red"` \| `"various"` \| `"other"` |
+| breastType | `string` | `"natural"` \| `"fake"` |
+| ageFrom | `int` | (`18`) \| `20` \| `30` \| `40` |
+| ageTo | `int` | `20` \| `30` \| `40` \| (`99`) |
+| page    | `int`    | Show which page of search result |
+| order   | `string` | `"Most Popular"` \| `"Most Viewed"` \| `"Top Trending"` \| `"Most Subscribed"` \| `"Alphabetical"` \| `"No. of Videos"` \| `"Random"` |
+| letter | `string` | (only when `order` = `"Alphabetical"`)<br>`"A"` to `"Z"`. `"num"` for number |
+| timeRange | `string` | (only when `order` = `"Most Popular"`)<br>`"weekly"` \| `"monthly"` \| `"yearly"` |
+| timeRange | `string` | (only when `order` = `"Most Viewed"`)<br>`"daily"` \| `"weekly"` \| `"monthly"` \| `"alltime"` |
+</details>
+
+<details>
+  <summary><b>Example</b></summary>
+
+```js
+const res = await pornhub.pornstarList({
+    page: 1,
+    gender: 'female',
+    order: 'No. of Videos',
+})
+console.log(res.paging)
+// { current: 1, maxPage: 5, isEnd: false }
+
+res.data.forEach((item) => {
+    console.log(item)
+    /* {
+      name: 'maria1099',
+      url: 'https://www.pornhub.com/model/maria1099',
+      views: '43M',
+      videoNum: 13948,
+      rank: 7286,
+      photo: 'https://ci.phncdn.com/pics/pornstars/default/female.jpg'
+      verified: true,
+      awarded: false
+    } */
+})
+```
+</details>

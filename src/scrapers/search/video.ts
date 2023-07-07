@@ -30,14 +30,14 @@ export async function videoSearch(engine: Engine, keyword: string, options: Vide
     const $ = getCheerio(html)
 
     return {
-        data: parseResult($),
+        data: parseVideoResult($, '#videoSearchResult'),
         paging: parsePaging($),
         counting: parseCounting($),
     }
 }
 
-function parseResult($: CheerioAPI) {
-    const list = $('#videoSearchResult li.videoBox')
+export function parseVideoResult($: CheerioAPI, container: string) {
+    const list = $(`${container} li.videoBox`)
 
     const result = list.map((_, el) => {
         const item = $(el)

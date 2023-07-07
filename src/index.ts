@@ -3,6 +3,8 @@ import { getAutoComplete } from './apis/autoComplete'
 import { getToken } from './apis/getToken'
 import { Engine } from './core/engine'
 import { WebMaster } from './core/webmaster'
+import { pornstarList } from './scrapers/list/pornstars'
+import { videoList } from './scrapers/list/videos'
 import { albumPage } from './scrapers/pages/album'
 import { modelPage } from './scrapers/pages/model'
 import { photoPage } from './scrapers/pages/photo'
@@ -13,9 +15,9 @@ import { albumSearch } from './scrapers/search/album'
 import { gifSearch } from './scrapers/search/gif'
 import { modelSearch } from './scrapers/search/model'
 import { pornstarSearch } from './scrapers/search/pornstar'
-import { pornstarList } from './scrapers/search/pornstars'
 import { videoSearch } from './scrapers/search/video'
 import type { AlbumSearchOptions, AutoCompleteOptions, GifSearchOptions, PornstarListOptions, PornstarSearchOptions, VideoSearchOptions } from './types'
+import type { VideoListOptions } from './types/ListOptions'
 import type { RequestInit } from 'node-fetch'
 
 export * from './types'
@@ -30,6 +32,9 @@ export type { AlbumSearchResult } from './scrapers/search/album'
 export type { PornstarSearchResult } from './scrapers/search/pornstar'
 export type { GifSearchResult } from './scrapers/search/gif'
 export type { VideoSearchResult } from './scrapers/search/video'
+
+export type { VideoListResult } from './scrapers/list/videos'
+export type { PornstarListResult } from './scrapers/list/pornstars'
 
 export type { WebmasterCategory } from './apis/webmaster/categories'
 export type { WebmasterDeleted } from './apis/webmaster/deleted'
@@ -188,6 +193,13 @@ export class PornHub {
      */
     searchVideo(keyword: string, options: VideoSearchOptions = {}) {
         return videoSearch(this.engine, keyword, options)
+    }
+
+    /**
+     * Get video list.
+     */
+    videoList(options: VideoListOptions = {}) {
+        return videoList(this.engine, options)
     }
 
     /**

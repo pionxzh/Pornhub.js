@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.4.0](https://github.com/pionxzh/Pornhub.js/compare/v1.3.2...v1.4.0) (2023-07-07)
+
+
+### Features
+
+* convert `id` type in `webMaster.getCategories` from `string` to `number` ([050f12e](https://github.com/pionxzh/Pornhub.js/commit/050f12ec94d3a3b9b787bf4ad967968a513e4249))
+* convert `id` type in `webMaster.getCategories` to `string | number` ([e2ee66e](https://github.com/pionxzh/Pornhub.js/commit/e2ee66efe191a3f038dd489baffd682c1c3707b6))
+* support `.randomVideo` to parse video from `/random` ([f1f929b](https://github.com/pionxzh/Pornhub.js/commit/f1f929b5532a503b73fd978bcf1a0619d2a4d482)), closes [#62](https://github.com/pionxzh/Pornhub.js/issues/62)
+* support `.videoList()` to parse videos from `/video` ([4c51fb2](https://github.com/pionxzh/Pornhub.js/commit/4c51fb27a7599e06f69ab18af2f06fa41926769b))
+* support passing `period` to `searchVideo` ([0237070](https://github.com/pionxzh/Pornhub.js/commit/0237070a42da4f9be5a208042a6fa3a5dd18cad8)), closes [#59](https://github.com/pionxzh/Pornhub.js/issues/59)
+
+
+### Bug Fixes
+
+* **deps:** update dependency node-fetch to ^2.6.11 ([24f57e4](https://github.com/pionxzh/Pornhub.js/commit/24f57e44abc530d48d68e7320eef9e13c2923348))
+* **deps:** update dependency node-fetch to ^2.6.12 ([6d03346](https://github.com/pionxzh/Pornhub.js/commit/6d0334602d4aaa6d09925256c687bb8076855485))
+* prevent detect incorrect social link from nav bar for `.model` and `.pornstar` ([57f57fd](https://github.com/pionxzh/Pornhub.js/commit/57f57fd6b2f7cba71da3591a245ea02c2dc001ed))
+
 ## [1.3.2](https://github.com/pionxzh/Pornhub.js/compare/v1.3.1...v1.3.2) (2023-04-07)
 
 

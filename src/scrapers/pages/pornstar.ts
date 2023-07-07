@@ -282,13 +282,13 @@ function parseInfo($: CheerioAPI): PornstarPage {
     }
 
     const socials = {
-        website: getAttribute<string>($('a:has(.officialSiteIcon)'), 'href'),
-        twitter: getAttribute<string>($('a:has(.twitterIcon)'), 'href'),
-        instagram: getAttribute<string>($('a:has(.instagramIcon)'), 'href'),
-        snapchat: getAttribute<string>($('a:has(.snapchatIcon)'), 'href'),
-        modelhub: getAttribute<string>($('a:has(.modelhubIcon)'), 'href'),
-        amazonWishList: getAttribute<string>($('a:has(.amazonWishlistIcon)'), 'href')
-            || getAttribute<string>($('a:has(.amazonWLIcon)'), 'href'),
+        website: getAttribute<string>($('.socialList a:has(.officialSiteIcon)'), 'href'),
+        twitter: getAttribute<string>($('.socialList a:has(.twitterIcon)'), 'href'),
+        instagram: getAttribute<string>($('.socialList a:has(.instagramIcon)'), 'href'),
+        snapchat: getAttribute<string>($('.socialList a:has(.snapchatIcon)'), 'href'),
+        modelhub: getAttribute<string>($('.socialList a:has(.modelhubIcon)'), 'href'),
+        amazonWishList: getAttribute<string>($('.socialList a:has(.amazonWishlistIcon)'), 'href')
+            || getAttribute<string>($('.socialList a:has(.amazonWLIcon)'), 'href'),
     }
 
     return {

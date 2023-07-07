@@ -3,20 +3,19 @@ import { PornHub } from '../../../src/index'
 
 const pornhub = new PornHub()
 
-describe('PornstarList', () => {
+describe('VideoList', () => {
     it('# run()', async () => {
-        const result = await pornhub.pornstarList({
+        const result = await pornhub.videoList({
             page: 1,
-            gender: 'female',
-            order: 'No. of Videos',
+            order: 'Longest',
         })
 
         expect(result.paging.current).to.equal(1)
         expect(result.paging.isEnd).to.equal(false)
 
-        expect(result.data.length).to.equal(57)
+        expect(result.data.length).to.equal(32)
 
         const first = result.data[0]
-        expect(first.name).to.equal('maria1099')
+        expect(first.title).to.equal('BBW Bitch Loved getting Pumped by BBC')
     })
 })

@@ -1,5 +1,6 @@
 import urlcat from 'urlcat'
 import { AlbumOrderingMapping, GifOrderingMapping, PornstarListOrderingMapping, PornstarOrderingMapping, PornstarPopularPeriodMapping, PornstarViewedPeriodMapping, RecommendedOrderingMapping, VideoListOrderingMapping, VideoOrderingMapping, VideoSearchPeriodMapping } from '../types'
+import { CountryMapping } from '../types/Country'
 import { BASE_URL } from '../utils/constant'
 import { dashify, searchify } from '../utils/string'
 import type { AlbumSearchOptions, AutoCompleteOptions, GifSearchOptions, PornstarSearchOptions, RecommendedOptions, VideoSearchOptions, WebmasterSearchOptions } from '../types'
@@ -169,6 +170,7 @@ export const Route = {
             ...(o && { o }),
             ...((param.order === 'Most Viewed' || param.order === 'Top Rated')
                 && param.period && param.period !== 'alltime' && { t: VideoSearchPeriodMapping[param.period] }),
+            ...(param.order === 'Hottest' && param.country && param.country !== 'World' && { cc: CountryMapping[param.country] }),
             ...(durationMin && { min_duration: durationMin }),
             ...(durationMax && { max_duration: durationMax }),
             ...(hd && { hd: '1' }),

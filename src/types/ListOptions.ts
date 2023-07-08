@@ -1,3 +1,4 @@
+import type { Country } from './Country'
 import type { PornstarListOrdering, VideoListOrdering } from './SearchOrdering'
 import type { PornstarSearchPopularPeriod, PornstarSearchViewedPeriod, VideoSearchPeriod } from './SearchPeriod'
 
@@ -10,10 +11,13 @@ export type VideoListOptions = {
     /** Category id */
     filterCategory?: number
 } & ({
-    order?: Exclude<VideoListOrdering, 'Most Viewed' | 'Top Rated'>
+    order?: Exclude<VideoListOrdering, 'Most Viewed' | 'Top Rated' | 'Hottest'>
 } | {
     order: Extract<VideoListOrdering, 'Most Viewed' | 'Top Rated'>
     period?: VideoSearchPeriod
+} | {
+    order: Extract<VideoListOrdering, 'Hottest'>
+    country?: Country
 })
 
 export type PornstarListOptions = {

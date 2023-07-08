@@ -255,6 +255,7 @@ console.log(videos)
 | durationMax    | `int`     | `10` \| `20` \| `30`                                                                                   |
 | filterCategory | `int`     | Category ID. You will see the list on the [Pornhub Category](https://www.pornhub.com/categories) page. |
 | period         | `string`  | `"daily"` \| `"weekly"` \| `"monthly"` \| `"yearly"` \| `"alltime"`                                    |
+| country        | `string`  | Only available when `order` is `"Hottest"`. `"Argentina"` \| `"Australia"` \| ... \| `"World"`                                                     |
 </details>
 
 <details>

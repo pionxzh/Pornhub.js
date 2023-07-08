@@ -4,7 +4,8 @@ import { getAttribute, getCheerio, getDataAttribute } from '../../utils/cheerio'
 import { BASE_URL } from '../../utils/constant'
 import { parsePaging } from '../search/base'
 import type { Engine } from '../../core/engine'
-import type { Paging, PornstarListOptions } from '../../types'
+import type { Paging } from '../../types'
+import type { PornstarListOptions } from '../../types/ListOptions'
 import type { CheerioAPI } from 'cheerio'
 
 export interface PornstarListResult {

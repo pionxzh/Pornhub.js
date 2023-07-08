@@ -2,8 +2,8 @@ import urlcat from 'urlcat'
 import { AlbumOrderingMapping, GifOrderingMapping, PornstarListOrderingMapping, PornstarOrderingMapping, PornstarPopularPeriodMapping, PornstarViewedPeriodMapping, RecommendedOrderingMapping, VideoListOrderingMapping, VideoOrderingMapping, VideoSearchPeriodMapping } from '../types'
 import { BASE_URL } from '../utils/constant'
 import { dashify, searchify } from '../utils/string'
-import type { AlbumSearchOptions, AutoCompleteOptions, GifSearchOptions, PornstarListOptions, PornstarSearchOptions, RecommendedOptions, VideoSearchOptions, WebmasterSearchOptions } from '../types'
-import type { VideoListOptions } from '../types/ListOptions'
+import type { AlbumSearchOptions, AutoCompleteOptions, GifSearchOptions, PornstarSearchOptions, RecommendedOptions, VideoSearchOptions, WebmasterSearchOptions } from '../types'
+import type { PornstarListOptions, VideoListOptions } from '../types/ListOptions'
 
 export const Route = {
     mainPage() {

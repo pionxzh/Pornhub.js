@@ -37,6 +37,7 @@ export type VideoSearchOptions = {
     durationMax?: 10 | 20 | 30
     /** Category id */
     filterCategory?: number
+    sexualOrientation?: 'straight' | 'gay'
 } & ({
     order?: Exclude<VideoSearchOrdering, 'Most Viewed' | 'Top Rated'>
 } | {
@@ -52,4 +53,5 @@ export interface AutoCompleteOptions {
 export interface RecommendedOptions {
     order?: RecommendedOrdering
     page?: number
+    sexualOrientation?: 'straight' | 'gay'
 }

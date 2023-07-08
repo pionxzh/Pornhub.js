@@ -256,6 +256,7 @@ console.log(videos)
 | filterCategory | `int`     | Category ID. You will see the list on the [Pornhub Category](https://www.pornhub.com/categories) page. |
 | period         | `string`  | `"daily"` \| `"weekly"` \| `"monthly"` \| `"yearly"` \| `"alltime"`                                    |
 | country        | `string`  | Only available when `order` is `"Hottest"`. `"Argentina"` \| `"Australia"` \| ... \| `"World"`                                                     |
+| sexualOrientation | `string` | `"straight` \| `"gay"` \| `"transgender"`                                |
 </details>
 
 <details>
@@ -363,10 +364,11 @@ console.log(videos)
 <details>
   <summary><b>Options</b></summary>
 
-| Options | Type     | Description                          |
-| ------- | -------- | ------------------------------------ |
-| order   | `string` | `"Most Relevant"` \| `"Most Recent"` |
-| page    | `int`    | Show which page of result            |
+| Options           | Type     | Description                          |
+| ----------------- | -------- | ------------------------------------ |
+| order             | `string` | `"Most Relevant"` \| `"Most Recent"` |
+| page              | `int`    | Show which page of result            |
+| sexualOrientation | `string` | `"straight` \| `"gay"`               |
 </details>
 
 <details>

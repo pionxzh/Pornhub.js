@@ -52,6 +52,7 @@ All options are optional.
 | durationMax    | `int`     | `10` \| `20` \| `30`                                                                                   |
 | filterCategory | `int`     | Category ID. You will see the list on the [Pornhub Category](https://www.pornhub.com/categories) page. |
 | period         | `string`  | `"daily"` \| `"weekly"` \| `"monthly"` \| `"yearly"` \| `"alltime"`                                    |
+| sexualOrientation | `string` | `"straight` \| `"gay"`               |
 </details>
 
 <details>

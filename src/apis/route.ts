@@ -65,8 +65,14 @@ export const Route = {
     recommendedPage({
         order = 'Most Relevant',
         page = 1,
+        sexualOrientation = 'straight',
     }: RecommendedOptions) {
-        return urlcat(BASE_URL, '/recommended', {
+        const orientation = sexualOrientation === 'straight' ? undefined : sexualOrientation
+        const pathTemplate = orientation
+            ? '/:orientation/recommended'
+            : '/recommended'
+        return urlcat(BASE_URL, pathTemplate, {
+            orientation,
             ...(order !== 'Most Relevant' && { o: RecommendedOrderingMapping[order] }),
             ...(page !== 1 && { page }),
         })
@@ -99,11 +105,12 @@ export const Route = {
         sexualOrientation = 'straight',
     }: GifSearchOptions) {
         const o = GifOrderingMapping[order]
-        const pathTemplate = sexualOrientation === 'straight'
-            ? '/gifs/search'
-            : '/:sexualOrientation/gifs/search'
+        const orientation = sexualOrientation === 'straight' ? undefined : sexualOrientation
+        const pathTemplate = orientation
+            ? '/:orientation/gifs/search'
+            : '/gifs/search'
         return urlcat(BASE_URL, pathTemplate, {
-            ...(sexualOrientation !== 'straight' && { sexualOrientation }),
+            orientation,
             search: searchify(keyword),
             ...(page !== 1 && { page }),
             ...(o && { o }),
@@ -135,9 +142,15 @@ export const Route = {
             durationMin,
             durationMax,
             filterCategory,
+            sexualOrientation = 'straight',
         } = param
         const o = VideoOrderingMapping[order]
-        return urlcat(BASE_URL, '/video/search', {
+        const orientation = sexualOrientation === 'straight' ? undefined : sexualOrientation
+        const pathTemplate = orientation
+            ? '/:orientation/video/search'
+            : '/video/search'
+        return urlcat(BASE_URL, pathTemplate, {
+            orientation,
             search: searchify(keyword),
             ...(page !== 1 && { page }),
             ...(o && { o }),
@@ -162,9 +175,15 @@ export const Route = {
             durationMin,
             durationMax,
             filterCategory,
+            sexualOrientation = 'straight',
         } = param
+        const pathTemplate = sexualOrientation === 'transgender'
+            ? 'transgender'
+            : sexualOrientation === 'gay'
+                ? '/gayporn'
+                : '/video'
         const o = VideoListOrderingMapping[order]
-        return urlcat(BASE_URL, '/video', {
+        return urlcat(BASE_URL, pathTemplate, {
             ...(filterCategory && { c: filterCategory }),
             ...(production !== 'all' && { p: production }),
             ...(o && { o }),
@@ -220,7 +239,6 @@ export const Route = {
             ...(page !== 1 && { page }),
         })
     },
-
 }
 
 const WebmasterBaseUrl = urlcat(BASE_URL, '/webmasters')

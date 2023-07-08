@@ -1,24 +1,22 @@
 import { Route } from '../../apis'
 import { getCheerio } from '../../utils/cheerio'
-import { parseCounting, parsePaging } from '../search/base'
+import { parsePaging } from '../search/base'
 import { parseVideoResult } from '../search/video'
 import type { Engine } from '../../core/engine'
-import type { Counting, Paging } from '../../types'
-import type { VideoListOptions } from '../../types/ListOptions'
+import type { Paging } from '../../types'
+import type { RecommendedOptions } from '../../types/SearchOptions'
 import type { VideoListResult } from '../search/video'
 
-export async function videoList(engine: Engine, options: VideoListOptions): Promise<{
+export async function recommended(engine: Engine, options: RecommendedOptions): Promise<{
     data: VideoListResult[]
     paging: Paging
-    counting: Counting
 }> {
-    const url = Route.videoList(options)
+    const url = Route.recommendedPage(options)
     const html = await engine.request.raw(url)
     const $ = getCheerio(html)
 
     return {
-        data: parseVideoResult($, '#videoCategory'),
+        data: parseVideoResult($, '.recommendedVideosContainer'),
         paging: parsePaging($),
-        counting: parseCounting($),
     }
 }

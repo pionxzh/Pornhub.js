@@ -12,6 +12,8 @@ export type VideoListOrdering = 'Featured Recently' | 'Most Viewed' | 'Top Rated
 
 export type PornstarListOrdering = 'Most Popular' | 'Most Viewed' | 'Top Trending' | 'Most Subscribed' | 'Alphabetical' | 'No. of Videos' | 'Random'
 
+export type RecommendedOrdering = 'Most Relevant' | 'Most Recent'
+
 export const VideoOrderingMapping: Record<VideoSearchOrdering, string> = {
     'Most Relevant': '',
     'Most Recent': 'mr',
@@ -58,4 +60,9 @@ export const PornstarListOrderingMapping: Record<PornstarListOrdering, string> =
     'Alphabetical': 'a',
     'No. of Videos': 'nv',
     'Random': 'r',
+}
+
+export const RecommendedOrderingMapping: Record<RecommendedOrdering, string> = {
+    'Most Relevant': '',
+    'Most Recent': 'time',
 }

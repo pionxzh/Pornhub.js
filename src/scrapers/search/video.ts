@@ -7,7 +7,7 @@ import type { Engine } from '../../core/engine'
 import type { Counting, Paging, VideoSearchOptions } from '../../types'
 import type { CheerioAPI } from 'cheerio'
 
-export interface VideoSearchResult {
+export interface VideoListResult {
     title: string
     url: string
     views: string
@@ -19,6 +19,8 @@ export interface VideoSearchResult {
     freePremium: boolean
     preview: string
 }
+
+export type VideoSearchResult = VideoListResult
 
 export async function videoSearch(engine: Engine, keyword: string, options: VideoSearchOptions): Promise<{
     data: VideoSearchResult[]

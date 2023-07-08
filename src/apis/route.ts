@@ -1,8 +1,8 @@
 import urlcat from 'urlcat'
-import { AlbumOrderingMapping, GifOrderingMapping, PornstarListOrderingMapping, PornstarOrderingMapping, PornstarPopularPeriodMapping, PornstarViewedPeriodMapping, VideoListOrderingMapping, VideoOrderingMapping, VideoSearchPeriodMapping } from '../types'
+import { AlbumOrderingMapping, GifOrderingMapping, PornstarListOrderingMapping, PornstarOrderingMapping, PornstarPopularPeriodMapping, PornstarViewedPeriodMapping, RecommendedOrderingMapping, VideoListOrderingMapping, VideoOrderingMapping, VideoSearchPeriodMapping } from '../types'
 import { BASE_URL } from '../utils/constant'
 import { dashify, searchify } from '../utils/string'
-import type { AlbumSearchOptions, AutoCompleteOptions, GifSearchOptions, PornstarListOptions, PornstarSearchOptions, VideoSearchOptions, WebmasterSearchOptions } from '../types'
+import type { AlbumSearchOptions, AutoCompleteOptions, GifSearchOptions, PornstarListOptions, PornstarSearchOptions, RecommendedOptions, VideoSearchOptions, WebmasterSearchOptions } from '../types'
 import type { VideoListOptions } from '../types/ListOptions'
 
 export const Route = {
@@ -61,6 +61,15 @@ export const Route = {
     randomPage() {
         return urlcat(BASE_URL, '/random')
     },
+    recommendedPage({
+        order = 'Most Relevant',
+        page = 1,
+    }: RecommendedOptions) {
+        return urlcat(BASE_URL, '/recommended', {
+            ...(order !== 'Most Relevant' && { o: RecommendedOrderingMapping[order] }),
+            ...(page !== 1 && { page }),
+        })
+    },
 
     /**
      * @url https://www.pornhub.com/albums/female-straight-uncategorized?search=random
@@ -75,7 +84,7 @@ export const Route = {
         return urlcat(BASE_URL, '/albums/:segment', {
             segment: dashify(segments),
             search: searchify(keyword),
-            page,
+            ...(page !== 1 && { page }),
             ...(o && { o }),
             ...(verified && { verified: '1' }),
         })

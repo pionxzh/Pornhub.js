@@ -11,6 +11,7 @@ You can use this to parse a page and extract the information you need.
   - [Get Random Video](#get-random-video)
   - [Get Video List](#get-video-list)
   - [Get Pornstar List](#get-pornstar-list)
+  - [Get Recommended Videos](#get-recommended-videos)
 
 ## Get Video Info
 Accept both ID and page URL
@@ -344,6 +345,50 @@ res.data.forEach((item) => {
       photo: 'https://ci.phncdn.com/pics/pornstars/default/female.jpg'
       verified: true,
       awarded: false
+    } */
+})
+```
+</details>
+
+## Get Recommended Videos
+
+Get a list of recommended videos from pornhub
+
+```js
+const videos = await pornhub.recommendedVideos(options)
+console.log(videos)
+```
+
+<details>
+  <summary><b>Options</b></summary>
+
+| Options | Type     | Description                          |
+| ------- | -------- | ------------------------------------ |
+| order   | `string` | `"Most Relevant"` \| `"Most Recent"` |
+| page    | `int`    | Show which page of result            |
+</details>
+
+<details>
+  <summary><b>Example</b></summary>
+
+```js
+const res = await pornhub.recommendedVideos({
+    order: 'Most Recent',
+    page: 3,
+})
+console.log(res.paging)
+// { current: 2, maxPage: 10, isEnd: false }
+
+res.data.forEach((item) => {
+    console.log(item)
+    /* {
+        title: 'tokyo hot ep1',
+        url: 'https://www.pornhub.com/view_video.php?viewkey=***',
+        duration: '21:43',
+        hd: true,
+        premium: false,
+        freePremium: false,
+        preview: 'https://ci.phncdn.com/videos/***.jpg'
     } */
 })
 ```

@@ -1,5 +1,5 @@
 import type { PornstarSearchPopularPeriod, PornstarSearchViewedPeriod, SearchPeriod, Segment, SexualOrientation, ThumbSize, VideoSearchPeriod, WebmasterSearchOrdering } from '.'
-import type { AlbumSearchOrdering, GifSearchOrdering, PornstarListOrdering, PornstarSearchOrdering, VideoSearchOrdering } from './SearchOrdering'
+import type { AlbumSearchOrdering, GifSearchOrdering, PornstarListOrdering, PornstarSearchOrdering, RecommendedOrdering, VideoSearchOrdering } from './SearchOrdering'
 
 export interface WebmasterSearchOptions {
     page?: number
@@ -73,4 +73,9 @@ export type VideoSearchOptions = {
 export interface AutoCompleteOptions {
     token?: string
     sexualOrientation?: SexualOrientation
+}
+
+export interface RecommendedOptions {
+    order?: RecommendedOrdering
+    page?: number
 }

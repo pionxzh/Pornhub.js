@@ -10,13 +10,14 @@ import { modelPage } from './scrapers/pages/model'
 import { photoPage } from './scrapers/pages/photo'
 import { pornstarPage } from './scrapers/pages/pornstar'
 import { randomPage } from './scrapers/pages/random'
+import { recommended } from './scrapers/pages/recommended'
 import { videoPage } from './scrapers/pages/video'
 import { albumSearch } from './scrapers/search/album'
 import { gifSearch } from './scrapers/search/gif'
 import { modelSearch } from './scrapers/search/model'
 import { pornstarSearch } from './scrapers/search/pornstar'
 import { videoSearch } from './scrapers/search/video'
-import type { AlbumSearchOptions, AutoCompleteOptions, GifSearchOptions, PornstarListOptions, PornstarSearchOptions, VideoSearchOptions } from './types'
+import type { AlbumSearchOptions, AutoCompleteOptions, GifSearchOptions, PornstarListOptions, PornstarSearchOptions, RecommendedOptions, VideoSearchOptions } from './types'
 import type { VideoListOptions } from './types/ListOptions'
 import type { RequestInit } from 'node-fetch'
 
@@ -31,9 +32,8 @@ export type { ModelPage } from './scrapers/pages/model'
 export type { AlbumSearchResult } from './scrapers/search/album'
 export type { PornstarSearchResult } from './scrapers/search/pornstar'
 export type { GifSearchResult } from './scrapers/search/gif'
-export type { VideoSearchResult } from './scrapers/search/video'
+export type { VideoSearchResult, VideoListResult } from './scrapers/search/video'
 
-export type { VideoListResult } from './scrapers/list/videos'
 export type { PornstarListResult } from './scrapers/list/pornstars'
 
 export type { WebmasterCategory } from './apis/webmaster/categories'
@@ -207,5 +207,12 @@ export class PornHub {
      */
     pornstarList(options: PornstarListOptions = {}) {
         return pornstarList(this.engine, options)
+    }
+
+    /**
+     * Get recommended videos.
+     */
+    recommendedVideos(options: RecommendedOptions = {}) {
+        return recommended(this.engine, options)
     }
 }

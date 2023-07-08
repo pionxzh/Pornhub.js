@@ -174,10 +174,11 @@ res.data.forEach((item) => {
 <details>
   <summary><b>Options</b></summary>
 
-| Options | Type     | Description                                                                  |
-| ------- | -------- | ---------------------------------------------------------------------------- |
-| page    | `int`    | Show which page of search result                                             |
-| order   | `string` | `"Most Relevant"` \| `"Most Popular"` \| `"Most Viewed"` \| `"No. of Video"` |
+| Options           | Type     | Description                                                                  |
+| ----------------- | -------- | ---------------------------------------------------------------------------- |
+| page              | `int`    | Show which page of search result                                             |
+| order             | `string` | `"Most Relevant"` \| `"Most Popular"` \| `"Most Viewed"` \| `"No. of Video"` |
+| sexualOrientation | `string` | `"straight` \| `"gay"`                                                       |
 </details>
 
 <details>

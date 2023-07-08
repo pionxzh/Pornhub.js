@@ -122,9 +122,15 @@ export const Route = {
     pornstarSearch(keyword: string, {
         page = 1,
         order = 'Most Relevant',
+        sexualOrientation = 'straight',
     }: PornstarSearchOptions) {
         const o = PornstarOrderingMapping[order]
-        return urlcat(BASE_URL, '/pornstars/search', {
+        const orientation = sexualOrientation === 'straight' ? undefined : sexualOrientation
+        const pathTemplate = orientation
+            ? '/:orientation/pornstars/search'
+            : '/pornstars/search'
+        return urlcat(BASE_URL, pathTemplate, {
+            orientation,
             search: searchify(keyword),
             ...(page !== 1 && { page }),
             ...(o && { o }),

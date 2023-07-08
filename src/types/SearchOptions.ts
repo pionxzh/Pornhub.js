@@ -27,6 +27,7 @@ export interface GifSearchOptions {
 export interface PornstarSearchOptions {
     page?: number
     order?: PornstarSearchOrdering
+    sexualOrientation?: 'straight' | 'gay'
 }
 
 export type VideoSearchOptions = {

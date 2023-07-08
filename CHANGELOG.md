@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.5.0](https://github.com/pionxzh/Pornhub.js/compare/v1.4.0...v1.5.0) (2023-07-08)
+
+
+### Features
+
+* support `.recommendedVideos` to parse videos from `/recommended` ([f1f3cbf](https://github.com/pionxzh/Pornhub.js/commit/f1f3cbfdb8718dec522e9d6945c0f86747644092))
+* support `/gay` sexualOrientation for `.searchPornstar` ([c8d92f4](https://github.com/pionxzh/Pornhub.js/commit/c8d92f402b5cdd07b6997376d06e393db7cf3044))
+* support `/gay` sexualOrientation for `.videoList`, `.searchVideo`and `.recommendedVideos` ([8976edb](https://github.com/pionxzh/Pornhub.js/commit/8976edb559c238cf3ecd1827fc787e03572b0f91)), closes [#54](https://github.com/pionxzh/Pornhub.js/issues/54)
+
+
+### Bug Fixes
+
+* add missing `country` prop for `.videoList` ([bf80129](https://github.com/pionxzh/Pornhub.js/commit/bf80129f88736f3e09d5e1032405726e559372f4))
+
 ## [1.4.0](https://github.com/pionxzh/Pornhub.js/compare/v1.3.2...v1.4.0) (2023-07-07)
 
 

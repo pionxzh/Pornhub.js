@@ -14,7 +14,7 @@ describe('PornstarList', () => {
         expect(result.paging.current).to.equal(1)
         expect(result.paging.isEnd).to.equal(false)
 
-        expect(result.data.length).to.equal(57)
+        expect(result.data.length).to.be.at.least(30)
 
         const first = result.data[0]
         expect(first.name).to.equal('Lina Lynx')

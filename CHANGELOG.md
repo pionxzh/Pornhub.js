@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.1](https://github.com/pionxzh/Pornhub.js/compare/v1.5.0...v1.5.1) (2023-07-13)
+
+
+### Bug Fixes
+
+* bypass age confirmation for european users ([c672702](https://github.com/pionxzh/Pornhub.js/commit/c672702df01133a2f2d9d3844035d71ba18dff05)), closes [#67](https://github.com/pionxzh/Pornhub.js/issues/67)
+
 ## [1.5.0](https://github.com/pionxzh/Pornhub.js/compare/v1.4.0...v1.5.0) (2023-07-08)
 
 

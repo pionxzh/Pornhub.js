@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.6.0](https://github.com/pionxzh/Pornhub.js/compare/v1.5.1...v1.6.0) (2023-07-20)
+
+
+### Features
+
+* add `id` to video search response to align with video page ([88ebf8b](https://github.com/pionxzh/Pornhub.js/commit/88ebf8bd5ea894b389075ab3e63b9419dada3597))
+* add `preview` for video page response to align with video search ([6f888b9](https://github.com/pionxzh/Pornhub.js/commit/6f888b993d6edd3fbd2d8c969ce4793feab756d7))
+* add `url` to video page response to align with video search ([d6d585f](https://github.com/pionxzh/Pornhub.js/commit/d6d585f00ab3da501a69611169c55a7864cb17e4))
+* HttpStatusError now will contains url ([c9400ae](https://github.com/pionxzh/Pornhub.js/commit/c9400ae98a55cb6e50c57e3a158e0c6b8016c3ba))
+
+
+### Bug Fixes
+
+* `rating` shouldn't be `NaN` when vote is 0 ([9f26392](https://github.com/pionxzh/Pornhub.js/commit/9f263929a20aec987c5b8d3a95cba0ffb7508a75))
+
 ## [1.5.1](https://github.com/pionxzh/Pornhub.js/compare/v1.5.0...v1.5.1) (2023-07-13)
 
 

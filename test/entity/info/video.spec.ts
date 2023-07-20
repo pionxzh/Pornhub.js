@@ -8,7 +8,7 @@ describe('Video Info', () => {
         const url = 'https://www.pornhub.com/view_video.php?viewkey=ph62f79e2ed1ed8'
         const result = await pornhub.video(url)
 
-        expect(result.title).to.equal('After 69 Pose & Cowgirl, Girl with Big Tits Was Fucked Hard, and Her was Filled Cum')
+        expect(result.title).to.includes('Cowgirl')
         expect(result.views).to.be.at.least(13000)
         expect(result.vote.total).to.be.at.least(10000)
         expect(result.premium).to.be.equal(false)

@@ -48,7 +48,7 @@ export class Request {
                 }
             }
         }
-        return Promise.reject(new HttpStatusError(`${res.status} ${res.statusText}`))
+        return Promise.reject(new HttpStatusError(`${res.status} ${res.statusText} at ${res.url}`))
     }
 
     parseCookieItem(str: string) {

@@ -41,6 +41,8 @@ console.log(video)
     "url": "/users/thefortnitevirgin"
   },
   "premium": false,
+  "thumb": "data:image/gif;...",
+  "preview": "https://di.phncdn.com/videos/...",
   "tags": ["hardcore", "hentai", "memes"],
   "categories": ["HD-Porn", "SFW"],
   "pornstars": [],

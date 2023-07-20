@@ -18,6 +18,7 @@ export interface VideoPage {
     }
     premium: boolean
     thumb: string
+    preview: string
     /**
      * @deprecated We no longer support video download. Use alternative tools such as `yt-dlp` instead.
      */
@@ -67,6 +68,7 @@ export function parseByDom(html: string, $: CheerioAPI) {
     }
     const premium = $('.video-wrapper .ph-icon-badge-premium').length !== 0
     const thumb = getAttribute<string>($('.thumbnail img'), 'src', '')
+    const preview = getAttribute<string>($('head meta[property="og:image"]'), 'content', '')
 
     // wtf...is this double rel a coding bug from pornhub?
     // <a rel="rel="nofollow"" href="/users/xxxx"  class="bolded">XXXXX</a>
@@ -90,6 +92,7 @@ export function parseByDom(html: string, $: CheerioAPI) {
         vote,
         premium,
         thumb,
+        preview,
         videos: [],
         provider,
         tags,

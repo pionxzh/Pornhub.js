@@ -62,11 +62,12 @@ export function parseByDom(html: string, $: CheerioAPI) {
     const title = $('head > title').first().text().replace(' - Pornhub.com', '')
     const viewsText = $('span.count').text() || '0'
     const views = parseReadableNumber(viewsText)
+    const totalVote = voteUp + voteDown
     const vote = {
         up: voteUp,
         down: voteDown,
-        total: voteUp + voteDown,
-        rating: Math.round(voteUp / (voteUp + voteDown) * 100) / 100,
+        total: totalVote,
+        rating: totalVote === 0 ? 0 : Math.round(voteUp / totalVote * 100) / 100,
     }
     const premium = $('.video-wrapper .ph-icon-badge-premium').length !== 0
     const thumb = getAttribute<string>($('.thumbnail img'), 'src', '')

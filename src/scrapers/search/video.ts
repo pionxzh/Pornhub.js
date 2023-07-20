@@ -2,6 +2,7 @@ import urlcat from 'urlcat'
 import { Route } from '../../apis'
 import { getAttribute, getCheerio } from '../../utils/cheerio'
 import { BASE_URL } from '../../utils/constant'
+import { UrlParser } from '../../utils/url'
 import { parseCounting, parsePaging } from './base'
 import type { Engine } from '../../core/engine'
 import type { Counting, Paging, VideoSearchOptions } from '../../types'
@@ -9,6 +10,7 @@ import type { CheerioAPI } from 'cheerio'
 
 export interface VideoListResult {
     title: string
+    id: string
     url: string
     views: string
     duration: string
@@ -46,12 +48,15 @@ export function parseVideoResult($: CheerioAPI, container: string) {
         const thumb = item.find('.linkVideoThumb').eq(0)
         const title = getAttribute<string>(thumb, 'title', '')
         const path = getAttribute<string>(thumb, 'href', '')
+        const url = urlcat(BASE_URL, path)
+        const id = UrlParser.getVideoID(url)
         const img = item.find('img')
         const preview = getAttribute<string>(img, 'src', '')
 
         return {
             title,
-            url: urlcat(BASE_URL, path),
+            id,
+            url,
             views: item.find('.videoDetailsBlock .views var').text(),
             duration: item.find('.duration').text(),
             hd: !!item.find('.hd-thumbnail').length,

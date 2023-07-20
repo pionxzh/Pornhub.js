@@ -31,6 +31,8 @@ console.log(video)
 
 ```json5
 {
+  "id": "phxxxxx",
+  "url": "https://www.pornhub.com/view_video.php?viewkey=phxxxxx",
   "title": "Susie sheep fucks peppa pig",
   "views": 49517,
   "voteUp": 352,

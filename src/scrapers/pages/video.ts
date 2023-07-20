@@ -8,6 +8,7 @@ import type { CheerioAPI } from 'cheerio'
 
 export interface VideoPage {
     id: string
+    url: string
     title: string
     views: number
     vote: {
@@ -49,6 +50,7 @@ export async function videoPage(engine: Engine, urlOrId: string): Promise<VideoP
 
     return {
         id,
+        url,
         ...parseByDom(html, $),
     }
 }

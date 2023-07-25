@@ -6,7 +6,7 @@ import { WebMaster } from './core/webmaster'
 import { pornstarList } from './scrapers/list/pornstars'
 import { videoList } from './scrapers/list/videos'
 import { albumPage } from './scrapers/pages/album'
-import { modelPage } from './scrapers/pages/model'
+import { modelPage, modelUploadedVideos } from './scrapers/pages/model'
 import { photoPage } from './scrapers/pages/photo'
 import { pornstarPage } from './scrapers/pages/pornstar'
 import { randomPage } from './scrapers/pages/random'
@@ -18,7 +18,7 @@ import { modelSearch } from './scrapers/search/model'
 import { pornstarSearch } from './scrapers/search/pornstar'
 import { videoSearch } from './scrapers/search/video'
 import type { AlbumSearchOptions, AutoCompleteOptions, GifSearchOptions, PornstarSearchOptions, RecommendedOptions, VideoSearchOptions } from './types'
-import type { PornstarListOptions, VideoListOptions } from './types/ListOptions'
+import type { ModelVideoListOptions, PornstarListOptions, VideoListOptions } from './types/ListOptions'
 import type { RequestInit } from 'node-fetch'
 
 export * from './types'
@@ -143,6 +143,15 @@ export class PornHub {
      */
     model(urlOrName: string) {
         return modelPage(this.engine, urlOrName)
+    }
+
+    /**
+     * Get list of model's uploaded videos
+     * @param urlOrName Model name or page url
+     * @param options Options including page number
+     */
+    modelVideos(urlOrName: string, options: ModelVideoListOptions = {}) {
+        return modelUploadedVideos(this.engine, urlOrName, options)
     }
 
     /**

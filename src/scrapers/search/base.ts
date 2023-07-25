@@ -4,11 +4,11 @@ import type { CheerioAPI } from 'cheerio'
 export function parsePaging($: CheerioAPI): Paging {
     const current = Number.parseInt($('li.page_current').text())
     const nextPage = $('li.page_next')
-    const maxPage = nextPage.length ? Number.parseInt($('li.page_next').prev('li').text()) : current
+    const maxPage = !nextPage.length || nextPage.hasClass('disabled') ? current : Number.parseInt(nextPage.prev('li').text())
     return {
         current,
         maxPage,
-        isEnd: !nextPage.length,
+        isEnd: !nextPage.length || nextPage.hasClass('disabled'),
     }
 }
 

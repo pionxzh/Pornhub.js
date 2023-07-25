@@ -2,7 +2,12 @@ import { Route } from '../../apis'
 import { getAttribute, getCheerio, getDataAttribute } from '../../utils/cheerio'
 import { parseReadableNumber } from '../../utils/number'
 import { UrlParser } from '../../utils/url'
+import { parseCounting, parsePaging } from '../search/base'
+import { parseVideoResult } from '../search/video'
 import type { Engine } from '../../core/engine'
+import type { Counting, Paging } from '../../types'
+import type { ModelVideoListOptions } from '../../types/ListOptions'
+import type { VideoListResult } from '../search/video'
 import type { CheerioAPI } from 'cheerio'
 
 export interface ModelPage {
@@ -56,6 +61,8 @@ export interface ModelPage {
         modelhub?: string
         amazonWishList?: string
     }
+
+    mostRecentVideos: VideoListResult[]
 }
 
 const defaultMapper = (value: string) => value
@@ -202,6 +209,25 @@ export async function modelPage(engine: Engine, urlOrName: string): Promise<Mode
     return parseInfo($)
 }
 
+export async function modelUploadedVideos(engine: Engine, urlOrName: string, options: ModelVideoListOptions): Promise<{
+    data: VideoListResult[]
+    paging: Paging
+    counting: Counting
+}> {
+    const name = UrlParser.getModelName(urlOrName)
+    if (!name) throw new Error(`Invalid model input: ${urlOrName}`)
+
+    const url = Route.modelVideosPage(name, options.page ?? 1)
+    const html = await engine.request.raw(url)
+    const $ = getCheerio(html)
+
+    return {
+        data: parseVideoResult($, '.videoUList'),
+        paging: parsePaging($),
+        counting: parseCounting($),
+    }
+}
+
 function parseInfo($: CheerioAPI): ModelPage {
     const infoPieces = $('div.infoPiece').toArray()
     const info = Object.fromEntries(infoPieces.map((el) => {
@@ -277,6 +303,8 @@ function parseInfo($: CheerioAPI): ModelPage {
             || getAttribute<string>($('.socialList a:has(.amazonWLIcon)'), 'href'),
     }
 
+    const mostRecentVideos = parseVideoResult($, '.mostRecentPornstarVideos')
+
     return {
         name,
         about,
@@ -293,5 +321,6 @@ function parseInfo($: CheerioAPI): ModelPage {
         taggedVideoCount,
         ...info,
         socials,
+        mostRecentVideos,
     } as ModelPage
 }

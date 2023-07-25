@@ -22,5 +22,6 @@ describe('Video Info', () => {
 
         expect(result.pornstars).to.be.empty
         expect(result.categories.length).to.be.at.least(10)
+        expect(result.uploadDate).not.to.be.null
     })
 })

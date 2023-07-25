@@ -40,6 +40,7 @@ export interface VideoPage {
     tags: string[]
     pornstars: string[]
     categories: string[]
+    uploadDate: Date
 }
 
 export async function videoPage(engine: Engine, urlOrId: string): Promise<VideoPage> {
@@ -88,6 +89,8 @@ export function parseByDom(html: string, $: CheerioAPI) {
     const durationMeta = $('head meta[property="video:duration"]')
     const duration = +getAttribute<number>(durationMeta, 'content', 0)
     const durationFormatted = toHHMMSS(duration)
+    const ldPlusJson = $('head script[type="application/ld+json"]')
+    const uploadDate = new Date(JSON.parse(ldPlusJson.text()).uploadDate)
 
     return {
         title,
@@ -103,5 +106,6 @@ export function parseByDom(html: string, $: CheerioAPI) {
         categories,
         duration,
         durationFormatted,
+        uploadDate,
     }
 }

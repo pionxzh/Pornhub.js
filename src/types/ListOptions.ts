@@ -47,3 +47,7 @@ export type PornstarListOptions = {
     order: 'Most Viewed'
     timeRange?: PornstarSearchViewedPeriod
 })
+
+export interface ModelVideoListOptions {
+    page?: number
+}

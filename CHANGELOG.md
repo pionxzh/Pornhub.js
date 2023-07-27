@@ -1,5 +1,22 @@
 # Changelog
 
+## [1.7.0](https://github.com/pionxzh/Pornhub.js/compare/v1.6.0...v1.7.0) (2023-07-27)
+
+
+### Features
+
+* add `uploadDate` to VideoPage ([#76](https://github.com/pionxzh/Pornhub.js/issues/76)) ([6d42235](https://github.com/pionxzh/Pornhub.js/commit/6d422352916178ec64418968f15520a0bdfe11a8))
+* add most recent uploaded video list to ModelPage, add method to get all model videos, fix Pager.isEnd ([#75](https://github.com/pionxzh/Pornhub.js/issues/75)) ([4e7880d](https://github.com/pionxzh/Pornhub.js/commit/4e7880d7c6ded73082aebaa301a0d850932cbdd5))
+* expose cookie manipulation API set ([6c72ca7](https://github.com/pionxzh/Pornhub.js/commit/6c72ca7da3641ebde03243ebf8a0609ab0b4f60b))
+
+
+### Bug Fixes
+
+* add cookies for age confirmation bypass ([a3a6217](https://github.com/pionxzh/Pornhub.js/commit/a3a621778574ab9a72bb4274d1fda90c4e4519e9))
+* add missing `url` for `randomVideo` ([8a3b17f](https://github.com/pionxzh/Pornhub.js/commit/8a3b17f6d4ef47c81d56c98c4e6d60c9f2f405a3))
+* error handling for ld+json parsing ([e62a063](https://github.com/pionxzh/Pornhub.js/commit/e62a063c0f473bb990bf6dc7117bef834daa6554))
+* prevent NaN in paging ([b3435f2](https://github.com/pionxzh/Pornhub.js/commit/b3435f2a8287f521f3d17277cbf20500cd6e7de0))
+
 ## [1.6.0](https://github.com/pionxzh/Pornhub.js/compare/v1.5.1...v1.6.0) (2023-07-20)
 
 

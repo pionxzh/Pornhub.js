@@ -16,8 +16,11 @@ export class Engine {
         this.request.setHeader('User-Agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36')
 
         this.request.setCookie('platform', 'pc')
-        // bypass age confirmation for european users
+        // bypass age confirmation
         this.request.setCookie('accessAgeDisclaimerPH', '1')
+        this.request.setCookie('accessAgeDisclaimerUK', '1')
+        this.request.setCookie('accessPH', '1')
+        this.request.setCookie('age_verified', '1')
         // disable AtatusJs (RUM and error tracking)
         this.request.setCookie('atatusScript', 'hide')
         // disable cookie banner

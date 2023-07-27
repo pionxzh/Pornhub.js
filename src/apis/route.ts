@@ -54,7 +54,7 @@ export const Route = {
         return urlcat(BASE_URL, '/model/:name', { name })
     },
     modelVideosPage(name: string, page: number) {
-        return urlcat(BASE_URL, '/model/:name/videos?page=:page', { name, page })
+        return urlcat(BASE_URL, '/model/:name/videos', { name, page })
     },
     channelPage(name: string) {
         return urlcat(BASE_URL, '/channels/:name', { name })

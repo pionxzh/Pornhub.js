@@ -18,6 +18,7 @@ export async function randomPage(engine: Engine): Promise<VideoPage> {
 
     return {
         id,
+        url: Route.videoPage(id),
         ...parseByDom(html, $),
     }
 }

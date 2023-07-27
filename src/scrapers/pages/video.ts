@@ -89,8 +89,6 @@ export function parseByDom(html: string, $: CheerioAPI) {
     const durationMeta = $('head meta[property="video:duration"]')
     const duration = +getAttribute<number>(durationMeta, 'content', 0)
     const durationFormatted = toHHMMSS(duration)
-    const ldPlusJson = $('head script[type="application/ld+json"]')
-    const uploadDate = new Date(JSON.parse(ldPlusJson.text()).uploadDate)
 
     return {
         title,
@@ -106,6 +104,22 @@ export function parseByDom(html: string, $: CheerioAPI) {
         categories,
         duration,
         durationFormatted,
-        uploadDate,
+        ...parseByLdJson($),
+    }
+}
+
+function parseByLdJson($: CheerioAPI) {
+    try {
+        const ldPlusJson = JSON.parse($('head script[type="application/ld+json"]').first().text())
+        const uploadDate = new Date(ldPlusJson.uploadDate)
+        return {
+            uploadDate,
+        }
+    }
+    catch (error) {
+        console.error('Failed to parse ld+json', error)
+        return {
+            uploadDate: new Date(0),
+        }
     }
 }

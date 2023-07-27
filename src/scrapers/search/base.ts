@@ -2,13 +2,14 @@ import type { Counting, Paging } from '../../types'
 import type { CheerioAPI } from 'cheerio'
 
 export function parsePaging($: CheerioAPI): Paging {
-    const current = Number.parseInt($('li.page_current').text())
+    const current = Number.parseInt($('li.page_current').text()) || 1
     const nextPage = $('li.page_next')
-    const maxPage = !nextPage.length || nextPage.hasClass('disabled') ? current : Number.parseInt(nextPage.prev('li').text())
+    const isEnd = !nextPage.length || nextPage.hasClass('disabled')
+    const maxPage = isEnd ? current : (Number.parseInt(nextPage.prev('li').text()) || 1)
     return {
         current,
         maxPage,
-        isEnd: !nextPage.length || nextPage.hasClass('disabled'),
+        isEnd,
     }
 }
 

@@ -59,8 +59,20 @@ export class PornHub {
         this.engine.request.setHeader(key, value)
     }
 
+    getCookies() {
+        return this.engine.request.getCookies()
+    }
+
+    getCookie(key: string) {
+        return this.engine.request.getCookie(key)
+    }
+
     setCookie(key: string, value: any) {
         this.engine.request.setCookie(key, value)
+    }
+
+    deleteCookie(key: string) {
+        this.engine.request.deleteCookie(key)
     }
 
     /**

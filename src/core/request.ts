@@ -24,8 +24,20 @@ export class Request {
         return Array.from(this._cookie).map(([k, v]) => `${encodeURIComponent(k)}=${encodeURIComponent(v)}`).join('; ')
     }
 
+    getCookies(): Record<string, string> {
+        return Object.fromEntries(this._cookie)
+    }
+
+    getCookie(key: string) {
+        return this._cookie.get(key)
+    }
+
     setCookie(key: string, value: any) {
         this._cookie.set(key, value)
+    }
+
+    deleteCookie(key: string) {
+        this._cookie.delete(key)
     }
 
     async checkStatus(res: Response) {

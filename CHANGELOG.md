@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.1](https://github.com/pionxzh/Pornhub.js/compare/v1.7.0...v1.7.1) (2023-07-28)
+
+
+### Bug Fixes
+
+* fix request might not bring cookies correctly ([044709c](https://github.com/pionxzh/Pornhub.js/commit/044709c6a7d2937a8b1c6d8984e389d23f00d481))
+
 ## [1.7.0](https://github.com/pionxzh/Pornhub.js/compare/v1.6.0...v1.7.0) (2023-07-27)
 
 

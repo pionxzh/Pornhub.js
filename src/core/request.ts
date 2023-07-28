@@ -5,12 +5,12 @@ import { getCheerio } from '../utils/cheerio'
 import { HttpStatusError, IllegalError } from '../utils/error'
 import type { HeadersInit, RequestInit, Response } from 'node-fetch'
 
-const debug = createDebug('request')
+const debug = createDebug('REQUEST')
 
 export class Request {
-    _agent: RequestInit['agent']
-    _headers: Record<string, string> = {}
-    _cookie: Map<any, any> = new Map()
+    private _agent: RequestInit['agent']
+    private _headers: Record<string, string> = {}
+    private _cookie: Map<any, any> = new Map()
 
     setAgent(agent: RequestInit['agent']) {
         this._agent = agent
@@ -20,7 +20,7 @@ export class Request {
         this._headers[key] = value
     }
 
-    get cookie() {
+    private get cookieString() {
         return Array.from(this._cookie).map(([k, v]) => `${encodeURIComponent(k)}=${encodeURIComponent(v)}`).join('; ')
     }
 
@@ -40,7 +40,7 @@ export class Request {
         this._cookie.delete(key)
     }
 
-    async checkStatus(res: Response) {
+    private async _checkStatus(res: Response) {
         if (res.ok) return res
 
         if (res.status === 404) {
@@ -63,29 +63,24 @@ export class Request {
         return Promise.reject(new HttpStatusError(`${res.status} ${res.statusText} at ${res.url}`))
     }
 
-    parseCookieItem(str: string) {
+    private _parseCookieItem(str: string) {
         if (str.includes(';')) str = str.split(';')[0]
 
         return str.split('=')
     }
 
-    handleSetCookie(res: Response) {
+    private _handleSetCookie(res: Response) {
         if (!res.headers.raw()['set-cookie']) return res
 
         res.headers.raw()['set-cookie'].forEach((item) => {
-            const [key, value] = this.parseCookieItem(item)
+            const [key, value] = this._parseCookieItem(item)
             this._cookie.set(key, value)
         })
 
         return res
     }
 
-    toJson(res: Response) {
-        const contentType = res.headers.get('content-type') || ''
-        return contentType.includes('json') ? res.json() : res.text()
-    }
-
-    buildParams<U extends Record<string, any>>(data: U) {
+    private _buildParams<U extends Record<string, any>>(data: U) {
         const params = new URLSearchParams()
         Object.keys(data).forEach((key) => {
             params.append(key, data[key])
@@ -93,7 +88,7 @@ export class Request {
         return params
     }
 
-    buildRequest<U extends Record<string, any>, T>(method: 'get' | 'post' | 'post-form', url: string, data?: U): Promise<T> {
+    private _buildRequest<U extends Record<string, any>>(method: 'get' | 'post' | 'post-form', url: string, data?: U) {
         const headers: HeadersInit = {}
         const opts: RequestInit = { method, headers }
 
@@ -105,45 +100,45 @@ export class Request {
         if (method === 'post-form') {
             // headers['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8'
             opts.method = 'post'
-            if (data) opts.body = this.buildParams<U>(data)
+            if (data) opts.body = this._buildParams<U>(data)
         }
 
         return this.fetch(url, opts)
-            .then(res => this.toJson(res) as T)
-            .catch(err => Promise.reject(err))
     }
 
-    fetch(url: string, opts: RequestInit = {}): Promise<Response> {
+    async fetch(url: string, opts: RequestInit = {}): Promise<Response> {
         const headers = Object.assign({}, this._headers, opts.headers, {
-            cookie: this.cookie,
+            cookie: this.cookieString,
         })
 
-        return fetch(url, {
+        const method = opts.method?.toUpperCase() || 'GET'
+        debug(`${method} ${url}`)
+
+        const res = await fetch(url, {
             ...opts,
             headers,
             ...this._agent && { agent: this._agent },
         })
-            .then(res => this.checkStatus(res))
-            .then(res => this.handleSetCookie(res))
+
+        if (res.url !== url) {
+            debug(`Redirected from ${url} to ${res.url}`)
+        }
+
+        await this._checkStatus(res)
+        this._handleSetCookie(res)
+
+        return res
     }
 
-    get<T>(url: string): Promise<T> {
-        debug(`GET ${url}`)
-        return this.buildRequest('get', url)
+    get(url: string) {
+        return this._buildRequest('get', url)
     }
 
-    post<T, U extends object = any>(url: string, data: U): Promise<T> {
-        debug(`POST ${url}`)
-        return this.buildRequest('post', url, data)
+    post<U extends object = any>(url: string, data: U) {
+        return this._buildRequest('post', url, data)
     }
 
-    postForm<T, U extends object = any>(url: string, data: U): Promise<T> {
-        debug(`POST ${url}`)
-        return this.buildRequest('post-form', url, data)
-    }
-
-    raw(url: string): Promise<string> {
-        debug(`GET ${url}`)
-        return this.buildRequest('get', url)
+    postForm<U extends object = any>(url: string, data: U) {
+        return this._buildRequest('post-form', url, data)
     }
 }

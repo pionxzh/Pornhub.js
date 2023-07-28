@@ -12,7 +12,8 @@ export async function recommended(engine: Engine, options: RecommendedOptions): 
     paging: Paging
 }> {
     const url = Route.recommendedPage(options)
-    const html = await engine.request.raw(url)
+    const res = await engine.request.get(url)
+    const html = await res.text()
     const $ = getCheerio(html)
 
     return {

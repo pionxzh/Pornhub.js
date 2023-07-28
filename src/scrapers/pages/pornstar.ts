@@ -200,7 +200,8 @@ export async function pornstarPage(engine: Engine, urlOrName: string): Promise<P
     if (!name) throw new Error(`Invalid pornstar input: ${urlOrName}`)
 
     const url = Route.pornstarPage(name)
-    const html = await engine.request.raw(url)
+    const res = await engine.request.get(url)
+    const html = await res.text()
     const $ = getCheerio(html)
 
     return parseInfo($)

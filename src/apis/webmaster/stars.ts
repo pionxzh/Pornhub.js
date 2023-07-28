@@ -13,7 +13,8 @@ export interface WebmasterStar {
 
 export async function stars(engine: Engine): Promise<string[]> {
     try {
-        const result = await engine.request.get<WebmasterStars>(WebmasterRoute.stars())
+        const res = await engine.request.get(WebmasterRoute.stars())
+        const result = await res.json() as WebmasterStars
         return result.stars.map(x => x.star.star_name)
     }
     catch (err) {

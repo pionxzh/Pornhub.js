@@ -12,7 +12,8 @@ export interface DeletedVideo {
 
 export async function deleted(engine: Engine, page: number): Promise<DeletedVideo[]> {
     try {
-        const result = await engine.request.get<WebmasterDeleted>(WebmasterRoute.deletedVideos(page))
+        const res = await engine.request.get(WebmasterRoute.deletedVideos(page))
+        const result = await res.json() as WebmasterDeleted
         return result.videos
     }
     catch (err) {

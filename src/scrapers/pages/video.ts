@@ -46,7 +46,8 @@ export interface VideoPage {
 export async function videoPage(engine: Engine, urlOrId: string): Promise<VideoPage> {
     const id = UrlParser.getVideoID(urlOrId)
     const url = Route.videoPage(id)
-    const html = await engine.request.raw(url)
+    const res = await engine.request.get(url)
+    const html = await res.text()
     const $ = getCheerio(html)
 
     return {

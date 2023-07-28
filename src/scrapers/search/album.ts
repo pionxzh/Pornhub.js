@@ -19,7 +19,8 @@ export async function albumSearch(engine: Engine, keyword: string, options: Albu
     counting: Counting
 }> {
     const url = Route.albumSearch(keyword, options)
-    const html = await engine.request.raw(url)
+    const res = await engine.request.get(url)
+    const html = await res.text()
     const $ = getCheerio(html)
 
     return {

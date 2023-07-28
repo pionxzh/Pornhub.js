@@ -16,7 +16,8 @@ export interface Category {
 
 export async function categories(engine: Engine): Promise<Category[]> {
     try {
-        const result = await engine.request.get<WebmasterCategory>(WebmasterRoute.categories())
+        const res = await engine.request.get(WebmasterRoute.categories())
+        const result = await res.json() as WebmasterCategory
         return result.categories.sort((a, b) => +a.id - +b.id)
     }
     catch (err) {

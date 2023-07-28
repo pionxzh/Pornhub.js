@@ -17,7 +17,8 @@ export type WebmasterVideoIsActive =
 export async function video_is_active(engine: Engine, urlOrId: string): Promise<boolean> {
     try {
         const id = UrlParser.getVideoID(urlOrId)
-        const result = await engine.request.get<WebmasterVideoIsActive>(WebmasterRoute.isVideoActive(id))
+        const res = await engine.request.get(WebmasterRoute.isVideoActive(id))
+        const result = await res.json() as WebmasterVideoIsActive
 
         if ('code' in result) throw new Error(result.message)
 

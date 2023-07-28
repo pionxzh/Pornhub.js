@@ -23,7 +23,8 @@ export interface AlbumPage {
 export async function albumPage(engine: Engine, urlOrId: string): Promise<AlbumPage> {
     const id = UrlParser.getAlbumID(urlOrId)
     const url = Route.albumPage(id)
-    const html = await engine.request.raw(url)
+    const res = await engine.request.get(url)
+    const html = await res.text()
     const $ = getCheerio(html)
 
     return {

@@ -6,10 +6,11 @@ import type { AutoCompleteResponse } from '../types/AutoComplete'
 
 export async function getAutoComplete(engine: Engine, keyword: string, options: AutoCompleteOptions) {
     const token = options.token ?? await getToken(engine)
-    const result = await engine.request.get<AutoCompleteResponse>(Route.autocomplete(keyword, {
+    const res = await engine.request.get(Route.autocomplete(keyword, {
         ...options,
         token,
     }))
+    const result = await res.json() as AutoCompleteResponse
 
     return {
         ...result,

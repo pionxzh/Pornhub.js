@@ -16,7 +16,8 @@ export type WebmasterEmbed =
 export async function video_embed_code(engine: Engine, urlOrId: string): Promise<string | null> {
     try {
         const id = UrlParser.getVideoID(urlOrId)
-        const result = await engine.request.get<WebmasterEmbed>(WebmasterRoute.video_embed_code(id))
+        const res = await engine.request.get(WebmasterRoute.video_embed_code(id))
+        const result = await res.json() as WebmasterEmbed
 
         if ('code' in result) throw new Error(result.message)
 

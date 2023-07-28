@@ -13,7 +13,8 @@ export async function videoList(engine: Engine, options: VideoListOptions): Prom
     counting: Counting
 }> {
     const url = Route.videoList(options)
-    const html = await engine.request.raw(url)
+    const res = await engine.request.get(url)
+    const html = await res.text()
     const $ = getCheerio(html)
 
     return {

@@ -24,7 +24,8 @@ export async function pornstarList(engine: Engine, options: PornstarListOptions)
     paging: Paging
 }> {
     const url = Route.pornstarList(options)
-    const html = await engine.request.raw(url)
+    const res = await engine.request.get(url)
+    const html = await res.text()
     const $ = getCheerio(html)
 
     return {

@@ -15,7 +15,8 @@ export interface DetailedStar {
 
 export async function stars_detailed(engine: Engine): Promise<DetailedStar[]> {
     try {
-        const result = await engine.request.get<WebmasterStarsDetailed>(WebmasterRoute.stars_detailed())
+        const res = await engine.request.get(WebmasterRoute.stars_detailed())
+        const result = await res.json() as WebmasterStarsDetailed
         return result.stars.map(x => x.star)
     }
     catch (err) {

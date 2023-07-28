@@ -21,7 +21,8 @@ export async function gifSearch(engine: Engine, keyword: string, options: GifSea
     counting: Counting
 }> {
     const url = Route.gifSearch(keyword, options)
-    const html = await engine.request.raw(url)
+    const res = await engine.request.get(url)
+    const html = await res.text()
     const $ = getCheerio(html)
 
     return {

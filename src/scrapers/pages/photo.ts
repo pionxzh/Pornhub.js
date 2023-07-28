@@ -23,7 +23,8 @@ export interface PhotoPage {
 export async function photoPage(engine: Engine, urlOrId: string): Promise<PhotoPage> {
     const id = UrlParser.getPhotoID(urlOrId)
     const url = Route.photoPage(id)
-    const html = await engine.request.raw(url)
+    const res = await engine.request.get(url)
+    const html = await res.text()
     const $ = getCheerio(html)
 
     return {

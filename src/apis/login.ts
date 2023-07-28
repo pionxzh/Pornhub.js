@@ -45,7 +45,7 @@ async function getToken(engine: Engine) {
     }
 }
 
-function sendLoginForm(engine: Engine, account: string, password: string, token: string, redirect: string) {
+async function sendLoginForm(engine: Engine, account: string, password: string, token: string, redirect: string) {
     const data = {
         redirect,
         token,
@@ -56,5 +56,7 @@ function sendLoginForm(engine: Engine, account: string, password: string, token:
         setSendTip: false,
     }
 
-    return engine.request.postForm<LoginResult>(Route.authenticate(), data)
+    const res = await engine.request.postForm(Route.authenticate(), data)
+    const result = await res.json() as LoginResult
+    return result
 }

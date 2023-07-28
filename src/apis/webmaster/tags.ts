@@ -14,7 +14,8 @@ export interface WebmasterTags {
  */
 export async function tags(engine: Engine, letter: string): Promise<string[]> {
     try {
-        const result = await engine.request.get<WebmasterTags>(WebmasterRoute.tags(letter))
+        const res = await engine.request.get(WebmasterRoute.tags(letter))
+        const result = await res.json() as WebmasterTags
         return result.tags
     }
     catch (err) {

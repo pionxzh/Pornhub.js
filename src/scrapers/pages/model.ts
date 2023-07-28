@@ -203,7 +203,8 @@ export async function modelPage(engine: Engine, urlOrName: string): Promise<Mode
     if (!name) throw new Error(`Invalid model input: ${urlOrName}`)
 
     const url = Route.modelPage(name)
-    const html = await engine.request.raw(url)
+    const res = await engine.request.get(url)
+    const html = await res.text()
     const $ = getCheerio(html)
 
     return parseInfo($)
@@ -218,7 +219,8 @@ export async function modelUploadedVideos(engine: Engine, urlOrName: string, opt
     if (!name) throw new Error(`Invalid model input: ${urlOrName}`)
 
     const url = Route.modelVideosPage(name, options.page ?? 1)
-    const html = await engine.request.raw(url)
+    const res = await engine.request.get(url)
+    const html = await res.text()
     const $ = getCheerio(html)
 
     return {

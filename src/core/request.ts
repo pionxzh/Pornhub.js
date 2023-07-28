@@ -77,7 +77,6 @@ export class Request {
             this._cookie.set(key, value)
         })
 
-        this.setHeader('Cookie', this.cookie)
         return res
     }
 
@@ -115,7 +114,9 @@ export class Request {
     }
 
     fetch(url: string, opts: RequestInit = {}): Promise<Response> {
-        const headers = Object.assign({}, this._headers, opts.headers)
+        const headers = Object.assign({}, this._headers, opts.headers, {
+            cookie: this.cookie,
+        })
 
         return fetch(url, {
             ...opts,

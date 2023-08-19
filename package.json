@@ -54,7 +54,7 @@
   "dependencies": {
     "cheerio": "1.0.0-rc.12",
     "debug": "^4.3.4",
-    "node-fetch": "^2.6.12",
+    "node-fetch": "^2.6.13",
     "urlcat": "^3.1.0"
   },
   "devDependencies": {

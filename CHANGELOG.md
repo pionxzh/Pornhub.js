@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.7.2](https://github.com/pionxzh/Pornhub.js/compare/v1.7.1...v1.7.2) (2023-08-26)
+
+
+### Bug Fixes
+
+* **deps:** update dependency node-fetch to ^2.6.13 ([960c5c1](https://github.com/pionxzh/Pornhub.js/commit/960c5c12835ce2e71ba801325f09850ad29c93ad))
+* **deps:** update dependency node-fetch to ^2.7.0 ([66c97ff](https://github.com/pionxzh/Pornhub.js/commit/66c97ff45c0262756ea25b38ef7ffbf95c559904))
+* fix video premium detection ([af6994b](https://github.com/pionxzh/Pornhub.js/commit/af6994bb93d82c965ae8c3d7db1b720c0847dfe2))
+
 ## [1.7.1](https://github.com/pionxzh/Pornhub.js/compare/v1.7.0...v1.7.1) (2023-07-28)
 
 

@@ -71,7 +71,7 @@ export function parseByDom(html: string, $: CheerioAPI) {
         total: totalVote,
         rating: totalVote === 0 ? 0 : Math.round(voteUp / totalVote * 100) / 100,
     }
-    const premium = $('.video-wrapper .ph-icon-badge-premium').length !== 0
+    const premium = $('#videoTitle .ph-icon-badge-premium').length !== 0
     const thumb = getAttribute<string>($('.thumbnail img'), 'src', '')
     const preview = getAttribute<string>($('head meta[property="og:image"]'), 'content', '')
 

@@ -5,12 +5,18 @@ import { getCheerio } from '../utils/cheerio'
 import { HttpStatusError, IllegalError } from '../utils/error'
 import type { HeadersInit, RequestInit, Response } from 'node-fetch'
 
+interface Cookie {
+    value: string
+    expires: Date
+}
+
 const debug = createDebug('REQUEST')
+const nonExpireDate = new Date(9999, 1, 1)
 
 export class Request {
     private _agent: RequestInit['agent']
     private _headers: Record<string, string> = {}
-    private _cookie: Map<any, any> = new Map()
+    private _cookieStore: Map<string, Cookie> = new Map()
 
     setAgent(agent: RequestInit['agent']) {
         this._agent = agent
@@ -21,26 +27,45 @@ export class Request {
         this._headers[key] = value
     }
 
+    private _checkCookieExpired() {
+        const now = Date.now()
+        this._cookieStore.forEach((cookie, key) => {
+            if (cookie.expires.getTime() < now) {
+                debug(`[Cookie] Expired: ${key}`)
+                this._cookieStore.delete(key)
+            }
+        })
+    }
+
     private get cookieString() {
-        return Array.from(this._cookie).map(([k, v]) => `${encodeURIComponent(k)}=${encodeURIComponent(v)}`).join('; ')
+        this._checkCookieExpired()
+        return Array.from(this._cookieStore).map(([k, v]) => `${encodeURIComponent(k)}=${encodeURIComponent(v.value)}`).join('; ')
     }
 
     getCookies(): Record<string, string> {
-        return Object.fromEntries(this._cookie)
+        this._checkCookieExpired()
+        return [...this._cookieStore].reduce((acc, [k, v]) => {
+            acc[k] = v.value
+            return acc
+        }, {} as Record<string, string>)
     }
 
-    getCookie(key: string) {
-        return this._cookie.get(key)
+    getCookie(key: string): string | undefined {
+        this._checkCookieExpired()
+        return this._cookieStore.get(key)?.value
     }
 
-    setCookie(key: string, value: any) {
+    setCookie(key: string, value: string) {
         debug(`[Cookie] Set: ${key}=${value}`)
-        this._cookie.set(key, value)
+        this._cookieStore.set(key, {
+            value,
+            expires: nonExpireDate,
+        })
     }
 
     deleteCookie(key: string) {
         debug(`[Cookie] Del: ${key}`)
-        this._cookie.delete(key)
+        this._cookieStore.delete(key)
     }
 
     private async _checkStatus(res: Response) {
@@ -66,10 +91,20 @@ export class Request {
         return Promise.reject(new HttpStatusError(`${res.status} ${res.statusText} at ${res.url}`))
     }
 
-    private _parseCookieItem(str: string) {
-        if (str.includes(';')) str = str.split(';')[0]
+    private _parseCookieItem(str: string): [string, Cookie] {
+        const [first, ...rest] = str.split(';').map(item => item.trim())
+        const [key, value] = first.split('=')
+        const restAttrs = rest.reduce((acc, item) => {
+            const [k, v] = item.split('=')
+            acc[k.toLowerCase()] = v
+            return acc
+        }, {} as Record<string, string>)
 
-        return str.split('=')
+        let expires = nonExpireDate
+        if (restAttrs['max-age']) expires = new Date(Date.now() + Number(restAttrs['max-age']) * 1000)
+        else if (restAttrs.expires) expires = new Date(restAttrs.expires.split('=')[1])
+
+        return [key, { value, expires }]
     }
 
     private _handleSetCookie(res: Response) {
@@ -77,8 +112,8 @@ export class Request {
 
         res.headers.raw()['set-cookie'].forEach((item) => {
             const [key, value] = this._parseCookieItem(item)
-            debug(`[Cookie] Received Set-Cookie: ${key}=${value}`)
-            this._cookie.set(key, value)
+            debug(`[Cookie] Received Set-Cookie: ${item}`)
+            this._cookieStore.set(key, value)
         })
 
         return res

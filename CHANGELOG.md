@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.7.4](https://github.com/pionxzh/Pornhub.js/compare/v1.7.3...v1.7.4) (2023-08-27)
+
+
+### Bug Fixes
+
+* `set-cookie` should respect `Max-Age` and `Expires` ([d8473db](https://github.com/pionxzh/Pornhub.js/commit/d8473db655b0a4398b9c11abe2c5c3543126d435))
+* fix expires paring ([61368a4](https://github.com/pionxzh/Pornhub.js/commit/61368a4764661be27af0faf86eb4d103778942bb))
+
 ## [1.7.3](https://github.com/pionxzh/Pornhub.js/compare/v1.7.2...v1.7.3) (2023-08-27)
 
 

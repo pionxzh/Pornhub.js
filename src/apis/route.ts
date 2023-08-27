@@ -8,7 +8,7 @@ import type { PornstarListOptions, VideoListOptions } from '../types/ListOptions
 
 export const Route = {
     mainPage() {
-        return BASE_URL
+        return `${BASE_URL}/`
     },
     /**
      * @url https://www.pornhub.com/front/authenticate

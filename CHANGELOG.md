@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.7.3](https://github.com/pionxzh/Pornhub.js/compare/v1.7.2...v1.7.3) (2023-08-27)
+
+
+### Bug Fixes
+
+* improve debug log ([d5c71d3](https://github.com/pionxzh/Pornhub.js/commit/d5c71d37781b80b12673aab643a221d0dbae3426))
+* prevent redirecting when fetching main page ([a11ef07](https://github.com/pionxzh/Pornhub.js/commit/a11ef075769658692c5b4a8a1cb6620d3f5c4f6d))
+* update useragent to Chrome 116 ([a9bc54e](https://github.com/pionxzh/Pornhub.js/commit/a9bc54e18f79dac1174ec43de867b54ab0307eec))
+
 ## [1.7.2](https://github.com/pionxzh/Pornhub.js/compare/v1.7.1...v1.7.2) (2023-08-26)
 
 

@@ -47,9 +47,8 @@ Check [Search](./Search.md) for more information.
 # Get Token
 This method is used to get the token for pornhub's internal API.
 
-For now, this token is only used for [autoComplete](./Search.md#autocomplete) and [searchModel](./Search.md#model-search).
-\
-This library will automatically get a token if it is not set.
+For now, this token is only used for [autoComplete](./Search.md#autocomplete) and [searchModel](./Search.md#model-search).\
+This library will automatically get the token if you don't provide one.
 
 *(optional)* You can cache this token to avoid frequent requests.\
 I'm not sure about the expiration time though.

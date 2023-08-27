@@ -7,10 +7,7 @@ import type { Engine } from '../../core/engine'
 
 export async function randomPage(engine: Engine): Promise<VideoPage> {
     const url = Route.randomPage()
-    const response = await engine.request.fetch(url, {
-        method: 'GET',
-        follow: 3,
-    })
+    const response = await engine.request.fetch(url, { follow: 3 })
     const redirectUrl = response.url
     const id = UrlParser.getVideoID(redirectUrl)
     const html = await response.text()

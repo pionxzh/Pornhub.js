@@ -104,7 +104,7 @@ export class PornHub {
      * You can cache this token to avoid frequent requests (I'm not sure about the expiration time!).
      *
      * For now, this token is only used for `autoComplete` and `searchModel`.
-     * This library will automatically get token if you don't provide it.
+     * This library will automatically get the token if you don't provide one.
      */
     getToken() {
         return getToken(this.engine)

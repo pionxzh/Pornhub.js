@@ -17,6 +17,7 @@ export class Request {
     }
 
     setHeader(key: string, value: string) {
+        if (key !== 'Cookie') debug(`[Header] Set: ${key}=${value}`)
         this._headers[key] = value
     }
 
@@ -33,10 +34,12 @@ export class Request {
     }
 
     setCookie(key: string, value: any) {
+        debug(`[Cookie] Set: ${key}=${value}`)
         this._cookie.set(key, value)
     }
 
     deleteCookie(key: string) {
+        debug(`[Cookie] Del: ${key}`)
         this._cookie.delete(key)
     }
 
@@ -74,6 +77,7 @@ export class Request {
 
         res.headers.raw()['set-cookie'].forEach((item) => {
             const [key, value] = this._parseCookieItem(item)
+            debug(`[Cookie] Received Set-Cookie: ${key}=${value}`)
             this._cookie.set(key, value)
         })
 
@@ -112,13 +116,15 @@ export class Request {
         })
 
         const method = opts.method?.toUpperCase() || 'GET'
-        debug(`${method} ${url}`)
+        debug(`[ RQST ] ${method} ${url}`)
 
         const res = await fetch(url, {
             ...opts,
             headers,
             ...this._agent && { agent: this._agent },
         })
+
+        debug(`[ RESP ] ${method} ${url} ${res.status} ${res.statusText}`)
 
         if (res.url !== url) {
             debug(`Redirected from ${url} to ${res.url}`)

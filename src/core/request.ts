@@ -102,7 +102,7 @@ export class Request {
 
         let expires = nonExpireDate
         if (restAttrs['max-age']) expires = new Date(Date.now() + Number(restAttrs['max-age']) * 1000)
-        else if (restAttrs.expires) expires = new Date(restAttrs.expires.split('=')[1])
+        else if (restAttrs.expires) expires = new Date(restAttrs.expires)
 
         return [key, { value, expires }]
     }
@@ -111,9 +111,9 @@ export class Request {
         if (!res.headers.raw()['set-cookie']) return res
 
         res.headers.raw()['set-cookie'].forEach((item) => {
-            const [key, value] = this._parseCookieItem(item)
             debug(`[Cookie] Received Set-Cookie: ${item}`)
-            this._cookieStore.set(key, value)
+            const [key, cookie] = this._parseCookieItem(item)
+            this._cookieStore.set(key, cookie)
         })
 
         return res

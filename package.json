@@ -1,6 +1,6 @@
 {
   "name": "pornhub.js",
-  "version": "1.7.4",
+  "version": "1.8.0",
   "packageManager": "pnpm@8.8.0",
   "description": "Powerful PornHub API for Node.js",
   "author": "Pionxzh",

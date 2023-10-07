@@ -48,12 +48,27 @@ console.log(video)
   "tags": ["hardcore", "hentai", "memes"],
   "categories": ["HD-Porn", "SFW"],
   "pornstars": [],
-  "videos": [{
-    "quality": "720",
-    "filename": "720P_1500K_161102592.mp4",
-    "extension": "mp4",
-    "url": "..."
-  }]
+  "mediaDefinitions": [
+    {
+      "defaultQuality": true,
+      "format": "hls",
+      "quality": 720,
+      "videoUrl": "https://cv.phncdn.com/videos/.../720P_1500K_.m3u8?validfrom=...&validto=...&rate=...&burst=...&ip=...&ipa=...&hash=..."
+    },
+    {
+      "defaultQuality": false,
+      "format": "hls",
+      "quality": [1080, 720, 480, 240],
+      "videoUrl": "https://cv.phncdn.com/videos/.../480P_600K_.m3u8?validfrom=...&validto=...&rate=...&burst=...&ip=...&ipa=...&hash=..."
+    },
+    {
+      "defaultQuality": false,
+      "format": "hls",
+      "quality": 240,
+      "videoUrl": "https://cv.phncdn.com/videos/.../240P_400K_.m3u8?validfrom=...&validto=...&rate=...&burst=...&ip=...&ipa=...&hash=...",
+      "remote": true
+    }
+  ]
 }
 ```
 </details>
@@ -74,7 +89,8 @@ console.log(video)
 | provider          | `object`        | Video provider/uploader                                                                                                            |
 | provider.username | `string`        | Provider's username                                                                                                                |
 | provider.url      | `string`        | Provider's account page                                                                                                            |
-| ~~videos~~ (*deprecated*) | `Array`         | List of the videos. Sorted by quality(low->hight).                                                                                 |
+| ~~videos~~ (*deprecated*) | `Array`         | List of the videos. Sorted by quality(low->hight).                                                                         |
+| mediaDefinitions  | `Array<object>` | List of the media information. Mostly m3u8 related.                                                                                |
 | tags              | `Array<string>` | example: `['couple', 'kissing']`                                                                                                   |
 | pornstars         | `Array<string>` | example: `['Bob', 'John', 'Emily]`                                                                                                 |
 | categories        | `Array<string>` | example: `['HD-Porn', 'Small-Tits']`                                                                                               |

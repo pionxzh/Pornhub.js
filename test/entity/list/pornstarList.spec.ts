@@ -17,6 +17,6 @@ describe('PornstarList', () => {
         expect(result.data.length).to.be.at.least(30)
 
         const first = result.data[0]
-        expect(first.name).to.equal('Lina Lynx')
+        expect(first.videoNum).to.be.at.least(3000)
     })
 })

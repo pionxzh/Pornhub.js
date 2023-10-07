@@ -6,6 +6,14 @@ import { UrlParser } from '../../utils/url'
 import type { Engine } from '../../core/engine'
 import type { CheerioAPI } from 'cheerio'
 
+export interface MediaDefinition {
+    defaultQuality: boolean | number
+    format: string
+    videoUrl: string
+    quality: number | number[]
+    remote: boolean
+}
+
 export interface VideoPage {
     id: string
     url: string
@@ -29,6 +37,7 @@ export interface VideoPage {
         filename: string
         extension: string
     }>
+    mediaDefinitions: MediaDefinition[]
     provider: {
         username: string
         url: string
@@ -53,6 +62,7 @@ export async function videoPage(engine: Engine, urlOrId: string): Promise<VideoP
     return {
         id,
         url,
+        mediaDefinitions: parseMediaDefinition(html),
         ...parseByDom(html, $),
     }
 }
@@ -123,4 +133,39 @@ function parseByLdJson($: CheerioAPI) {
             uploadDate: new Date(0),
         }
     }
+}
+
+const mediaDefinitionRegex = /{"defaultQuality":(true|false|\d+),"format":"(\w+)","videoUrl":"(.+?)","quality":(("\d+")|(\[[\d,]*\]))(,"remote":(true|false))?}/g
+function parseMediaDefinition(html: string): MediaDefinition[] {
+    const mediaDefinitions: MediaDefinition[] = []
+
+    while (true) {
+        const match = mediaDefinitionRegex.exec(html)
+        if (!match) break
+
+        try {
+            const [, _defaultQuality, format, videoUrl, _quality, ,_qualityArray, , , _remote] = match
+            const defaultQuality = _defaultQuality === 'true'
+                ? true
+                : _defaultQuality === 'false'
+                    ? false
+                    : +_defaultQuality
+            const quality = _qualityArray ? JSON.parse(_qualityArray) as number[] : +_quality
+            const remote = _remote === 'true'
+
+            mediaDefinitions.push({
+                defaultQuality,
+                format,
+                videoUrl,
+                quality,
+                remote,
+            })
+        }
+        catch (error) {
+            console.warn(`Failed to parse media definition from input: "${match}"`)
+            console.warn(error)
+        }
+    }
+
+    return mediaDefinitions
 }

@@ -18,6 +18,8 @@ describe('Video Info', () => {
         expect(result.provider?.username).toBe('Hansel Grettel')
         expect(result.provider?.url).toBe('/model/hansel-grettel')
 
+        expect(result.mediaDefinitions.length).to.be.at.least(2)
+
         expect(result.tags.length).to.be.at.least(10)
 
         expect(result.pornstars).to.be.empty

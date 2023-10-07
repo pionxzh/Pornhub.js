@@ -86,14 +86,14 @@ export class PornHub {
 
     /**
      * Login with account and password.
-    */
+     */
     login(account: string, password: string) {
         return login(this.engine, account, password)
     }
 
     /**
      * Logout from Pornhub.com.
-    */
+     */
     logout() {
         return logout(this.engine)
     }
@@ -113,7 +113,7 @@ export class PornHub {
     /**
      * Get video information by url/ID
      * @param urlOrId Video ID or page url
-    */
+     */
     async video(urlOrId: string) {
         if (!this.engine.warmedUp) {
             // make a call to the main page to get the cookies.
@@ -128,7 +128,7 @@ export class PornHub {
     /**
      * Get album information by url/ID
      * @param urlOrId Album ID or page url
-    */
+     */
     album(urlOrId: string) {
         return albumPage(this.engine, urlOrId)
     }
@@ -136,7 +136,7 @@ export class PornHub {
     /**
      * Get photo information by url/ID
      * @param urlOrId Photo ID or page url
-    */
+     */
     photo(urlOrId: string) {
         return photoPage(this.engine, urlOrId)
     }
@@ -144,7 +144,7 @@ export class PornHub {
     /**
      * Get pornstar information by url/ID
      * @param urlOrName Pornstar name or page url
-    */
+     */
     pornstar(urlOrName: string) {
         return pornstarPage(this.engine, urlOrName)
     }

@@ -1,29 +1,29 @@
 {
   "compilerOptions": {
     "target": "ES2020",
-    "module": "commonjs",
     "lib": ["ES2020"],
+    "useDefineForClassFields": true,
+    "module": "commonjs",
     "moduleResolution": "Node",
+    "resolveJsonModule": true,
     "types": ["vite/client", "node"],
     "strict": true,
-    "noImplicitAny": true,
     "strictNullChecks": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noEmit": false,
     "outDir": "dist",
     "sourceMap": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
     "esModuleInterop": true,
-    "noEmit": false,
-    "noUnusedLocals": true,
-    "noImplicitReturns": true,
-    "skipLibCheck": true,
-    "useDefineForClassFields": true
+    "isolatedModules": true,
+    "skipLibCheck": true
   },
+  "include": [
+    "src"
+  ],
   "exclude": [
     "node_modules",
     "**/dist"
-  ],
-  "include": [
-    "src"
   ]
 }

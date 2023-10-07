@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.8.0](https://github.com/pionxzh/Pornhub.js/compare/v1.7.4...v1.8.0) (2023-10-07)
+
+
+### Features
+
+* `.video()` now returns `mediaDefinition` as an alternative to `videos` ([ef1069e](https://github.com/pionxzh/Pornhub.js/commit/ef1069e4c1d8516b0041f41015baf6e502890d11)), closes [#90](https://github.com/pionxzh/Pornhub.js/issues/90)
+
 ## [1.7.4](https://github.com/pionxzh/Pornhub.js/compare/v1.7.3...v1.7.4) (2023-08-27)
 
 

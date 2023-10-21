@@ -136,7 +136,7 @@ function parseByLdJson($: CheerioAPI) {
 }
 
 const mediaDefinitionRegex = /{"defaultQuality":(true|false|\d+),"format":"(\w+)","videoUrl":"(.+?)","quality":(("\d+")|(\[[\d,]*\]))(,"remote":(true|false))?}/g
-function parseMediaDefinition(html: string): MediaDefinition[] {
+export function parseMediaDefinition(html: string): MediaDefinition[] {
     const mediaDefinitions: MediaDefinition[] = []
 
     while (true) {

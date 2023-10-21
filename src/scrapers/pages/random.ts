@@ -1,7 +1,7 @@
 import { Route } from '../../apis'
 import { getCheerio } from '../../utils/cheerio'
 import { UrlParser } from '../../utils/url'
-import { parseByDom } from './video'
+import { parseByDom, parseMediaDefinition } from './video'
 import type { VideoPage } from './video'
 import type { Engine } from '../../core/engine'
 
@@ -16,6 +16,7 @@ export async function randomPage(engine: Engine): Promise<VideoPage> {
     return {
         id,
         url: Route.videoPage(id),
+        mediaDefinitions: parseMediaDefinition(html),
         ...parseByDom(html, $),
     }
 }

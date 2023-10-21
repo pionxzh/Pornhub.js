@@ -16,7 +16,6 @@ jobs:
           default-branch: master
           pull-request-title-pattern: 'chore: release ${version}'
 
-      # The logic below handles the npm publication:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0

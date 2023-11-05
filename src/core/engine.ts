@@ -1,9 +1,11 @@
 import { BASE_URL } from '../utils/constant'
+import { Dumper } from './dumper'
 import { Request } from './request'
 
 export class Engine {
     BASE_URL = BASE_URL
     request = new Request()
+    dumper = new Dumper(this.request)
 
     // Flag to indicate whether the engine has visited the main page to get the cookies.
     // See issue: https://github.com/pionxzh/Pornhub.js/issues/27

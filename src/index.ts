@@ -46,10 +46,28 @@ export type { WebmasterTags } from './apis/webmaster/tags'
 export type { WebmasterVideoById } from './apis/webmaster/video_by_id'
 export type { WebmasterVideoIsActive } from './apis/webmaster/video_is_active'
 
+export interface PornHubConfig {
+    /**
+     * Dump response to file for debugging.
+     *
+     * Pass a path string to specify the folder, otherwise it will write to `./_dump`.
+     *
+     * Default to `false`.
+     */
+    dumpPage?: boolean | string
+}
+
 export class PornHub {
-    engine = new Engine()
     route = Route
+    engine = new Engine()
     webMaster = new WebMaster(this.engine)
+
+    constructor(config: PornHubConfig = {}) {
+        if (config.dumpPage) {
+            const dumpPagePath = typeof config.dumpPage === 'string' ? config.dumpPage : ''
+            this.engine.dumper.enable(dumpPagePath)
+        }
+    }
 
     setAgent(agent: RequestInit['agent']) {
         this.engine.request.setAgent(agent)

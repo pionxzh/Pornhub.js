@@ -3,6 +3,7 @@ import createDebug from 'debug'
 import fetch from 'node-fetch'
 import { getCheerio } from '../utils/cheerio'
 import { HttpStatusError, IllegalError } from '../utils/error'
+import eventEmitter from './eventEmitter'
 import type { HeadersInit, RequestInit, Response } from 'node-fetch'
 
 interface Cookie {
@@ -13,10 +14,24 @@ interface Cookie {
 const debug = createDebug('REQUEST')
 const nonExpireDate = new Date(9999, 1, 1)
 
+// eslint-disable-next-line ts/consistent-type-definitions
+type EventsMap = {
+    responseHTML: {
+        url: URL
+        html: string
+    }
+    responseJSON: {
+        url: URL
+        json: unknown
+    }
+}
+
 export class Request {
     private _agent: RequestInit['agent']
     private _headers: Record<string, string> = {}
     private _cookieStore: Map<string, Cookie> = new Map()
+
+    eventEmitter = eventEmitter<EventsMap>()
 
     setAgent(agent: RequestInit['agent']) {
         this._agent = agent
@@ -145,6 +160,29 @@ export class Request {
         return this.fetch(url, opts)
     }
 
+    private async _handleListener(method: string, response: Response) {
+        if (method !== 'GET') return
+
+        const url = new URL(response.url)
+        const contentType = response.headers.get('content-type') || ''
+
+        if (this.eventEmitter.has('responseHTML')) {
+            if (contentType.includes('application/json')) {
+                const copiedRes = response.clone()
+                const json = await copiedRes.json()
+                this.eventEmitter.emit('responseJSON', { url, json })
+            }
+        }
+
+        if (this.eventEmitter.has('responseJSON')) {
+            if (contentType.includes('text/html')) {
+                const copiedRes = response.clone()
+                const html = await copiedRes.text()
+                this.eventEmitter.emit('responseHTML', { url, html })
+            }
+        }
+    }
+
     async fetch(url: string, opts: RequestInit = {}): Promise<Response> {
         const headers = Object.assign({}, this._headers, opts.headers, {
             cookie: this.cookieString,
@@ -156,7 +194,7 @@ export class Request {
         const res = await fetch(url, {
             ...opts,
             headers,
-            ...this._agent && { agent: this._agent },
+            ...(this._agent && { agent: this._agent }),
         })
 
         debug(`[ RESP ] ${method} ${url} ${res.status} ${res.statusText}`)
@@ -164,6 +202,8 @@ export class Request {
         if (res.url !== url) {
             debug(`Redirected from ${url} to ${res.url}`)
         }
+
+        this._handleListener(method, res)
 
         await this._checkStatus(res)
         this._handleSetCookie(res)

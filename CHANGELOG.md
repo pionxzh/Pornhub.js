@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.10.0](https://github.com/pionxzh/Pornhub.js/compare/v1.9.0...v1.10.0) (2023-11-05)
+
+
+### Features
+
+* support `dumpPage` for debugging ([295b30b](https://github.com/pionxzh/Pornhub.js/commit/295b30b8eb36a5bd8191b0ea72ad665da088cba2))
+
 ## [1.9.0](https://github.com/pionxzh/Pornhub.js/compare/v1.8.0...v1.9.0) (2023-10-21)
 
 

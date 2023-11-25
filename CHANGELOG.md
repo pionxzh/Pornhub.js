@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.10.1](https://github.com/pionxzh/Pornhub.js/compare/v1.10.0...v1.10.1) (2023-11-25)
+
+
+### Bug Fixes
+
+* support non-latin characters in search keyword ([24d364d](https://github.com/pionxzh/Pornhub.js/commit/24d364d0bd82ab345ec0b44397cb60a52052435e))
+
 ## [1.10.0](https://github.com/pionxzh/Pornhub.js/compare/v1.9.0...v1.10.0) (2023-11-05)
 
 

@@ -3,12 +3,10 @@
  * "  luna    +test+1 " => "luna+test+1"
  */
 export function searchify(keyword: string) {
-    return keyword
-        .replace(/[^a-zA-Z0-9\s]/g, ' ')
-        .trim()
-        .split(/\s+/)
-        .join('+')
+    return keyword.trim(); // Now, this won't encode characters like Chinese letters.
 }
+
+
 
 /**
  * ['uncategorized', 'transgender', 'straight', 'misc', 'male', 'gay', 'female']

@@ -29,7 +29,7 @@ export async function videoSearch(engine: Engine, keyword: string, options: Vide
     paging: Paging
     counting: Counting
 }> {
-    const url = Route.videoSearch(keyword, options)
+    const url = Route.videoSearch(keyword, options);;
     const res = await engine.request.get(url)
     const html = await res.text()
     const $ = getCheerio(html)

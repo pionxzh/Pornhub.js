@@ -16,6 +16,6 @@ describe('VideoList', () => {
         expect(result.data.length).to.equal(32)
 
         const first = result.data[0]
-        expect(first.title).to.equal('BBW Bitch Loved getting Pumped by BBC')
+        expect(first.title).to.equal('Girls4Cock.Com *** Little Blonde Takes Mega Cocks in her AssHole')
     })
 })

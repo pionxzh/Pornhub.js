@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.11.0](https://github.com/pionxzh/Pornhub.js/compare/v1.10.1...v1.11.0) (2024-04-16)
+
+
+### Features
+
+* support `mostRecentVideos` in `.pornstar` ([aab8282](https://github.com/pionxzh/Pornhub.js/commit/aab8282ce9f5f5f4eb1098b0df8639ae990c28b3))
+
+
+### Bug Fixes
+
+* fix failing to parse twitter social link issue ([a312367](https://github.com/pionxzh/Pornhub.js/commit/a3123677fe1b03afcc2fdc8bb93d7280003a7998))
+
 ## [1.10.1](https://github.com/pionxzh/Pornhub.js/compare/v1.10.0...v1.10.1) (2023-11-25)
 
 

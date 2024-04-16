@@ -2,6 +2,7 @@ import { Route } from '../../apis'
 import { getAttribute, getCheerio, getDataAttribute } from '../../utils/cheerio'
 import { parseReadableNumber } from '../../utils/number'
 import { UrlParser } from '../../utils/url'
+import { type VideoListResult, parseVideoResult } from '../search/video'
 import type { Engine } from '../../core/engine'
 import type { CheerioAPI } from 'cheerio'
 
@@ -57,6 +58,8 @@ export interface PornstarPage {
         modelhub?: string
         amazonWishList?: string
     }
+
+    mostRecentVideos: VideoListResult[]
 }
 
 const defaultMapper = (value: string) => value
@@ -292,6 +295,8 @@ function parseInfo($: CheerioAPI): PornstarPage {
             || getAttribute<string>($('.socialList a:has(.amazonWLIcon)'), 'href'),
     }
 
+    const mostRecentVideos = parseVideoResult($, '.mostRecentPornstarVideos')
+
     return {
         name,
         about,
@@ -308,5 +313,6 @@ function parseInfo($: CheerioAPI): PornstarPage {
         taggedVideoCount,
         ...info,
         socials,
+        mostRecentVideos,
     } as PornstarPage
 }

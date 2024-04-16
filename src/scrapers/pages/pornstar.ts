@@ -284,7 +284,7 @@ function parseInfo($: CheerioAPI): PornstarPage {
 
     const socials = {
         website: getAttribute<string>($('.socialList a:has(.officialSiteIcon)'), 'href'),
-        twitter: getAttribute<string>($('.socialList a:has(.twitterIcon)'), 'href'),
+        twitter: getAttribute<string>($('.socialList a:has(.ph-icon-twitterX)'), 'href'),
         instagram: getAttribute<string>($('.socialList a:has(.instagramIcon)'), 'href'),
         snapchat: getAttribute<string>($('.socialList a:has(.snapchatIcon)'), 'href'),
         modelhub: getAttribute<string>($('.socialList a:has(.modelhubIcon)'), 'href'),

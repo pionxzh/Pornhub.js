@@ -20,6 +20,7 @@ describe('Pornstar Info', () => {
             uploadedVideoCount,
             taggedVideoCount,
             mostRecentVideos,
+            uploadedVideos,
             ...restResult
         } = result
 
@@ -36,6 +37,8 @@ describe('Pornstar Info', () => {
         expect(taggedVideoCount).not.toBe(0)
         expect(mostRecentVideos).not.to.be.null
         expect(mostRecentVideos.length).not.to.be.equal(0)
+        expect(uploadedVideos).not.to.be.null
+        expect(uploadedVideos.length).not.to.be.equal(0)
 
         expect(restResult).toMatchSnapshot()
     })

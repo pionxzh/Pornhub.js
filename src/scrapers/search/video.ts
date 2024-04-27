@@ -3,10 +3,11 @@ import { Route } from '../../apis'
 import { getAttribute, getCheerio } from '../../utils/cheerio'
 import { BASE_URL } from '../../utils/constant'
 import { UrlParser } from '../../utils/url'
+import { nonNullable } from '../../utils/utils'
 import { parseCounting, parsePaging } from './base'
 import type { Engine } from '../../core/engine'
 import type { Counting, Paging, VideoSearchOptions } from '../../types'
-import type { CheerioAPI } from 'cheerio'
+import type { Cheerio, CheerioAPI, Element } from 'cheerio'
 
 export interface VideoListResult {
     title: string
@@ -41,14 +42,17 @@ export async function videoSearch(engine: Engine, keyword: string, options: Vide
     }
 }
 
-export function parseVideoResult($: CheerioAPI, container: string) {
-    const list = $(`${container} li.videoBox`)
+export function parseVideoResult($: CheerioAPI, container: string | Cheerio<Element>) {
+    const list = typeof container === 'string' ? $(`${container} li.videoBox`) : container.find('li.videoBox')
 
     const result = list.map((_, el) => {
         const item = $(el)
         const thumb = item.find('.linkVideoThumb').eq(0)
         const title = getAttribute<string>(thumb, 'title', '')
         const path = getAttribute<string>(thumb, 'href', '')
+        // premium videos have no path
+        if (path === 'javascript:void(0)') return null
+
         const url = urlcat(BASE_URL, path)
         const id = UrlParser.getVideoID(url)
         const img = item.find('img')
@@ -65,7 +69,7 @@ export function parseVideoResult($: CheerioAPI, container: string) {
             freePremium: !!item.find('.marker-overlays .phpFreeBlock').length,
             preview,
         }
-    }).get()
+    }).get().filter(nonNullable)
 
     return result
 }

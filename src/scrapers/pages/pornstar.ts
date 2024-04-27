@@ -4,7 +4,7 @@ import { parseReadableNumber } from '../../utils/number'
 import { UrlParser } from '../../utils/url'
 import { type VideoListResult, parseVideoResult } from '../search/video'
 import type { Engine } from '../../core/engine'
-import type { CheerioAPI } from 'cheerio'
+import type { Cheerio, CheerioAPI, Element } from 'cheerio'
 
 export interface PornstarPage {
     name: string
@@ -60,6 +60,7 @@ export interface PornstarPage {
     }
 
     mostRecentVideos: VideoListResult[]
+    uploadedVideos: VideoListResult[]
 }
 
 const defaultMapper = (value: string) => value
@@ -263,20 +264,23 @@ function parseInfo($: CheerioAPI): PornstarPage {
         })
         .filter(item => item.name && item.url)
 
+    let uploadedVideoEl: Cheerio<Element> | null = null
+    let taggedVideoEl: Cheerio<Element> | null = null
     let uploadedVideoCount = 0
     let taggedVideoCount = 0
     if (verified) {
-        const uploadedVideoCountEl = $('.pornstarUploadedVideos > .pornstarVideosCounter')
-        uploadedVideoCount = parseVideoCount(uploadedVideoCountEl.text().trim())
+        uploadedVideoEl = $('.pornstarUploadedVideos')
+        uploadedVideoCount = parseVideoCount(uploadedVideoEl.find('.pornstarVideosCounter').text().trim())
 
-        const taggedVideoCountEl = $('.mostRecentPornstarVideos > .pornstarVideosCounter')
-        taggedVideoCount = parseVideoCount(taggedVideoCountEl.text().trim())
+        taggedVideoEl = $('.mostRecentPornstarVideos')
+        taggedVideoCount = parseVideoCount(taggedVideoEl.find('.pornstarVideosCounter').text().trim())
     }
     else {
         const videoCounter = $('.pornstarVideosCounter').first()
         if (videoCounter.length) {
             const title = videoCounter.parent().find('.sectionTitle > h2').first().text().trim()
             if (title.endsWith('Tagged Videos')) {
+                taggedVideoEl = videoCounter.parent()
                 taggedVideoCount = parseVideoCount(videoCounter.text().trim())
             }
 
@@ -295,7 +299,8 @@ function parseInfo($: CheerioAPI): PornstarPage {
             || getAttribute<string>($('.socialList a:has(.amazonWLIcon)'), 'href'),
     }
 
-    const mostRecentVideos = parseVideoResult($, '.mostRecentPornstarVideos')
+    const uploadedVideos = uploadedVideoEl ? parseVideoResult($, uploadedVideoEl) : []
+    const mostRecentVideos = taggedVideoEl ? parseVideoResult($, taggedVideoEl) : []
 
     return {
         name,
@@ -313,6 +318,7 @@ function parseInfo($: CheerioAPI): PornstarPage {
         taggedVideoCount,
         ...info,
         socials,
+        uploadedVideos,
         mostRecentVideos,
     } as PornstarPage
 }

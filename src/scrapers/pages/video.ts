@@ -135,6 +135,13 @@ function parseByLdJson($: CheerioAPI) {
     }
 }
 
+/**
+ * Handle '"270"' -> 270
+ */
+function parseStringNumber(str: string): number {
+    return +str.replace(/"/g, '')
+}
+
 const mediaDefinitionRegex = /{"defaultQuality":(true|false|\d+),"format":"(\w+)","videoUrl":"(.+?)","quality":(("\d+")|(\[[\d,]*\]))(,"remote":(true|false))?}/g
 export function parseMediaDefinition(html: string): MediaDefinition[] {
     const mediaDefinitions: MediaDefinition[] = []
@@ -150,7 +157,7 @@ export function parseMediaDefinition(html: string): MediaDefinition[] {
                 : _defaultQuality === 'false'
                     ? false
                     : +_defaultQuality
-            const quality = _qualityArray ? JSON.parse(_qualityArray) as number[] : +_quality
+            const quality = _qualityArray ? JSON.parse(_qualityArray) as number[] : parseStringNumber(_quality)
             const remote = _remote === 'true'
 
             mediaDefinitions.push({

@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.12.0](https://github.com/pionxzh/Pornhub.js/compare/pornhub.js-v1.11.0...pornhub.js-v1.12.0) (2024-04-27)
+
+
+### Features
+
+* support uploadedVideos in `.pornstar` ([dcf00da](https://github.com/pionxzh/Pornhub.js/commit/dcf00da8ae27aa542ff3b74c8c7c8c4affd37e60))
+
+
+### Bug Fixes
+
+* fix video quality parsing ([888cb78](https://github.com/pionxzh/Pornhub.js/commit/888cb78748da1a342b14431432c8ef9fc5fede2b))
+
 ## [1.11.0](https://github.com/pionxzh/Pornhub.js/compare/v1.10.1...v1.11.0) (2024-04-16)
 
 

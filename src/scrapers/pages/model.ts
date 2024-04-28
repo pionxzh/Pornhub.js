@@ -21,7 +21,7 @@ export interface ModelPage {
     awarded: boolean
     premium: boolean
     subscribers: number
-    featuredIn: Array<{ name: string; url: string }>
+    featuredIn: Array<{ name: string, url: string }>
 
     uploadedVideoCount: number
     taggedVideoCount: number
@@ -302,7 +302,7 @@ function parseInfo($: CheerioAPI): ModelPage {
         snapchat: getAttribute<string>($('.socialList a:has(.snapchatIcon)'), 'href'),
         modelhub: getAttribute<string>($('.socialList a:has(.modelhubIcon)'), 'href'),
         amazonWishList: getAttribute<string>($('.socialList a:has(.amazonWishlistIcon)'), 'href')
-            || getAttribute<string>($('.socialList a:has(.amazonWLIcon)'), 'href'),
+        || getAttribute<string>($('.socialList a:has(.amazonWLIcon)'), 'href'),
     }
 
     const mostRecentVideos = parseVideoResult($, '.mostRecentPornstarVideos')

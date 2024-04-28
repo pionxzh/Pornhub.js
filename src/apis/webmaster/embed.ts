@@ -3,15 +3,15 @@ import { WebmasterRoute } from '../route'
 import type { Engine } from '../../core/engine'
 
 export type WebmasterEmbed =
-{
-    embed: {
-        code: string
+    {
+        embed: {
+            code: string
+        }
+    } | {
+        code: string // '2002' stands for "No video with this ID."
+        message: string
+        example: string
     }
-} | {
-    code: string // '2002' stands for "No video with this ID."
-    message: string
-    example: string
-}
 
 export async function video_embed_code(engine: Engine, urlOrId: string): Promise<string | null> {
     try {

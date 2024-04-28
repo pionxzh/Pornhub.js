@@ -192,7 +192,7 @@ export const Route = {
             ...(durationMax && { max_duration: durationMax }),
             ...(filterCategory && { filter_category: filterCategory }),
             ...((param.order === 'Most Viewed' || param.order === 'Top Rated')
-                && param.period && param.period !== 'alltime' && { t: VideoSearchPeriodMapping[param.period] }),
+            && param.period && param.period !== 'alltime' && { t: VideoSearchPeriodMapping[param.period] }),
         })
     },
     /**
@@ -220,7 +220,7 @@ export const Route = {
             ...(production !== 'all' && { p: production }),
             ...(o && { o }),
             ...((param.order === 'Most Viewed' || param.order === 'Top Rated')
-                && param.period && param.period !== 'alltime' && { t: VideoSearchPeriodMapping[param.period] }),
+            && param.period && param.period !== 'alltime' && { t: VideoSearchPeriodMapping[param.period] }),
             ...(param.order === 'Hottest' && param.country && param.country !== 'World' && { cc: CountryMapping[param.country] }),
             ...(durationMin && { min_duration: durationMin }),
             ...(durationMax && { max_duration: durationMax }),

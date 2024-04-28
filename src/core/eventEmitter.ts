@@ -32,27 +32,24 @@ export type EventHandlerMap<Events extends Record<EventType, unknown>> = Map<
 export interface Emitter<Events extends Record<EventType, unknown>> {
     all: EventHandlerMap<Events>
 
-    has<Key extends keyof Events>(type: Key): boolean
+    has: <Key extends keyof Events>(type: Key) => boolean
 
-    on<Key extends keyof Events>(type: Key, handler: Handler<Events[Key]>): void
-    on(type: '*', handler: WildcardHandler<Events>): void
+    on: (<Key extends keyof Events>(type: Key, handler: Handler<Events[Key]>) => void) & ((type: '*', handler: WildcardHandler<Events>) => void)
 
-    off<Key extends keyof Events>(
+    off: (<Key extends keyof Events>(
         type: Key,
         handler?: Handler<Events[Key]>
-    ): void
-    off(type: '*', handler: WildcardHandler<Events>): void
+    ) => void) & ((type: '*', handler: WildcardHandler<Events>) => void)
 
-    emit<Key extends keyof Events>(type: Key, event: Events[Key]): void
-    emit<Key extends keyof Events>(
+    emit: (<Key extends keyof Events>(type: Key, event: Events[Key]) => void) & (<Key extends keyof Events>(
         type: undefined extends Events[Key] ? Key : never
-    ): void
+    ) => void)
 }
 
 /**
  * Mitt: Tiny (~200b) functional event emitter / pubsub.
  * @name mitt
- * @returns {Mitt}
+ * @returns {Mitt} The Mitt instance
  */
 export default function mitt<Events extends Record<EventType, unknown>>(
     all?: EventHandlerMap<Events>,

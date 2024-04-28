@@ -1,21 +1,18 @@
-const pionxzh = require('@pionxzh/eslint-config').default
+import { pionxzh } from '@pionxzh/eslint-config'
 
-module.exports = pionxzh(
+export default pionxzh(
     {
         typescript: true,
-        react: false,
-        vue: false,
         yaml: false,
-        ignores: [
-            '**/node_modules/**',
-            '/dist/**',
-        ],
     },
     {
         rules: {
             'ts/ban-types': 'off',
             'test/prefer-lowercase-title': 'off',
             'pionxzh/top-level-function': 'off',
+            'import/order': ['error', {
+                groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index', 'object', 'type'],
+            }],
         },
     },
     {

@@ -25,7 +25,6 @@ console.log(result.paging)
 *\* Be careful*, the `paging.maxPage` is not **ACCURATE**.\
 If you really need this, you can get it with `res.counting.total / 20` (divide the amount of video search results per page).
 
-
 * Counting - `counting`
 ```js
 const result = await pornhub.searchAlbum(keyword, query)
@@ -219,7 +218,6 @@ This method is a simple wrapper of [pornhub.autoComplete()](#autocomplete) metho
 It will return a list of simple model objects.
 You need to find the model you want in the list, and then use `pornhub.model(url)` to get the detailed model information.
 
-
 `pornhub.searchModel(keyword, options?)`
 
 <details>
@@ -230,7 +228,6 @@ You need to find the model you want in the list, and then use `pornhub.model(url
 | token             | `string` | (Optional) Token from `pornhub.getToken()` |
 | sexualOrientation | `string` | `"straight` \| `"gay"` \| `"transgender"`  |
 </details>
-
 
 <details>
   <summary><b>Example</b></summary>

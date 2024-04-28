@@ -37,7 +37,7 @@ export class Dumper {
         const path = url.pathname
             .replace(/\/$/, '')
             .replace(/\//g, '_')
-        || 'index'
+            || 'index'
         return `${now}_${path}`
     }
 }

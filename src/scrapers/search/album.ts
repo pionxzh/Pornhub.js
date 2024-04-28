@@ -39,8 +39,8 @@ function parseResult($: CheerioAPI) {
         const url = `${BASE_URL}${item.find('a').attr('href')}`
         const rating = item.find('.album-photo-percentage').text()
         const preview = getDataAttribute<string>(item, 'bkg')
-        || getAttribute<string>(item, 'style', '').match(/url\("(.+)"\)/)?.[1]
-        || ''
+            || getAttribute<string>(item, 'style', '').match(/url\("(.+)"\)/)?.[1]
+            || ''
         return { title, url, rating, preview }
     }).get()
 

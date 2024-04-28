@@ -64,7 +64,6 @@ console.log(result.data[0]) // first video
 ```
 </details>
 
-
 ### Getting Video Information
 
 ```js

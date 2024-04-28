@@ -2,9 +2,10 @@ import { Route } from '../../apis'
 import { getAttribute, getCheerio, getDataAttribute } from '../../utils/cheerio'
 import { parseReadableNumber } from '../../utils/number'
 import { UrlParser } from '../../utils/url'
-import { type VideoListResult, parseVideoResult } from '../search/video'
-import type { Engine } from '../../core/engine'
+import { parseVideoResult } from '../search/video'
+import type { VideoListResult } from '../search/video'
 import type { Cheerio, CheerioAPI, Element } from 'cheerio'
+import type { Engine } from '../../core/engine'
 
 export interface PornstarPage {
     name: string
@@ -17,7 +18,7 @@ export interface PornstarPage {
     awarded: boolean
     premium: boolean
     subscribers: number
-    featuredIn: Array<{ name: string; url: string }>
+    featuredIn: Array<{ name: string, url: string }>
 
     uploadedVideoCount: number
     taggedVideoCount: number
@@ -296,7 +297,7 @@ function parseInfo($: CheerioAPI): PornstarPage {
         snapchat: getAttribute<string>($('.socialList a:has(.snapchatIcon)'), 'href'),
         modelhub: getAttribute<string>($('.socialList a:has(.modelhubIcon)'), 'href'),
         amazonWishList: getAttribute<string>($('.socialList a:has(.amazonWishlistIcon)'), 'href')
-            || getAttribute<string>($('.socialList a:has(.amazonWLIcon)'), 'href'),
+        || getAttribute<string>($('.socialList a:has(.amazonWLIcon)'), 'href'),
     }
 
     const uploadedVideos = uploadedVideoEl ? parseVideoResult($, uploadedVideoEl) : []

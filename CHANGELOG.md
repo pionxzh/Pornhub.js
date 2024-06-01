@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.12.1](https://github.com/pionxzh/Pornhub.js/compare/pornhub.js-v1.12.0...pornhub.js-v1.12.1) (2024-06-01)
+
+
+### Bug Fixes
+
+* **deps:** update dependency debug to ^4.3.5 ([cbb9c7d](https://github.com/pionxzh/Pornhub.js/commit/cbb9c7d112e449fe353a14d87ebe228327bd76f4))
+
 ## [1.12.0](https://github.com/pionxzh/Pornhub.js/compare/pornhub.js-v1.11.0...pornhub.js-v1.12.0) (2024-04-27)
 
 

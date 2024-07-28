@@ -151,12 +151,13 @@ export function parseMediaDefinition(html: string): MediaDefinition[] {
         if (!match) break
 
         try {
-            const [, _defaultQuality, format, videoUrl, _quality, ,_qualityArray, , , _remote] = match
+            const [, _defaultQuality, format, _videoUrl, _quality, ,_qualityArray, , , _remote] = match
             const defaultQuality = _defaultQuality === 'true'
                 ? true
                 : _defaultQuality === 'false'
                     ? false
                     : +_defaultQuality
+            const videoUrl = _videoUrl.replace(/\\/g, '')
             const quality = _qualityArray ? JSON.parse(_qualityArray) as number[] : parseStringNumber(_quality)
             const remote = _remote === 'true'
 

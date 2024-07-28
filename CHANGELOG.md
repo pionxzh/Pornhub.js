@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.12.1](https://github.com/pionxzh/Pornhub.js/compare/pornhub.js-v1.12.0...pornhub.js-v1.12.1) (2024-07-28)
+
+
+### Bug Fixes
+
+* `videoUrl` should unescape `\\/` ([54c0444](https://github.com/pionxzh/Pornhub.js/commit/54c0444d9f41c67242239f9f0193386c37b897b1))
+* **deps:** update dependency debug to ^4.3.5 ([cbb9c7d](https://github.com/pionxzh/Pornhub.js/commit/cbb9c7d112e449fe353a14d87ebe228327bd76f4))
+* **deps:** update dependency debug to ^4.3.6 ([af3731e](https://github.com/pionxzh/Pornhub.js/commit/af3731ec79d319c54c488cd7aa54520df6652418))
+
 ## [1.12.0](https://github.com/pionxzh/Pornhub.js/compare/pornhub.js-v1.11.0...pornhub.js-v1.12.0) (2024-04-27)
 
 

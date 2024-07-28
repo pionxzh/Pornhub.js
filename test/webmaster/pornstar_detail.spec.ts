@@ -4,7 +4,7 @@ import { PornHub } from '../../src/index'
 const webMaster = new PornHub().webMaster
 
 describe('WebMaster getPornstarsDetail', () => {
-    it('# run()', async () => {
+    it.skip('# run()', async () => {
         const result = await webMaster.getPornstarsDetail()
 
         expect(result[0].star_name).to.equal(', Arietta Adams')

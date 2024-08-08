@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.12.2](https://github.com/pionxzh/Pornhub.js/compare/pornhub.js-v1.12.1...pornhub.js-v1.12.2) (2024-08-08)
+
+
+### Bug Fixes
+
+* fix cannot parse video media definition ([a77c401](https://github.com/pionxzh/Pornhub.js/commit/a77c401f34bfac5bd0dd40143d494f5c54b2d301)), closes [#120](https://github.com/pionxzh/Pornhub.js/issues/120)
+
 ## [1.12.1](https://github.com/pionxzh/Pornhub.js/compare/pornhub.js-v1.12.0...pornhub.js-v1.12.1) (2024-07-28)
 
 

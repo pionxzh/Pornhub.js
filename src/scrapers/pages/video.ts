@@ -142,7 +142,7 @@ function parseStringNumber(str: string): number {
     return +str.replace(/"/g, '')
 }
 
-const mediaDefinitionRegex = /{"defaultQuality":(true|false|\d+),"format":"(\w+)","videoUrl":"(.+?)","quality":(("\d+")|(\[[\d,]*\]))(,"remote":(true|false))?}/g
+const mediaDefinitionRegex = /{("group":\d+,"height":\d+,"width":\d+,)?"defaultQuality":(true|false|\d+),"format":"(\w+)","videoUrl":"(.+?)","quality":(("\d+")|(\[[\d,]*\]))(,"remote":(true|false))?}/g
 export function parseMediaDefinition(html: string): MediaDefinition[] {
     const mediaDefinitions: MediaDefinition[] = []
 
@@ -151,7 +151,7 @@ export function parseMediaDefinition(html: string): MediaDefinition[] {
         if (!match) break
 
         try {
-            const [, _defaultQuality, format, _videoUrl, _quality, ,_qualityArray, , , _remote] = match
+            const [,, _defaultQuality, format, _videoUrl, _quality, ,_qualityArray, , , _remote] = match
             const defaultQuality = _defaultQuality === 'true'
                 ? true
                 : _defaultQuality === 'false'

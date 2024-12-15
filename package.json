@@ -1,7 +1,7 @@
 {
   "name": "pornhub.js",
   "version": "1.12.2",
-  "packageManager": "pnpm@9.6.0",
+  "packageManager": "pnpm@9.15.0",
   "description": "Powerful PornHub API for Node.js",
   "author": "Pionxzh",
   "license": "MIT",
@@ -51,7 +51,7 @@
     "postpublish": "rimraf ./dist ./tmp_release"
   },
   "dependencies": {
-    "cheerio": "1.0.0",
+    "cheerio": "1.0.0-rc.12",
     "debug": "^4.4.0",
     "node-fetch": "^2.7.0",
     "urlcat": "^3.1.0"
@@ -60,15 +60,15 @@
     "@pionxzh/eslint-config": "^2.0.2",
     "@types/cheerio": "^0.22.35",
     "@types/debug": "^4.1.12",
-    "@types/node": "^20.14.13",
-    "@types/node-fetch": "^2.6.11",
-    "clean-publish": "^5.0.0",
-    "eslint": "^9.8.0",
+    "@types/node": "^20.17.10",
+    "@types/node-fetch": "^2.6.12",
+    "clean-publish": "^5.1.0",
+    "eslint": "^9.17.0",
     "rimraf": "^6.0.1",
-    "tsup": "^8.2.3",
-    "typescript": "^5.5.4",
-    "vite": "^5.3.5",
-    "vitest": "^2.0.4"
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.3",
+    "vitest": "^2.1.8"
   },
   "publishConfig": {
     "directory": "tmp_release"

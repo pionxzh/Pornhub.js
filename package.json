@@ -51,7 +51,7 @@
     "postpublish": "rimraf ./dist ./tmp_release"
   },
   "dependencies": {
-    "cheerio": "1.0.0-rc.12",
+    "cheerio": "1.0.0",
     "debug": "^4.4.0",
     "node-fetch": "^2.7.0",
     "urlcat": "^3.1.0"

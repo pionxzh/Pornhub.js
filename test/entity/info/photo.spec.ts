@@ -5,12 +5,12 @@ const pornhub = new PornHub()
 
 describe('Photo Info', () => {
     it('# run()', async () => {
-        const url = 'https://www.pornhub.com/photo/763180832'
+        const url = 'https://www.pornhub.com/photo/842369471'
         const result = await pornhub.photo(url)
 
-        expect(result.info.title).to.equal('memes I thought of')
-        expect(result.info.albumID).to.equal('65817052')
-        expect(result.tags).to.include('funny')
-        expect(result.provider.id).to.equal(1718270631)
+        expect(result.info.title).to.equal('Mini Bun is your hentai waifu')
+        expect(result.info.albumID).to.equal('77971261')
+        expect(result.tags).to.include('cosplay')
+        expect(result.provider.id).to.equal(2624142831)
     })
 })

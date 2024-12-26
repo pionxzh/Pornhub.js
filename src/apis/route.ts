@@ -174,6 +174,7 @@ export const Route = {
             durationMin,
             durationMax,
             filterCategory,
+            excludeCategory,
             sexualOrientation = 'straight',
         } = param
         const o = VideoOrderingMapping[order]
@@ -191,6 +192,7 @@ export const Route = {
             ...(durationMin && { min_duration: durationMin }),
             ...(durationMax && { max_duration: durationMax }),
             ...(filterCategory && { filter_category: filterCategory }),
+            ...(excludeCategory && { exclude_category: excludeCategory }),
             ...((param.order === 'Most Viewed' || param.order === 'Top Rated')
             && param.period && param.period !== 'alltime' && { t: VideoSearchPeriodMapping[param.period] }),
         })

@@ -38,6 +38,11 @@ export type VideoSearchOptions = {
     durationMax?: 10 | 20 | 30
     /** Category id */
     filterCategory?: number
+    /**
+     * Categories ids to exclude separated by hyphens
+     * @example 5-90
+     */
+    excludeCategory?: string
     sexualOrientation?: 'straight' | 'gay'
 } & ({
     order?: Exclude<VideoSearchOrdering, 'Most Viewed' | 'Top Rated'>

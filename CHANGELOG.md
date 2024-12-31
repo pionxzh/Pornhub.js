@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.13.0](https://github.com/pionxzh/Pornhub.js/compare/pornhub.js-v1.12.2...pornhub.js-v1.13.0) (2024-12-31)
+
+
+### Features
+
+* add excludeCategory option to search ([91b46e7](https://github.com/pionxzh/Pornhub.js/commit/91b46e7583d5b58cc5948870e8ff40647c71292c))
+
+
+### Bug Fixes
+
+* **deps:** update dependency cheerio to v1.0.0 ([199ed85](https://github.com/pionxzh/Pornhub.js/commit/199ed85e81afe1317640bf3b3f5edc7b48c322f9))
+* **deps:** update dependency debug to ^4.3.7 ([ba67ba5](https://github.com/pionxzh/Pornhub.js/commit/ba67ba59885a550544ad2cc86917b61207c206a1))
+* **deps:** update dependency debug to ^4.4.0 ([09bfb04](https://github.com/pionxzh/Pornhub.js/commit/09bfb044073f857bf2477157c35a9f7bbdac60f2))
+
 ## [1.12.2](https://github.com/pionxzh/Pornhub.js/compare/pornhub.js-v1.12.1...pornhub.js-v1.12.2) (2024-08-08)
 
 

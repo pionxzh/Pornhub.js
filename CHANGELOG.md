@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.13.1](https://github.com/pionxzh/Pornhub.js/compare/pornhub.js-v1.13.0...pornhub.js-v1.13.1) (2025-04-05)
+
+
+### Bug Fixes
+
+* fix missing `views` in `searchVideo()` result ([8f4e890](https://github.com/pionxzh/Pornhub.js/commit/8f4e89086bb4f24536683863a7089da4106da1f3)), closes [#150](https://github.com/pionxzh/Pornhub.js/issues/150)
+* fix video result parsing ([4748781](https://github.com/pionxzh/Pornhub.js/commit/4748781d165d4e15d3d5ed373ee824c87cb236d0))
+
 ## [1.13.0](https://github.com/pionxzh/Pornhub.js/compare/pornhub.js-v1.12.2...pornhub.js-v1.13.0) (2024-12-31)
 
 

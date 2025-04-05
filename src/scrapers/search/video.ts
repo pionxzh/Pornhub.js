@@ -62,7 +62,7 @@ export function parseVideoResult($: CheerioAPI, container: string | Cheerio<Elem
             title,
             id,
             url,
-            views: item.find('.videoDetailsBlock .views var').text(),
+            views: item.find('.videoUploaderBlock .views var').text(),
             duration: item.find('.duration').text(),
             hd: !!item.find('.hd-thumbnail').length,
             premium: !!item.find('.premiumIcon').length,

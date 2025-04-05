@@ -43,7 +43,7 @@ export async function videoSearch(engine: Engine, keyword: string, options: Vide
 }
 
 export function parseVideoResult($: CheerioAPI, container: string | Cheerio<Element>) {
-    const list = typeof container === 'string' ? $(`${container} li.videoBox`) : container.find('li.videoBox')
+    const list = typeof container === 'string' ? $(`${container} li.videoblock`) : container.find('li.videoblock')
 
     const result = list.map((_, el) => {
         const item = $(el)

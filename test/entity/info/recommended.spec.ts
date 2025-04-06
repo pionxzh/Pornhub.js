@@ -14,5 +14,7 @@ describe('Recommended Videos', () => {
         expect(result.paging.isEnd).to.equal(false)
 
         expect(result.data.length).to.equal(21)
+
+        expect(result.data[0].views).to.be.not.empty
     })
 })

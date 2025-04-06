@@ -17,5 +17,6 @@ describe('VideoList', () => {
 
         const first = result.data[0]
         expect(first.title).to.equal('Girls4Cock.Com *** Little Blonde Takes Mega Cocks in her AssHole')
+        expect(first.views).to.be.not.empty
     })
 })

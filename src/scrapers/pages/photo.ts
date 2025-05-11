@@ -1,6 +1,7 @@
 import { Route } from '../../apis'
 import { getCheerio } from '../../utils/cheerio'
 import { UrlParser } from '../../utils/url'
+import { removeComma } from '../../utils/utils'
 import type { Engine } from '../../core/engine'
 import type { CheerioAPI } from 'cheerio'
 
@@ -67,8 +68,4 @@ function parseProvider($: CheerioAPI) {
 function parseTag($: CheerioAPI) {
     const $list = $('ul.tagList a.tagText')
     return $list.map(idx => $list.eq(idx).text()).get()
-}
-
-function removeComma(str: string) {
-    return str.replace(/,/g, '')
 }

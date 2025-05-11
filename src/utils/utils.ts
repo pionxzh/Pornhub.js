@@ -12,6 +12,10 @@ export function unescape(str: string) {
         .replace(/&amp;/g, '&')
 }
 
+export function removeComma(str: string) {
+    return str.replace(/,/g, '')
+}
+
 // https://ci.phncdn.com/pics/pornstars/000/002/190/(m=lciuhScOb_c)(mh=y8jot66fDRXSMiYW)thumb_00000.jpg
 // => https://ci.phncdn.com/pics/pornstars/000/002/190/thumb_00000.jpg
 export const removeProtectionBracket = (str: string) => str.replace(/\(.+?\)/g, '')

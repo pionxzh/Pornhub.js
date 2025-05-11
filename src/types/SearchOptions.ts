@@ -1,5 +1,5 @@
-import type { SearchPeriod, Segment, SexualOrientation, ThumbSize, VideoSearchPeriod, WebmasterSearchOrdering } from '.'
-import type { AlbumSearchOrdering, GifSearchOrdering, PornstarSearchOrdering, RecommendedOrdering, VideoSearchOrdering } from './SearchOrdering'
+import type { ChannelSearchPeriod, SearchPeriod, Segment, SexualOrientation, ThumbSize, VideoSearchPeriod, WebmasterSearchOrdering } from '.'
+import type { AlbumSearchOrdering, ChannelSearchOrdering, GifSearchOrdering, PornstarSearchOrdering, RecommendedOrdering, VideoSearchOrdering } from './SearchOrdering'
 
 export interface WebmasterSearchOptions {
     page?: number
@@ -23,6 +23,16 @@ export interface GifSearchOptions {
     order?: GifSearchOrdering
     sexualOrientation?: SexualOrientation
 }
+
+export type ChannelSearchOptions = {
+    page?: number
+    order?: ChannelSearchOrdering
+} & ({
+    order?: Exclude<ChannelSearchOrdering, 'Most Video Views'>
+} | {
+    order: Extract<ChannelSearchOrdering, 'Most Video Views'>
+    period?: ChannelSearchPeriod
+})
 
 export interface PornstarSearchOptions {
     page?: number

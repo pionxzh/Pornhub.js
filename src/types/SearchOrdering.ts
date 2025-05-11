@@ -4,6 +4,8 @@ export type VideoSearchOrdering = 'Most Relevant' | 'Most Recent' | 'Most Viewed
 
 export type GifSearchOrdering = 'Most Relevant' | 'Most Recent' | 'Most Viewed' | 'Top Rated'
 
+export type ChannelSearchOrdering = 'Most Popular' | 'Most Relevant' | 'Trending' | 'Most Subscribers' | 'Most Recently Created' | 'Most Recently Updated' | 'Most Videos' | 'Most Video Views'
+
 export type AlbumSearchOrdering = 'Most Relevant' | 'Most Recent' | 'Most Viewed' | 'Top Rated'
 
 export type PornstarSearchOrdering = 'Most Relevant' | 'Most Popular' | 'Most Viewed' | 'No. of Video'
@@ -27,6 +29,17 @@ export const GifOrderingMapping: Record<GifSearchOrdering, string> = {
     'Most Recent': 'mr',
     'Most Viewed': 'mv',
     'Top Rated': 'tr',
+}
+
+export const ChannelSearchOrderingMapping: Record<ChannelSearchOrdering, string> = {
+    'Most Popular': 'rk',
+    'Most Relevant': 'al',
+    'Trending': 'tr',
+    'Most Subscribers': 'sub',
+    'Most Recently Created': 'mrj',
+    'Most Recently Updated': 'mru',
+    'Most Videos': 'nv',
+    'Most Video Views': 'mv',
 }
 
 export const AlbumOrderingMapping: Record<AlbumSearchOrdering, string> = {

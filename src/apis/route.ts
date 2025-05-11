@@ -1,9 +1,9 @@
 import urlcat from 'urlcat'
-import { AlbumOrderingMapping, GifOrderingMapping, PornstarListOrderingMapping, PornstarOrderingMapping, PornstarPopularPeriodMapping, PornstarViewedPeriodMapping, RecommendedOrderingMapping, VideoListOrderingMapping, VideoOrderingMapping, VideoSearchPeriodMapping } from '../types'
+import { AlbumOrderingMapping, ChannelSearchOrderingMapping, ChannelSearchPeriodMapping, GifOrderingMapping, PornstarListOrderingMapping, PornstarOrderingMapping, PornstarPopularPeriodMapping, PornstarViewedPeriodMapping, RecommendedOrderingMapping, VideoListOrderingMapping, VideoOrderingMapping, VideoSearchPeriodMapping } from '../types'
 import { CountryMapping } from '../types/Country'
 import { BASE_URL } from '../utils/constant'
 import { dashify, searchify } from '../utils/string'
-import type { AlbumSearchOptions, AutoCompleteOptions, GifSearchOptions, PornstarSearchOptions, RecommendedOptions, VideoSearchOptions, WebmasterSearchOptions } from '../types'
+import type { AlbumSearchOptions, AutoCompleteOptions, ChannelSearchOptions, GifSearchOptions, PornstarSearchOptions, RecommendedOptions, VideoSearchOptions, WebmasterSearchOptions } from '../types'
 import type { PornstarListOptions, VideoListOptions } from '../types/ListOptions'
 
 export const Route = {
@@ -140,6 +140,21 @@ export const Route = {
             search: searchify(keyword),
             ...(page !== 1 && { page }),
             ...(o && { o }),
+        })
+    },
+    /**
+     * @url https://www.pornhub.com/channels/search?channelSearch=xxx
+     */
+    channelSearch(keyword: string, params: ChannelSearchOptions) {
+        const {
+            page = 1,
+            order = 'Most Relevant',
+        } = params
+        return urlcat(BASE_URL, '/channels/search', {
+            channelSearch: searchify(keyword),
+            ...(page !== 1 && { page }),
+            ...(order !== 'Most Relevant' && { o: ChannelSearchOrderingMapping[order] }),
+            ...(params.order === 'Most Video Views' && params.period && params.period !== 'alltime' && { t: ChannelSearchPeriodMapping[params.period] }),
         })
     },
     /**

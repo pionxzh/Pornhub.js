@@ -13,11 +13,12 @@ import { randomPage } from './scrapers/pages/random'
 import { recommended } from './scrapers/pages/recommended'
 import { videoPage } from './scrapers/pages/video'
 import { albumSearch } from './scrapers/search/album'
+import { channelSearch } from './scrapers/search/channel'
 import { gifSearch } from './scrapers/search/gif'
 import { modelSearch } from './scrapers/search/model'
 import { pornstarSearch } from './scrapers/search/pornstar'
 import { videoSearch } from './scrapers/search/video'
-import type { AlbumSearchOptions, AutoCompleteOptions, GifSearchOptions, PornstarSearchOptions, RecommendedOptions, VideoSearchOptions } from './types'
+import type { AlbumSearchOptions, AutoCompleteOptions, ChannelSearchOptions, GifSearchOptions, PornstarSearchOptions, RecommendedOptions, VideoSearchOptions } from './types'
 import type { ModelVideoListOptions, PornstarListOptions, VideoListOptions } from './types/ListOptions'
 import type { RequestInit } from 'node-fetch'
 
@@ -211,6 +212,13 @@ export class PornHub {
      */
     searchGif(keyword: string, options: GifSearchOptions = {}) {
         return gifSearch(this.engine, keyword, options)
+    }
+
+    /**
+     * Search channel by keyword.
+     */
+    searchChannel(keyword: string, options: ChannelSearchOptions = {}) {
+        return channelSearch(this.engine, keyword, options)
     }
 
     /**

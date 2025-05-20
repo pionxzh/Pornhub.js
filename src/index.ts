@@ -6,6 +6,7 @@ import { WebMaster } from './core/webmaster'
 import { pornstarList } from './scrapers/list/pornstars'
 import { videoList } from './scrapers/list/videos'
 import { albumPage } from './scrapers/pages/album'
+import { channelPage } from './scrapers/pages/channel'
 import { modelPage, modelUploadedVideos } from './scrapers/pages/model'
 import { photoPage } from './scrapers/pages/photo'
 import { pornstarPage } from './scrapers/pages/pornstar'
@@ -183,6 +184,14 @@ export class PornHub {
      */
     modelVideos(urlOrName: string, options: ModelVideoListOptions = {}) {
         return modelUploadedVideos(this.engine, urlOrName, options)
+    }
+
+    /**
+     * Get channel information by url/ID
+     * @param urlOrName Channel name or page url
+     */
+    channel(urlOrName: string) {
+        return channelPage(this.engine, urlOrName)
     }
 
     /**

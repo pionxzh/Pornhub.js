@@ -29,13 +29,13 @@ export async function pornstarList(engine: Engine, options: PornstarListOptions)
     const $ = getCheerio(html)
 
     return {
-        data: parseResult($),
+        data: parsePornstarResult($, '#popularPornstars'),
         paging: parsePaging($),
     }
 }
 
-function parseResult($: CheerioAPI) {
-    const list = $('#popularPornstars li.performerCard')
+export function parsePornstarResult($: CheerioAPI, container: string): PornstarListResult[] {
+    const list = $(`${container} li.performerCard`)
     const result = list.map((_, el) => {
         const item = $(el)
 

@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.14.0](https://github.com/pionxzh/Pornhub.js/compare/pornhub.js-v1.13.2...pornhub.js-v1.14.0) (2025-05-20)
+
+
+### Features
+
+* support `channel` for channel page parsing ([45e7be1](https://github.com/pionxzh/Pornhub.js/commit/45e7be1379ba8ec98ac3cd0f1f801efd50dae9ce))
+* support `searchChannel` for channel searching ([16bdb0e](https://github.com/pionxzh/Pornhub.js/commit/16bdb0ebd57e8381246cdd9234377a851fc3ae49))
+
 ## [1.13.2](https://github.com/pionxzh/Pornhub.js/compare/pornhub.js-v1.13.1...pornhub.js-v1.13.2) (2025-04-06)
 
 

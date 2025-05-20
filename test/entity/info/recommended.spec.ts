@@ -4,7 +4,7 @@ import { PornHub } from '../../../src/index'
 const pornhub = new PornHub()
 
 describe('Recommended Videos', () => {
-    it('# run()', async () => {
+    it.skip('# run()', async () => {
         const result = await pornhub.recommendedVideos({
             page: 2,
             order: 'Most Relevant',

@@ -26,13 +26,13 @@ export const Route = {
         return urlcat(BASE_URL, '/user/logout', { token })
     },
     /**
-     * @url https://www.pornhub.com/video/search_autocomplete?q=random&orientation=straight&pornstars=1&alt=0&token=xxx
+     * @url https://www.pornhub.com/api/v1/video/search_autocomplete?q=random&orientation=straight&pornstars=1&alt=0&token=xxx
      */
     autocomplete(keyword: string, {
         token,
         sexualOrientation = 'straight',
     }: AutoCompleteOptions) {
-        return urlcat(BASE_URL, '/video/search_autocomplete', {
+        return urlcat(BASE_URL, '/api/v1/video/search_autocomplete', {
             q: keyword,
             orientation: sexualOrientation,
             pornstars: true,

@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.14.1](https://github.com/pionxzh/Pornhub.js/compare/pornhub.js-v1.14.0...pornhub.js-v1.14.1) (2025-12-25)
+
+
+### Bug Fixes
+
+* **route:** fix updated autocomplete path ([778306c](https://github.com/pionxzh/Pornhub.js/commit/778306c5297b8f1b693693c47d920acb2369e25e))
+
 ## [1.14.0](https://github.com/pionxzh/Pornhub.js/compare/pornhub.js-v1.13.2...pornhub.js-v1.14.0) (2025-05-20)
 
 

@@ -18,7 +18,6 @@ export interface GifPage {
         rating: number
     }
     premium: boolean
-    thumb: string
     preview: string
     mp4: string
     webm: string
@@ -34,7 +33,6 @@ export interface GifPage {
     } | null
     tags: string[]
     pornstars: string[]
-    categories: string[]
     uploadDate: Date
 }
 
@@ -45,43 +43,23 @@ export async function gifPage(engine: Engine, urlOrId: string): Promise<GifPage>
     const html = await res.text()
     const $ = getCheerio(html)
 
-    // Log the entire HTML for debugging
-    console.warn('\n=== GIF PAGE HTML DEBUG =====')
-    console.warn(`GIF ID: ${id}`)
-    console.warn(`URL: ${url}`)
-    console.warn(`Status: ${res.status}`)
-    console.warn('HTML Content:')
-    console.warn(html)
-    console.warn('============================\n')
-
     const result = {
         id,
         url,
         ...parseByDom(html, $),
     }
 
-    // Log the parsed result
-    console.warn('\n=== PARSED GIF DATA DEBUG ===')
-    console.warn('Parsed Result:')
-    console.warn(JSON.stringify(result, null, 2))
-    console.warn('=============================\n')
-
     return result
 }
 
 export function parseByDom(html: string, $: CheerioAPI) {
-    console.warn('\n--- Starting DOM parsing ---')
+    const voteUp = parseReadableNumber($('#votesUp').val() as string || '0')
+    const voteDown = parseReadableNumber($('#votesDown').val() as string || '0')
 
-    const voteUp = parseReadableNumber($('span.votesUp').text() || '0')
-    const voteDown = parseReadableNumber($('span.votesDown').text() || '0')
-    console.warn(`Votes - Up: ${voteUp}, Down: ${voteDown}`)
+    const title = $('.gifTitle h1').first().text().replace(/ Gif$/, '')
 
-    const title = $('head > title').first().text().replace(' - Pornhub.com', '')
-    console.warn(`Title: ${title}`)
-
-    const viewsText = $('span.count').text() || '0'
+    const viewsText = $('.gifViews strong').text().replace(' views', '') || '0'
     const views = parseReadableNumber(viewsText)
-    console.warn(`Views: ${views} (raw: ${viewsText})`)
 
     const totalVote = voteUp + voteDown
     const vote = {
@@ -92,42 +70,43 @@ export function parseByDom(html: string, $: CheerioAPI) {
     }
 
     const premium = $('#gifTitle .ph-icon-badge-premium').length !== 0
-    const thumb = getAttribute<string>($('.thumbnail img'), 'src', '')
     const preview = getAttribute<string>($('head meta[property="og:image"]'), 'content', '')
-    console.warn(`Premium: ${premium}, Thumb: ${thumb}, Preview: ${preview}`)
 
-    // Get gif media URLs
     const gifVideo = $('video').first()
-    const mp4 = getDataAttribute<string>(gifVideo, 'mp4', '') || getAttribute<string>(gifVideo, 'src', '')
+    let mp4 = getDataAttribute<string>(gifVideo, 'mp4', '') || getAttribute<string>(gifVideo, 'src', '')
     const webm = getDataAttribute<string>(gifVideo, 'webm', '')
-    console.warn(`Media URLs - MP4: ${mp4}, WebM: ${webm}`)
 
-    // Provider information
-    const providerLink = $('.usernameBadgesWrapper a.bolded').first()
+    if (!mp4) {
+        const gifLinkInput = $('input.gifvalue, input[id="giflink"]')
+        if (gifLinkInput.length > 0) {
+            mp4 = gifLinkInput.val() as string || ''
+        }
+
+        if (!mp4) {
+            const bbCodeText = $('input[id="forumbbcode"]').val() as string || ''
+            const gifUrlMatch = bbCodeText.match(/\[IMG\](https?:\/\/[^\]]+\.gif[^\]]*)/i)
+            if (gifUrlMatch) {
+                mp4 = gifUrlMatch[1]
+            }
+        }
+    }
+
+    const providerLink = $('.sourceTagDiv .usernameBadgesWrapper a').first()
     const provider = providerLink.length
         ? { username: providerLink.text(), url: getAttribute<string>(providerLink, 'href', '') }
         : null
-    console.warn(`Provider: ${provider ? JSON.stringify(provider) : 'null'}`)
 
-    // Parse source video information
     const sourceVideo = parseSourceVideo($)
-    console.warn(`Source Video: ${sourceVideo ? JSON.stringify(sourceVideo) : 'null'}`)
 
     const trafficJunkyMeta = $('head meta[name=adsbytrafficjunkycontext]')
     const tags = getDataAttribute<string>(trafficJunkyMeta, 'context-tag')?.split(',') || []
     const pornstars = getDataAttribute<string>(trafficJunkyMeta, 'context-pornstar')?.split(',') || []
-    const categories = getDataAttribute<string>(trafficJunkyMeta, 'context-category')?.split(',') || []
-    console.warn(`Tags: [${tags.join(', ')}]`)
-    console.warn(`Pornstars: [${pornstars.join(', ')}]`)
-    console.warn(`Categories: [${categories.join(', ')}]`)
-    console.warn('--- DOM parsing complete ---\n')
 
     return {
         title,
         views,
         vote,
         premium,
-        thumb,
         preview,
         mp4,
         webm,
@@ -135,32 +114,24 @@ export function parseByDom(html: string, $: CheerioAPI) {
         sourceVideo,
         tags,
         pornstars,
-        categories,
         ...parseByLdJson($),
     }
 }
 
 function parseSourceVideo($: CheerioAPI) {
-    console.warn('--- Parsing source video ---')
     try {
         const sourceTagDiv = $('.sourceTagDiv')
-        console.warn(`Found sourceTagDiv elements: ${sourceTagDiv.length}`)
         if (sourceTagDiv.length === 0) {
-            console.warn('No sourceTagDiv found, returning null')
             return null
         }
 
         const videoLink = sourceTagDiv.find('a[href*="/view_video.php"]').first()
-        console.warn(`Found video links: ${sourceTagDiv.find('a[href*="/view_video.php"]').length}`)
         if (videoLink.length === 0) {
-            console.warn('No video link found, returning null')
             return null
         }
 
         const timestampLink = sourceTagDiv.find('.tstamp').first()
-        console.warn(`Found timestamp links: ${sourceTagDiv.find('.tstamp').length}`)
         if (timestampLink.length === 0) {
-            console.warn('No timestamp link found, returning null')
             return null
         }
 
@@ -176,13 +147,9 @@ function parseSourceVideo($: CheerioAPI) {
             timestampSeconds,
             timestampFormatted,
         }
-        console.warn(`Source video parsed: ${JSON.stringify(result)}`)
-        console.warn('--- Source video parsing complete ---')
         return result
     }
     catch (error) {
-        console.warn(`Error parsing source video: ${error}`)
-        console.warn('--- Source video parsing failed ---')
         return null
     }
 }
@@ -214,7 +181,6 @@ function parseByLdJson($: CheerioAPI) {
         }
     }
     catch (error) {
-        console.error('Failed to parse ld+json', error)
         return {
             uploadDate: new Date(0),
         }

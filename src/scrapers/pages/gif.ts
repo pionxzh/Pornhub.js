@@ -59,7 +59,7 @@ export function parseByDom(html: string, $: CheerioAPI) {
 
     const gifVideo = $('#gifImageSection #js-gifToWebm').first()
 
-    const title = getDataAttribute<string>(gifVideo, 'title', '')
+    const title = getDataAttribute<string>(gifVideo, 'gif-title', '')
     const gif = getDataAttribute<string>(gifVideo, 'gif', '')
     const mp4 = getDataAttribute<string>(gifVideo, 'mp4', '')
     const webm = getDataAttribute<string>(gifVideo, 'webm', '')

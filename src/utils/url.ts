@@ -36,4 +36,10 @@ export class UrlParser {
         const name = UrlRule.test(url) ? UrlRule.exec(url)![1] : slugify(url)
         return name
     }
+
+    static getGifID(url: string) {
+        const UrlRule = /[\w]+\.pornhub\.com\/gif\/([0-9]{1,30})/
+        const id = UrlRule.test(url) ? UrlRule.exec(url)![1] : url
+        return id
+    }
 }

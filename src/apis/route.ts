@@ -52,6 +52,12 @@ export const Route = {
     photoPage(id: string) {
         return urlcat(BASE_URL, '/photo/:id', { id })
     },
+    /**
+     * @url https://www.pornhub.com/gif/14596972
+     */
+    gifPage(id: string) {
+        return urlcat(BASE_URL, '/gif/:id', { id })
+    },
     videoPage(id: string) {
         return urlcat(BASE_URL, '/view_video.php', { viewkey: id })
     },

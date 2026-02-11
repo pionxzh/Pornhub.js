@@ -19,6 +19,7 @@ export interface GifPage {
     }
     premium: boolean
     preview: string
+    gif: string
     mp4: string
     webm: string
     provider: {
@@ -56,7 +57,12 @@ export function parseByDom(html: string, $: CheerioAPI) {
     const voteUp = parseReadableNumber($('#votesUp').val() as string || '0')
     const voteDown = parseReadableNumber($('#votesDown').val() as string || '0')
 
-    const title = $('.gifTitle h1').first().text().replace(/ Gif$/, '')
+    const gifVideo = $('#gifImageSection #js-gifToWebm').first()
+
+    const title = getDataAttribute<string>(gifVideo, 'title', '')
+    const gif = getDataAttribute<string>(gifVideo, 'gif', '')
+    const mp4 = getDataAttribute<string>(gifVideo, 'mp4', '')
+    const webm = getDataAttribute<string>(gifVideo, 'webm', '')
 
     const viewsText = $('.gifViews strong').text().replace(' views', '') || '0'
     const views = parseReadableNumber(viewsText)
@@ -71,25 +77,6 @@ export function parseByDom(html: string, $: CheerioAPI) {
 
     const premium = $('#gifTitle .ph-icon-badge-premium').length !== 0
     const preview = getAttribute<string>($('head meta[property="og:image"]'), 'content', '')
-
-    const gifVideo = $('video').first()
-    let mp4 = getDataAttribute<string>(gifVideo, 'mp4', '') || getAttribute<string>(gifVideo, 'src', '')
-    const webm = getDataAttribute<string>(gifVideo, 'webm', '')
-
-    if (!mp4) {
-        const gifLinkInput = $('input.gifvalue, input[id="giflink"]')
-        if (gifLinkInput.length > 0) {
-            mp4 = gifLinkInput.val() as string || ''
-        }
-
-        if (!mp4) {
-            const bbCodeText = $('input[id="forumbbcode"]').val() as string || ''
-            const gifUrlMatch = bbCodeText.match(/\[IMG\](https?:\/\/[^\]]+\.gif[^\]]*)/i)
-            if (gifUrlMatch) {
-                mp4 = gifUrlMatch[1]
-            }
-        }
-    }
 
     const providerLink = $('.sourceTagDiv .usernameBadgesWrapper a').first()
     const provider = providerLink.length
@@ -108,6 +95,7 @@ export function parseByDom(html: string, $: CheerioAPI) {
         vote,
         premium,
         preview,
+        gif,
         mp4,
         webm,
         provider,

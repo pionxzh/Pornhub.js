@@ -3,10 +3,14 @@ const { PornHub } = require('pornhub.js')
 async function advancedGifExample() {
     const pornhub = new PornHub()
 
+    console.log('🚀 Advanced GIF Example')
+    console.log('Note: Debug logs will appear showing HTML content and parsing details')
+    console.log('='.repeat(60))
+
     try {
         // Get gif information with source video data
-        console.log('Getting gif info with source video data...')
-        const gif = await pornhub.gif('14596972')
+        console.log('📥 Fetching gif info with source video data...')
+        const gif = await pornhub.gif('53842061')
 
         console.log('GIF Information:')
         console.log(`- Title: ${gif.title}`)
@@ -35,9 +39,16 @@ async function advancedGifExample() {
         if (gif.provider) {
             console.log(`\nCreated by: ${gif.provider.username}`)
         }
+
+        console.log(`\\n${'='.repeat(60)}`)
+        console.log('✅ Example completed! Check the debug logs above for:')
+        console.log('   • Complete HTML content from the GIF page')
+        console.log('   • Step-by-step parsing details')
+        console.log('   • Final JSON structure of the parsed data')
     }
     catch (error) {
-        console.error('Error:', error.message)
+        console.error('❌ Error occurred:', error.message)
+        console.error('Check the debug logs above to diagnose the issue')
     }
 }
 

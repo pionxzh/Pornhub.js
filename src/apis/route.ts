@@ -53,7 +53,7 @@ export const Route = {
         return urlcat(BASE_URL, '/photo/:id', { id })
     },
     /**
-     * @url https://www.pornhub.com/gif/14596972
+     * @url https://www.pornhub.com/gif/53842061
      */
     gifPage(id: string) {
         return urlcat(BASE_URL, '/gif/:id', { id })

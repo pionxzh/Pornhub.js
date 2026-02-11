@@ -6,10 +6,10 @@ const pornhub = new PornHub()
 describe('Gif Info', () => {
     it('# should get gif information by ID', async () => {
         // Using a sample gif ID from the documentation
-        const result = await pornhub.gif('14596972')
+        const result = await pornhub.gif('53842061')
 
-        expect(result.id).to.equal('14596972')
-        expect(result.url).to.include('/gif/14596972')
+        expect(result.id).to.equal('53842061')
+        expect(result.url).to.include('/gif/53842061')
         expect(result.title).to.be.a('string')
         expect(result.views).to.be.a('number')
         expect(result.vote).to.have.property('up')
@@ -29,10 +29,10 @@ describe('Gif Info', () => {
     })
 
     it('# should get gif information by URL', async () => {
-        const result = await pornhub.gif('https://www.pornhub.com/gif/14596972')
+        const result = await pornhub.gif('https://www.pornhub.com/gif/53842061')
 
-        expect(result.id).to.equal('14596972')
-        expect(result.url).to.include('/gif/14596972')
+        expect(result.id).to.equal('53842061')
+        expect(result.url).to.include('/gif/53842061')
         expect(result.title).to.be.a('string')
         expect(result.views).to.be.a('number')
         expect(result.mp4).to.be.a('string')

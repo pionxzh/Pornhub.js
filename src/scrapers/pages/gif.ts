@@ -2,6 +2,7 @@ import { Route } from '../../apis'
 import { getAttribute, getCheerio, getDataAttribute } from '../../utils/cheerio'
 import { parseReadableNumber } from '../../utils/number'
 import { UrlParser } from '../../utils/url'
+import { BASE_URL } from '../../utils/constant'
 import type { Engine } from '../../core/engine'
 import type { CheerioAPI } from 'cheerio'
 
@@ -24,6 +25,12 @@ export interface GifPage {
     provider: {
         username: string
         url: string
+    } | null
+    sourceVideo: {
+        title: string
+        url: string
+        timestampSeconds: number
+        timestampFormatted: string
     } | null
     tags: string[]
     pornstars: string[]
@@ -74,6 +81,9 @@ export function parseByDom(html: string, $: CheerioAPI) {
         ? { username: providerLink.text(), url: getAttribute<string>(providerLink, 'href', '') }
         : null
 
+    // Parse source video information
+    const sourceVideo = parseSourceVideo($)
+
     const trafficJunkyMeta = $('head meta[name=adsbytrafficjunkycontext]')
     const tags = getDataAttribute<string>(trafficJunkyMeta, 'context-tag')?.split(',') || []
     const pornstars = getDataAttribute<string>(trafficJunkyMeta, 'context-pornstar')?.split(',') || []
@@ -89,10 +99,58 @@ export function parseByDom(html: string, $: CheerioAPI) {
         mp4,
         webm,
         provider,
+        sourceVideo,
         tags,
         pornstars,
         categories,
         ...parseByLdJson($),
+    }
+}
+
+function parseSourceVideo($: CheerioAPI) {
+    try {
+        const sourceTagDiv = $('.sourceTagDiv')
+        if (sourceTagDiv.length === 0) return null
+
+        const videoLink = sourceTagDiv.find('a[href*="/view_video.php"]').first()
+        if (videoLink.length === 0) return null
+
+        const timestampLink = sourceTagDiv.find('.tstamp').first()
+        if (timestampLink.length === 0) return null
+
+        const title = videoLink.text().trim()
+        const href = getAttribute<string>(videoLink, 'href', '')
+        const url = href.startsWith('http') ? href : `${BASE_URL}${href}`
+        const timestampFormatted = timestampLink.text().trim()
+        const timestampSeconds = convertTimeToSeconds(timestampFormatted)
+
+        return {
+            title,
+            url,
+            timestampSeconds,
+            timestampFormatted,
+        }
+    }
+    catch (error) {
+        return null
+    }
+}
+
+function convertTimeToSeconds(timeString: string): number {
+    try {
+        const parts = timeString.split(':').map(part => Number.parseInt(part, 10))
+        if (parts.length === 2) {
+            // mm:ss format
+            return parts[0] * 60 + parts[1]
+        }
+        else if (parts.length === 3) {
+            // hh:mm:ss format
+            return parts[0] * 3600 + parts[1] * 60 + parts[2]
+        }
+        return 0
+    }
+    catch (error) {
+        return 0
     }
 }
 

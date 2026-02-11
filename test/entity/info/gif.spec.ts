@@ -19,6 +19,13 @@ describe('Gif Info', () => {
         expect(result.mp4).to.be.a('string')
         expect(result.webm).to.be.a('string')
         expect(result.uploadDate).to.be.instanceOf(Date)
+        // sourceVideo might be null if the gif doesn't have a source video
+        if (result.sourceVideo) {
+            expect(result.sourceVideo.title).to.be.a('string')
+            expect(result.sourceVideo.url).to.be.a('string')
+            expect(result.sourceVideo.timestampSeconds).to.be.a('number')
+            expect(result.sourceVideo.timestampFormatted).to.be.a('string')
+        }
     })
 
     it('# should get gif information by URL', async () => {

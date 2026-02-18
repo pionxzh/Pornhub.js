@@ -6,6 +6,7 @@ You can use this to parse a page and extract the information you need.
   - [Get Video Info](#get-video-info)
   - [Get Album Info](#get-album-info)
   - [Get Photo Info](#get-photo-info)
+  - [Get Gif Info](#get-gif-info)
   - [Get Pornstar Info](#get-pornstar-info)
   - [Get Model Info](#get-model-info)
   - [Get Random Video](#get-random-video)
@@ -159,6 +160,82 @@ console.log(photo)
   }
 }
 ```
+</details>
+
+## Get Gif Info
+Accept both ID and page URL
+
+```js
+// https://www.pornhub.com/gif/53842061
+const gif = await pornhub.gif('53842061')
+console.log(gif)
+```
+
+| Params | Type     | Description        |
+| ------ | -------- | ------------------ |
+| url    | `string` | Gif ID or page URL |
+
+<details>
+  <summary><b>Result</b></summary>
+
+```json5
+{
+  "id": "53842061",
+  "url": "https://www.pornhub.com/gif/53842061",
+  "title": "Some Gif Title",
+  "views": 12345,
+  "vote": { "up": 100, "down": 10, "total": 110, "rating": 0.91 },
+  "premium": false,
+  "preview": "https://ci.phncdn.com/pics/gifs/***.jpg",
+  "gif": "https://ci.phncdn.com/pics/gifs/***.gif",
+  "mp4": "https://ci.phncdn.com/pics/gifs/***.mp4",
+  "webm": "https://ci.phncdn.com/pics/gifs/***.webm",
+  "provider": {
+    "username": "someuser",
+    "url": "https://www.pornhub.com/users/someuser"
+  },
+  "sourceVideo": {
+    "title": "Original Video Title",
+    "url": "https://www.pornhub.com/view_video.php?viewkey=***",
+    "timestampSeconds": 125,
+    "timestampFormatted": "2:05"
+  },
+  "tags": ["tag1", "tag2"],
+  "pornstars": ["name1"],
+  "uploadDate": "2023-01-01T00:00:00.000Z"
+}
+```
+</details>
+
+<details>
+  <summary><b>Response Type</b></summary>
+
+| Name                          | Type            | Description                                     |
+| ----------------------------- | --------------- | ----------------------------------------------- |
+| id                            | `string`        | Gif ID                                          |
+| url                           | `string`        | Gif page URL                                    |
+| title                         | `string`        | Gif title                                       |
+| views                         | `int`           | View count                                      |
+| vote.up                       | `int`           | UpVote count                                    |
+| vote.down                     | `int`           | DownVote count                                  |
+| vote.total                    | `int`           | Total vote count                                |
+| vote.rating                   | `float`         | Percentage of UpVote                            |
+| premium                       | `boolean`       | Is this gif premium only                        |
+| preview                       | `string`        | Preview image URL                               |
+| gif                           | `string`        | GIF file URL                                    |
+| mp4                           | `string`        | MP4 file URL                                    |
+| webm                          | `string`        | WebM file URL                                   |
+| provider                      | `object\|null`  | Gif uploader                                    |
+| provider.username             | `string`        | Provider's username                             |
+| provider.url                  | `string`        | Provider's profile URL                          |
+| sourceVideo                   | `object\|null`  | Source video the gif was created from            |
+| sourceVideo.title             | `string`        | Source video title                              |
+| sourceVideo.url               | `string`        | Source video URL                                |
+| sourceVideo.timestampSeconds  | `int`           | Timestamp in seconds                            |
+| sourceVideo.timestampFormatted| `string`        | Formatted timestamp (e.g. `"2:05"`)             |
+| tags                          | `Array<string>` | example: `["tag1", "tag2"]`                     |
+| pornstars                     | `Array<string>` | example: `["name1"]`                            |
+| uploadDate                    | `Date`          | Upload date                                     |
 </details>
 
 ## Get Pornstar Info

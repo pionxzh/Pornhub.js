@@ -7,14 +7,14 @@
 Powerful PornHub API for Node.js
 
 ## Features
-* **Parser**: Parse pages for `Video`, `Album`, `Photo`, `PornStar` and `Model`
+* **Parser**: Parse pages for `Video`, `Album`, `Photo`, `Gif`, `PornStar` and `Model`
 * **Search**: Search for `Video`, `Album`, `Gif`, `PornStar` and `Model`, support all the query parameters
 * **Pagination**: Support pagination for search results
 * **WebMaster**: Utilize the [WebMaster API](/doc/WebMaster.md) from [Hubtraffic](https://www.hubtraffic.com) like a king :sunglasses:
 
 ## Documents
 * [Document](/doc/DOCUMENT.md) for all the APIs and usages
-* [Page Parser](/doc/Page.md) for `Video`, `Album`, `Photo`, `PornStar`, and `Model`
+* [Page Parser](/doc/Page.md) for `Video`, `Album`, `Photo`, `Gif`, `PornStar`, and `Model`
 * [Search](/doc/Search.md) for `Video`, `Album`, `Gif`, `PornStar`, and `Model`
 * [WebMaster API](/doc/WebMaster.md)
 * **Migrate from v0.x to v1.x? Check [Migration Guide](/doc/MIGRATE.md)**

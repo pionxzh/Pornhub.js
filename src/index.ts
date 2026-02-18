@@ -7,6 +7,7 @@ import { pornstarList } from './scrapers/list/pornstars'
 import { videoList } from './scrapers/list/videos'
 import { albumPage } from './scrapers/pages/album'
 import { channelPage } from './scrapers/pages/channel'
+import { gifPage } from './scrapers/pages/gif'
 import { modelPage, modelUploadedVideos } from './scrapers/pages/model'
 import { photoPage } from './scrapers/pages/photo'
 import { pornstarPage } from './scrapers/pages/pornstar'
@@ -27,6 +28,7 @@ export * from './types'
 export * from './utils/error'
 export type { AlbumPage } from './scrapers/pages/album'
 export type { PhotoPage } from './scrapers/pages/photo'
+export type { GifPage } from './scrapers/pages/gif'
 export type { VideoPage } from './scrapers/pages/video'
 export type { PornstarPage } from './scrapers/pages/pornstar'
 export type { ModelPage } from './scrapers/pages/model'
@@ -159,6 +161,14 @@ export class PornHub {
      */
     photo(urlOrId: string) {
         return photoPage(this.engine, urlOrId)
+    }
+
+    /**
+     * Get gif information by url/ID
+     * @param urlOrId Gif ID or page url
+     */
+    gif(urlOrId: string) {
+        return gifPage(this.engine, urlOrId)
     }
 
     /**

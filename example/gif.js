@@ -1,4 +1,4 @@
-const { PornHub } = require('pornhub.js')
+import { PornHub } from 'pornhub.js'
 
 async function gifExample() {
     const pornhub = new PornHub()

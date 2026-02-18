@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.15.0](https://github.com/pionxzh/Pornhub.js/compare/pornhub.js-v1.14.1...pornhub.js-v1.15.0) (2026-02-18)
+
+
+### Features
+
+* added `awarded` and `partner` in channel page ([62172c2](https://github.com/pionxzh/Pornhub.js/commit/62172c2154d4d1124bd96e215201850a93845154))
+* support GIF page parsing ([#169](https://github.com/pionxzh/Pornhub.js/issues/169)) ([c9b5258](https://github.com/pionxzh/Pornhub.js/commit/c9b5258fbfdc64ed5b78a8875b4bd08853cbf8b8))
+
+
+### Bug Fixes
+
+* adjust gif page to provide same provider shape ([1bfa779](https://github.com/pionxzh/Pornhub.js/commit/1bfa7795ff982420bdd27e9190e0ae43f3cd5f16))
+* fix video provider parsing ([7f06b6e](https://github.com/pionxzh/Pornhub.js/commit/7f06b6eaa4b14fc7f7b3776bc0216f1c909d8cee)), closes [#161](https://github.com/pionxzh/Pornhub.js/issues/161)
+* use `mostRecentVideos` instead of `videos` to align with pornstar and model ([dcd94f4](https://github.com/pionxzh/Pornhub.js/commit/dcd94f46dc0247c90f20523274893f994f1c28dc))
+
 ## [1.14.1](https://github.com/pionxzh/Pornhub.js/compare/pornhub.js-v1.14.0...pornhub.js-v1.14.1) (2025-12-25)
 
 

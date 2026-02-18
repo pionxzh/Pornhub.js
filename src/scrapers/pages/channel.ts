@@ -31,7 +31,9 @@ export interface ChannelPage {
 
     about: string | null
 
+    /** @deprecated Use `mostRecentVideos` instead. This field will be removed in the next major version. */
     videos: VideoListResult[]
+    mostRecentVideos: VideoListResult[]
     pornstars: PornstarListResult[]
 }
 
@@ -117,6 +119,7 @@ function parseByDom($: CheerioAPI, url: string): ChannelPage {
         about,
 
         videos,
+        mostRecentVideos: videos,
         pornstars,
     }
 }

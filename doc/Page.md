@@ -9,6 +9,7 @@ You can use this to parse a page and extract the information you need.
   - [Get Gif Info](#get-gif-info)
   - [Get Pornstar Info](#get-pornstar-info)
   - [Get Model Info](#get-model-info)
+  - [Get Channel Info](#get-channel-info)
   - [Get Random Video](#get-random-video)
   - [Get Video List](#get-video-list)
   - [Get Pornstar List](#get-pornstar-list)
@@ -315,6 +316,61 @@ console.log(result)
 ```
 
 \> Check the type definition [here](https://github.com/pionxzh/Pornhub.js/blob/master/src/scrapers/page/model.ts).
+</details>
+
+## Get Channel Info
+Accept both name and page URL
+
+```js
+// https://www.pornhub.com/channels/brazzers
+const channel = await pornhub.channel('brazzers')
+console.log(channel)
+```
+
+| Params | Type     | Description             |
+| ------ | -------- | ----------------------- |
+| url    | `string` | Channel name or page URL |
+
+<details>
+  <summary><b>Result</b></summary>
+
+```json5
+{
+  "name": "Brazzers",
+  "url": "https://www.pornhub.com/channels/brazzers",
+  "partner": true,
+  "awarded": true,
+  "avatar": "https://ci.phncdn.com/pics/channels/***.jpg",
+  "cover": "https://ci.phncdn.com/pics/channels/***.jpg",
+  "rank": 1,
+  "subscribers": 5000000,
+  "videoCount": 3500,
+  "videoViews": 1000000000,
+  "about": "Official Brazzers channel",
+  "mostRecentVideos": [/* ... */],
+  "pornstars": [/* ... */]
+}
+```
+</details>
+
+<details>
+  <summary><b>Response Type</b></summary>
+
+| Name        | Type              | Description                  |
+| ----------- | ----------------- | ---------------------------- |
+| name        | `string`          | Channel name                 |
+| url         | `string`          | Channel page URL             |
+| partner     | `boolean`         | Is a partner channel         |
+| awarded     | `boolean`         | Has awards                   |
+| avatar      | `string`          | Avatar image URL             |
+| cover       | `string`          | Cover image URL              |
+| rank        | `int`             | Channel rank                 |
+| subscribers | `int`             | Subscriber count             |
+| videoCount  | `int`             | Number of videos             |
+| videoViews  | `int`             | Total video views            |
+| about       | `string\|null`    | Channel description          |
+| mostRecentVideos | `Array<object>`   | List of channel's most recent videos |
+| pornstars   | `Array<object>`   | List of channel pornstars    |
 </details>
 
 ## Get Random Video

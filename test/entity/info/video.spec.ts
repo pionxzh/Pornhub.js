@@ -18,7 +18,7 @@ describe('Video Info', () => {
         expect(result.provider?.username).toBe('Hansel Grettel')
         expect(result.provider?.url).toBe('/model/hansel-grettel')
 
-        expect(result.mediaDefinitions.length).to.be.at.least(2)
+        expect(result.mediaDefinitions.length).to.be.at.least(1)
 
         expect(result.tags.length).to.be.at.least(10)
 

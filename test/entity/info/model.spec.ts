@@ -39,7 +39,7 @@ describe('Model Info', () => {
     })
 
     it('Luna Okko videos', async () => {
-        const url = 'https://www.pornhub.com/model/teacher-of-magic'
+        const url = 'https://www.pornhub.com/model/luna-okko'
         const result = await pornhub.modelVideos(url, { page: 2 })
 
         expect(result.data.length).to.be.greaterThan(0)

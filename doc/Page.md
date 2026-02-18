@@ -192,7 +192,7 @@ console.log(gif)
   "webm": "https://ci.phncdn.com/pics/gifs/***.webm",
   "provider": {
     "username": "someuser",
-    "url": "https://www.pornhub.com/users/someuser"
+    "url": "/users/someuser"
   },
   "sourceVideo": {
     "title": "Original Video Title",

@@ -80,10 +80,7 @@ export function parseByDom(html: string, $: CheerioAPI) {
 
     const providerLink = $('.sourceTagDiv .usernameBadgesWrapper a').first()
     const provider = providerLink.length
-        ? {
-                username: providerLink.text(),
-                url: `${BASE_URL}${getAttribute<string>(providerLink, 'href', '')}`,
-            }
+        ? { username: providerLink.text(), url: getAttribute<string>(providerLink, 'href', '') }
         : null
 
     const sourceVideo = parseSourceVideo($)

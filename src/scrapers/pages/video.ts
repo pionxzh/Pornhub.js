@@ -85,9 +85,7 @@ export function parseByDom(html: string, $: CheerioAPI) {
     const thumb = getAttribute<string>($('.thumbnail img'), 'src', '')
     const preview = getAttribute<string>($('head meta[property="og:image"]'), 'content', '')
 
-    // wtf...is this double rel a coding bug from pornhub?
-    // <a rel="rel="nofollow"" href="/users/xxxx"  class="bolded">XXXXX</a>
-    const providerLink = $('.usernameBadgesWrapper a.bolded').first()
+    const providerLink = $('.userInfoBlock .usernameWrap a.bolded').first()
     const provider = providerLink.length
         ? { username: providerLink.text(), url: getAttribute<string>(providerLink, 'href', '') }
         : null

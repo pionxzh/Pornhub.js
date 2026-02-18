@@ -19,6 +19,8 @@ export interface ChannelPornstar {
 export interface ChannelPage {
     name: string
     url: string
+    partner: boolean
+    awarded: boolean
     avatar: string
     cover: string
 
@@ -77,6 +79,12 @@ function parseByDom($: CheerioAPI, url: string): ChannelPage {
     const aboutCandidate = descriptionEl.children().eq(0).contents().eq(0)
     const about = aboutCandidate.get(0)?.type === 'text' ? aboutCandidate.text() : null
 
+    const partnerEl = $('.bottomExtendedWrapper .producer-icon')
+    const partner = !!partnerEl.length
+
+    const awardEl = $('.bottomExtendedWrapper .trophyChannel')
+    const awarded = !!awardEl.length
+
     const avatarEl = $('img#getAvatar')
     const avatar = getAttribute<string>(avatarEl, 'src', '')
 
@@ -99,6 +107,8 @@ function parseByDom($: CheerioAPI, url: string): ChannelPage {
     return {
         name,
         url,
+        partner,
+        awarded,
         avatar,
         cover,
 

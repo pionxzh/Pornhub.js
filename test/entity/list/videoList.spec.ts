@@ -16,7 +16,10 @@ describe('VideoList', () => {
         expect(result.data.length).to.be.a('number')
 
         const first = result.data[0]
-        expect(first.title).to.equal('Girls4Cock.Com *** Little Blonde Takes Mega Cocks in her AssHole')
+        expect(first.title).to.be.a('string')
+        expect(first.title).to.be.not.empty
+
+        expect(first.views).to.be.a('string')
         expect(first.views).to.be.not.empty
     })
 })

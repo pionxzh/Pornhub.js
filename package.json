@@ -68,7 +68,7 @@
     "tsup": "^8.4.0",
     "typescript": "^5.7.2",
     "vite": "^6.2.5",
-    "vitest": "^2.1.9"
+    "vitest": "^4.1.0"
   },
   "pnpm": {
     "overrides": {
